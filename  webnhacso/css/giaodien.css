@@ -1,0 +1,73 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Tự định dạng*/
+.banner
+{
+	background:url("../images/head-page-bg.jpg");
+	height:120px;
+	margin:0 auto;
+	width:100%;
+	position:absolute;
+}
+
+.main
+{
+	background-color:#FFF;
+	height:100%;
+	position:absolute;
+	margin:125px 0 0 128px;
+	overflow:hidden;
+	padding: 5px 5px;
+	width:1000px;
+}
+
+.left-header
+{
+	background:url("../images/title-box-bg-1.jpg")  no-repeat scroll;
+	width:180px;
+	height:33px;
+}
+
+.left-menu
+{
+	background:url("../images/title-box-bg-1.jpg")  no-repeat scroll;
+	width:180px;
+	height:33px;
+}
+
+.left-col
+{
+	width:15%;
+}
+
+.mid-col
+{
+	width:55%;
+}
+
+.right-col
+{
+	width:30%;
+}
+
+.main-content
+{
+	
+}
+
+/*Tham khảo của trang nhaccuatui.com*/
+body
+{
+	background:url("../images/main-body-bg.jpg")  no-repeat scroll center 120px #DCDCDC;
+	font-family:Verdana,Arial,Helvetica,Sans-Serif;
+	font-size:12px;
+	line-height:18px;
+	height:100%;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td 
+{
+	margin:0;
+	padding:0;
+}
