@@ -6,8 +6,8 @@
 			$connection = mysql_connect("localhost","root","") or die ("Không kết nối được với CSDL");
 			
 			mysql_query("set names 'utf8'",$connection);
-			//ebookDB Tên CSDL
-			mysql_select_db("ebookDB",$connection);
+			
+			mysql_select_db("fantasy_music",$connection);
 			
 			$result = mysql_query($sql,$connection);
 			
@@ -16,5 +16,5 @@
 			return $result;
 			
 		}
-	}
+	}	
 ?>
