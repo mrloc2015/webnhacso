@@ -6,7 +6,7 @@
 {
 	background:url("../images/head-page-bg.jpg");
 	height:120px;
-	margin:0 auto;
+	margin:-125px auto;
 	width:100%;
 	position:absolute;
 }
@@ -15,10 +15,9 @@
 {
 	background-color:#FFF;
 	height:100%;
-	position:absolute;
-	margin:125px 0 0 128px;
-	overflow:hidden;
-	padding: 5px 5px;
+	position:static;
+	margin:125px auto;
+	padding:5px 5px;
 	width:1000px;
 }
 
@@ -43,12 +42,12 @@
 
 .mid-col
 {
-	width:55%;
+	width:60%;
 }
 
 .right-col
 {
-	width:30%;
+	width:25%;
 }
 
 .main-content
