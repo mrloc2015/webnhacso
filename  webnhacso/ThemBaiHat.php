@@ -51,7 +51,7 @@
 <div style="margin-left:100px; margin-top:50px">
 	<div class="worms_field">
 		<div class="worms_left"><label>Song Name:</label></div>       
-       	<input name="Th_SongName" type="text" width="150px" />
+       	<input name="Th_SongName" type="text" style="width:145px" />
     </div>
     <div class="worms_field">
     	<div class="worms_left"><label>Style ID:</label></div> 
@@ -87,11 +87,11 @@
     </div>
     <div class="worms_field">
 		<div class="worms_left"><label>Singer:</label></div>
-        <input type="text" name="Th_Singer" style="width:140px" />
+        <input type="text" name="Th_Singer" style="width:145px" />
     </div>
     <div class="worms_field">
         <div class="worms_left"><label>Writter:</label></div>
-        <input name="Th_Writter" type="text" width="150px"/>
+        <input name="Th_Writter" type="text" style="width:145px"/>
     </div>
 <!--<div class="worms_field">
         <div class="worms_left"><label>Date Up:</label></div>
@@ -123,7 +123,7 @@
 	</div> 
     <div class="worms_field">
         <div class="worms_left"><label>Rate:</label></div>
-        <input name="Th_Rate" type="text" width="150px"/><br />
+        <input name="Th_Rate" type="text" style="width:145px"/><br />
 	</div>
     <div class="worms_field">
 		<div class="worms_left"><label>Source:</label></div>
