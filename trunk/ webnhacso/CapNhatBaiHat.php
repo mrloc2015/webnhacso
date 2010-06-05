@@ -74,7 +74,7 @@
 	<div class="worms_field">
 		<div class="worms_left"><label>Song Name:</label></div>       
        	<input name="song_id" type="hidden" value="<?php echo("$song_id"); ?>" />
-        <input name="Th_SongName" type="text" width="150px" value="<?php echo("$song_name") ?>"/>
+        <input name="Th_SongName" type="text" style="width:145px" value="<?php echo("$song_name") ?>"/>
     </div>
     <div class="worms_field">
     	<div class="worms_left"><label>Style ID:</label></div> 
@@ -124,11 +124,11 @@
 				}
 			}
 		?>
-        <input type="text" name="Th_Singer" style="width:140px" value="<?php echo("$singer_id") ?>"/>
+        <input type="text" name="Th_Singer" style="width:145px" value="<?php echo("$singer_id") ?>"/>
     </div>
     <div class="worms_field">
         <div class="worms_left"><label>Writter:</label></div>
-        <input name="Th_Writter" type="text" width="150px" value="<?php echo("$writter") ?>"/>
+        <input name="Th_Writter" type="text" style="width:145px" value="<?php echo("$writter") ?>"/>
     </div>
 <!--<div class="worms_field">
         <div class="worms_left"><label>Date Up:</label></div>

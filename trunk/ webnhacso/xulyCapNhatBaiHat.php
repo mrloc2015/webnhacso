@@ -46,8 +46,17 @@
 		echo($sql);
 		
 		DataProvider::ExecuteQuery($sql);
-				
-		move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/$song_id/". $_FILES["Th_Source"]["name"]);		
+		
+		$flag = 1;
+		foreach(glob("Du_Lieu/$song_id/"."*") as $file)
+		{
+			if(strcmp(("Du_Lieu/$song_id/". $_FILES["Th_Source"]["name"]),$file) != 0)
+				unlink($file);
+			else
+				$flag = 0;
+		}
+		if($flag == 1)
+			move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/$song_id/". $_FILES["Th_Source"]["name"]);
 		?>
 		<script type="text/javascript" language="javascript">
         	alert("Cập nhật thành công");
