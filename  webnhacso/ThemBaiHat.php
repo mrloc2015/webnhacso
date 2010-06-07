@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
-<link href="css/giaodien.css" rel="stylesheet" type="text/css"> 
+<link href="css/giaodien.css" rel="stylesheet" type="text/css">
+<script src="script/ThemBaiHat.js"></script> 
 </head>
 
 <body>
@@ -19,10 +20,10 @@
                  </div>
                   <table height="90" width="180" border="0" cellspacing="0">
                   <tr>
-                    <td>Trang Chủ</td>
+                    <td><a href="TrangChu.php">Trang Chủ</a></td>
                   </tr>
                   <tr>
-                    <td>Đăng/Upload bài hát mới</td>
+                    <td><a href="ThemBaiHat.php">Đăng/Upload bài hát mới</a></td>
                   </tr>
                   <tr>
                     <td>Đăng ký tài khoản mới</td>
@@ -56,6 +57,7 @@
     <div class="worms_field">
     	<div class="worms_left"><label>Style ID:</label></div> 
         <select name="Th_Style" style="width:145px">
+			<option value="15">Không Biết</option>
 			<?php
                 $bang_Style = DataProvider::ExecuteQuery("Select * From song_style");            
                 if($bang_Style != false)
@@ -87,11 +89,11 @@
     </div>
     <div class="worms_field">
 		<div class="worms_left"><label>Singer:</label></div>
-        <input type="text" name="Th_Singer" style="width:145px" />
+        <input type="text" name="Th_Singer" style="width:145px" value="Không Biết"/>
     </div>
     <div class="worms_field">
         <div class="worms_left"><label>Writter:</label></div>
-        <input name="Th_Writter" type="text" style="width:145px"/>
+        <input name="Th_Writter" type="text" style="width:145px" value="Không Biết"/>
     </div>
 <!--<div class="worms_field">
         <div class="worms_left"><label>Date Up:</label></div>
@@ -122,16 +124,27 @@
         </select> 
 	</div> 
     <div class="worms_field">
-        <div class="worms_left"><label>Rate:</label></div>
-        <input name="Th_Rate" type="text" style="width:145px"/><br />
+        <div class="worms_left" style="margin-top:5px"><label>Rate:</label></div>
+		<input name="Th_Rate" id="Th_Rate" type="hidden" style="width:145px" value="0"/>        
+          
+        <div style="float:right; margin-right:180px; height:45px">        
+            <img onmouseover="rate_over(1)" onmouseout="rate_out(1)" onclick="rate_click(1)" id="1" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
+            <img onmouseover="rate_over(2)" onmouseout="rate_out(2)" onclick="rate_click(2)" id="2" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
+            <img onmouseover="rate_over(3)" onmouseout="rate_out(3)" onclick="rate_click(3)" id="3" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
+           	<img onmouseover="rate_over(4)" onmouseout="rate_out(4)" onclick="rate_click(4)" id="4" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
+            <img onmouseover="rate_over(5)" onmouseout="rate_out(5)" onclick="rate_click(5)" id="5" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
+            <script type="text/javascript" language="javascript">
+        		document.getElementById("Th_Rate").value = 0;
+			</script>
+        </div><br />
 	</div>
     <div class="worms_field">
-		<div class="worms_left"><label>Source:</label></div>
+		<div class="worms_left" style="margin-top:18px"><label>Source:</label></div>
         <!-- <input name="Th_Source" type="text" width="150px"/> -->
-		<input type="file" name="Th_Source" />
+		<input type="file" name="Th_Source"/>
     </div>
     
-	<div><input type="submit" value="Thêm" /></div>
+	<div style="margin-top:30px; margin-right:100px"><input type="submit" value="Thêm" /></div>
 </div>    
 </form>
 			<!-- InstanceEndEditable -->

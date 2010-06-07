@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
-<link href="../css/giaodien.css" rel="stylesheet" type="text/css"> 
+<link href="../css/giaodien.css" rel="stylesheet" type="text/css">
+<script src="../script/ThemBaiHat.js"></script> 
 </head>
 
 <body>
@@ -19,10 +20,10 @@
                  </div>
                   <table height="90" width="180" border="0" cellspacing="0">
                   <tr>
-                    <td>Trang Chủ</td>
+                    <td><a href="../TrangChu.php">Trang Chủ</a></td>
                   </tr>
                   <tr>
-                    <td>Đăng/Upload bài hát mới</td>
+                    <td><a href="../ThemBaiHat.php">Đăng/Upload bài hát mới</a></td>
                   </tr>
                   <tr>
                     <td>Đăng ký tài khoản mới</td>

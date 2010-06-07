@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
-<link href="css/giaodien.css" rel="stylesheet" type="text/css"> 
+<link href="css/giaodien.css" rel="stylesheet" type="text/css">
+<script src="script/ThemBaiHat.js"></script> 
 </head>
 
 <body>
@@ -19,10 +20,10 @@
                  </div>
                   <table height="90" width="180" border="0" cellspacing="0">
                   <tr>
-                    <td>Trang Chủ</td>
+                    <td><a href="TrangChu.php">Trang Chủ</a></td>
                   </tr>
                   <tr>
-                    <td>Đăng/Upload bài hát mới</td>
+                    <td><a href="ThemBaiHat.php">Đăng/Upload bài hát mới</a></td>
                   </tr>
                   <tr>
                     <td>Đăng ký tài khoản mới</td>
@@ -174,12 +175,12 @@
     <br />
 	<br />
 	<br />
-    <div class="media"> 
+    <div> 
         <object codebase="http://www.apple.com/qtactivex/qtplugin.cab"
             classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" 
             type="application/x-oleobject"> 
             <param name="url" value="<?php echo("$source"); ?>"> 
-            <embed src="<?php echo("$source"); ?>"
+            <embed src="<?php echo("$source"); ?>" autostart="false"
                 type="application/x-mplayer2" 
                 pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
         </object>
