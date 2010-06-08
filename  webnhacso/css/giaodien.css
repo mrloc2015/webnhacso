@@ -44,6 +44,7 @@
 	width:180px;
 	height:95px;
 	position:relative;
+	background-color:#00c41a;
 }
 
 .left-col
@@ -140,9 +141,23 @@ a
 	padding-top:5px;
 }
 
-.pointer li a
+.pointer li a, .pointer li a:hover
 {
 	margin-left:20px;
+	color:#0F0;
+	font-weight:bold;
+}
+
+td a
+{
+	font-weight:normal;
+	color:#06F;
+}
+
+td a:hover
+{
+	font-weight:normal;
+	color:#F90;
 }
 
 .last
