@@ -159,7 +159,7 @@
 						<div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px">
                         </div>
                         <form id="frmDangNhap" name="DangNhap" method="post" action="xulyDangNhap.php">
-                        	<table width="100%" height="200px" border="0" cellspacing="0" bgcolor="#CCCCFF">
+                        	<table width="100%" height="200px" border="0" cellspacing="0" bgcolor="#33FF66">
                                   <tr>
                                     <td width="18%">&nbsp;</td>
                                     <td width="65%">Tên đăng nhập</td>
@@ -178,7 +178,7 @@
                                   </tr>
                                   <tr>
                                     <td colspan="2" align="right"><label>
-                                      <input type="text" name="txtMatKhau" id="txtMatKhau" width="200" />
+                                      <input type="password" name="txtMatKhau" id="txtMatKhau" width="200" />
                                     </label></td>
                                     <td>&nbsp;</td>
                                   </tr>
@@ -190,12 +190,12 @@
                                   </tr>
                                   <tr>
                                     <td>&nbsp;</td>
-                                    <td>Quên mật khẩu</td>
+                                    <td><a>Quên mật khẩu</a></td>
                                     <td>&nbsp;</td>
                                   </tr>
                                   <tr>
                                     <td>&nbsp;</td>
-                                    <td>Đăng ký tài khoản</td>
+                                    <td><a href="DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản</a></td>
                                     <td>&nbsp;</td>
                                   </tr>
                              </table>
@@ -207,7 +207,7 @@
                     	<div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;">
                         </div>
                         <form id="frmTimKiem" name="TimKiem" method="post" action="xulyTimKiem.php">
-                        	<table width="100%" height="120px" border="0" cellspacing="0" bgcolor="#CCCCFF">
+                        	<table width="100%" height="120px" border="0" cellspacing="0" bgcolor="#33FF66">
                                   <tr>
                                     <td width="18%">&nbsp;</td>
                                     <td width="65%">Từ khóa</td>
