@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta http-equiv="refresh" content="3;url=http://localhost/webnhacso/TrangChu.php">
+<meta http-equiv="refresh" content="3;url=http://localhost:8080/Do an - Web nhac so/TrangChu.php">
 </head>
 </html>
 <?php	
@@ -51,7 +51,7 @@
 						$_SESSION["Pass"]=$Row["Pass"];
 						$_SESSION["IsLogin"]=true;
 						$_SESSION["UserType"]=$Row["UserStyleID"];
-						echo("Xin chào $UserName!<br/>Click <a href='TrangChu.php'>vào đây</a> để trở lại trang chủ nếu trình duyệt không tự chuyển!");																                        
+						echo("Xin chào $UserName!<br/>Click <a href='./TrangChu.php'>vào đây</a> để trở lại trang chủ nếu trình duyệt không tự chuyển!");																                        
                     						
 					}
 				}				
@@ -69,6 +69,5 @@
 	}
 			
 	session_unset();
-	session_destroy();
-	
+	session_destroy();	
 ?>
