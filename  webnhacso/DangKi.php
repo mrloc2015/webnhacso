@@ -1,50 +1,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php session_start();?>
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/TrangChu.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
 <link href="css/giaodien.css" rel="stylesheet" type="text/css">
-<script src="script/ThemBaiHat.js"></script> 
+<script src="script/ThemBaiHat.js"></script>
 </head>
 
 <body>
 	<div class="banner" id="idBanner" align="center">
-    	<img src="images/header-02.jpg" width="1000">
+    	<img src="images/header-02.jpg" width="1000" height="120">
     </div>
   	<div class="main" id="idmain">
         <table width="100%" border="0" cellspacing="0">
           <tr>
             <td width="18%" class="left-col" valign="top">
-                 <div class="left-header" id="idLeftMenu" align="center">
-                    Menu
-                 </div>
-                  <table height="90" width="180" border="0" cellspacing="0">
-                  <tr>
-                    <td><a href="TrangChu.php">Trang Chủ</a></td>
-                  </tr>
-                  <tr>
-                    <td><a href="ThemBaiHat.php">Đăng/Upload bài hát mới</a></td>
-                  </tr>
-                  <tr>
-                    <td>Đăng ký tài khoản mới</td>
-                  </tr>
-                </table>
-                <div class="left-header" id="idLeftMenu" align="center">
-                    Danh mục bài hát
-                </div>  
-                <div class="left-header" id="idLeftMenu" align="center">
-                    Clip
-                </div>
-                <div class="left-header" id="idLeftMenu" align="center">
-                    Playlist HOT
-                </div>
-                <div class="left-header" id="idLeftMenu" align="center">
-                    Ca sĩ
-                </div>
-            </td>
+            	 <div class="left-header" id="idLeftMenu" align="center">
+                    <span>Menu</span>
+            	 </div>
+             <div class="left-menu" id="idFirstLeftMenu">
+                 <ul class="pointer">
+                    <li>
+                      <a href="TrangChu.php" title="Trang chủ">Trang chủ</a>
+                   </li>
+                    <li>
+                      <a href="ThemBaiHat.php" title="Đăng/upload Bài Hát">Đăng/upload Bài Hát</a>
+                    </li>
+                    <li class="last">
+                      <a href="DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản mới</a>
+                    </li>
+                 </ul>
+           	</div>
+   	      	<div class="left-header" id="idLeftMenu" align="center">
+                 <span>Danh mục bài hát</span>
+            </div>  
+            <div class="left-header" id="idLeftMenu" align="center">
+                 <span>Clip</span>
+            </div>
+            <div class="left-header" id="idLeftMenu" align="center">
+                <span>Playlist HOT</span>
+            </div>
+            <div class="left-header" id="idLeftMenu" align="center">
+                <span>Ca sĩ</span>
+            </div>
             <td width="67%" valign="top" class="mid-col">
-                <div id="idMainContent" class="main-content" align="center">
-                    <!-- InstanceBeginEditable name="mainConten" -->                
+                <div id="idMainContent" class="main-content" align="center">                   
+  					<!-- InstanceBeginEditable name="mainConten" -->                
                   
         	<div style="width:600px" align="center">
             <form id="form1" name="frmdangki"  method="post" action="xulyThemUser.php?issubmit=true">
@@ -143,7 +145,7 @@
                 </div>
             </td>
             <td width="20%" valign="top" class="right-col">
-                <table width="100%" border="0" cellspacing="10" cellpadding="10px">
+                <table width="100%" border="0">                  
                   <tr>
                     <td>
 						<div align="center" style="background-color:#0CF">

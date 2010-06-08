@@ -23,16 +23,27 @@
 
 .left-header
 {
-	background:url("../images/title-box-bg-1.jpg")  no-repeat scroll;
+	background:url("../images/title-box-bg-1.jpg") no-repeat scroll left top #1485B5;
 	width:180px;
 	height:33px;
+	color:#1888B6;
+	cursor:default;
+	font-size:15px;
+	font-weight:bold;
+	position:relative;
+}
+
+.left-header span
+{
+	top:7px;
+	position:relative;
 }
 
 .left-menu
 {
-	background:url("../images/title-box-bg-1.jpg")  no-repeat scroll;
 	width:180px;
-	height:33px;
+	height:100px;
+	position:relative;
 }
 
 .left-col
@@ -72,15 +83,60 @@
 /*Tham khảo của trang nhaccuatui.com*/
 body
 {
-	background:url("../images/main-body-bg.jpg")  no-repeat scroll center 120px #DCDCDC;
+	
 	font-family:Verdana,Arial,Helvetica,Sans-Serif;
 	font-size:12px;
 	line-height:18px;
 	height:100%;
 }
 
+ul, li, ol, dl, dt, dd 
+{
+	list-style:none outside none;
+}
+
+fieldset, img, iframe 
+{
+	border:0 none;
+}
+
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td 
 {
 	margin:0;
 	padding:0;
+}
+
+a
+{
+	text-decoration:none;
+	font-weight:bold;
+	color:#000;
+}
+
+.pointer
+{
+	height:28px;
+	width:180px;
+	
+}
+
+.pointer li
+{	
+	background:url("../images/menu-box-bg-pointer-last.jpg")  no-repeat scroll;
+	height:25px;
+	width:180px;
+	display:block;
+	overflow:hidden;
+	padding-top:5px;
+}
+
+.pointer li a
+{
+	margin-left:20px;
+}
+
+.last
+{
+	height:25px;
+	width:180px;
 }
