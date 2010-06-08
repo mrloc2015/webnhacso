@@ -156,11 +156,10 @@
                 <table width="100%" border="0">                  
                   <tr>
                     <td>
-						<div align="center" style="background-color:#0CF">
-                        	ĐĂNG NHẬP
+						<div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px">
                         </div>
                         <form id="frmDangNhap" name="DangNhap" method="post" action="xulyDangNhap.php">
-                        	<table width="100%" height="200px" border="0" cellspacing="0" bgcolor="#CCCCCC">
+                        	<table width="100%" height="200px" border="0" cellspacing="0" bgcolor="#CCCCFF">
                                   <tr>
                                     <td width="18%">&nbsp;</td>
                                     <td width="65%">Tên đăng nhập</td>
@@ -205,11 +204,10 @@
                   </tr>
                   <tr>
                     <td>
-                    	<div align="center" style="background-color:#0CF">
-                        	TÌM KIẾM
+                    	<div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;">
                         </div>
                         <form id="frmTimKiem" name="TimKiem" method="post" action="xulyTimKiem.php">
-                        	<table width="100%" height="120px" border="0" cellspacing="0" bgcolor="#CCCCCC">
+                        	<table width="100%" height="120px" border="0" cellspacing="0" bgcolor="#CCCCFF">
                                   <tr>
                                     <td width="18%">&nbsp;</td>
                                     <td width="65%">Từ khóa</td>
