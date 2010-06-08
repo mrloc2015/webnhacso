@@ -42,7 +42,7 @@
 .left-menu
 {
 	width:180px;
-	height:100px;
+	height:95px;
 	position:relative;
 }
 
@@ -83,7 +83,7 @@
 /*Tham khảo của trang nhaccuatui.com*/
 body
 {
-	
+	background:url("../images/main-body-bg.jpg") no-repeat scroll center 120px #DCDCDC;
 	font-family:Verdana,Arial,Helvetica,Sans-Serif;
 	font-size:12px;
 	line-height:18px;
@@ -122,7 +122,17 @@ a
 
 .pointer li
 {	
-	background:url("../images/menu-box-bg-pointer-last.jpg")  no-repeat scroll;
+	background:url("../images/menu-box-bg-pointer-last.jpg")  no-repeat scroll left center transparent;
+	height:25px;
+	width:180px;
+	display:block;
+	overflow:hidden;
+	padding-top:5px;
+}
+
+.pointer li:hover
+{	
+	background:url("../images/pointer.jpg")  no-repeat scroll left center transparent;
 	height:25px;
 	width:180px;
 	display:block;
