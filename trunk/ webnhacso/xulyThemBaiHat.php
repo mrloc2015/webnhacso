@@ -7,7 +7,7 @@
 
 <body>
 <?php
-	include_once("DataProvider.php");	
+	include_once("DataProvider.php");
 	if(isset($_REQUEST["Th_SongName"]) == true)
 	{
 		$song_name = "\"" . $_REQUEST["Th_SongName"]."\"";
@@ -38,19 +38,19 @@
 			$rate = ", " . $_REQUEST["Th_Rate"];				
 			$source = ", \"".$_FILES["Th_Source"]["name"]."\"";
 
-			$sql = "Insert into song (SongName, StyleID, OwnerID, SingerID, Writter, DateUp, ListenCount, DownloadCount, BitRateID, Rate, Source) values ($song_name $style_id $owner_id $singer_id $writter $date_up $listen_count $download_count $bit_rate_id $rate $source)";	
+			$sql = "Insert into waiting_song (SongName, StyleID, OwnerID, SingerID, Writter, DateUp, BitRateID, Source) values ($song_name $style_id $owner_id $singer_id $writter $date_up $bit_rate_id $source)";	
 			
 			echo($sql);
 			
 			DataProvider::ExecuteQuery($sql);
 			
-			$temp = DataProvider::ExecuteQuery("Select MAX(ID) From song");
-			$ma_user = -1;
-			while($row = mysql_fetch_array($temp))
-				$song_id = $row["MAX(ID)"];			
+			//$temp = DataProvider::ExecuteQuery("Select MAX(ID) From song");
+			//$ma_user = -1;
+			//while($row = mysql_fetch_array($temp))
+			//	$song_id = $row["MAX(ID)"];			
 	
-			mkdir("Du_Lieu/$song_id",1);
-			move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/$song_id/". $_FILES["Th_Source"]["name"]);		
+			//mkdir("Du_Lieu/$song_id",1);
+			move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/BAI_HAT/Waiting_Song/". $_FILES["Th_Source"]["name"]);		
 			?>
 			<script type="text/javascript" language="javascript">
 				alert("Thêm thành công");
