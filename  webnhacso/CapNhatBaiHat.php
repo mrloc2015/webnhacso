@@ -68,7 +68,7 @@
 				$bit_rate_id = $row["BitRateID"];
 				$rate = $row["Rate"];				
 				
-				$source = "Du_Lieu/$song_id/".$row["Source"];
+				$source = "Du_Lieu/BAI_HAT/$song_id/".$row["Source"];
 
 				?>
                 

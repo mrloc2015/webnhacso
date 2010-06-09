@@ -60,7 +60,7 @@
 			$id = $row["ID"];
 			$source = $row["Source"];
 		}
-		$source = "Du_Lieu/$id/$source";
+		$source = "Du_Lieu/BAI_HAT/$id/$source";
 		?>
 			<div style="margin-top:50px"> 
 				<object codebase="http://www.apple.com/qtactivex/qtplugin.cab"
@@ -96,6 +96,12 @@
 			//fwrite($fp,"DF");
 			$playlist_id = $_REQUEST["PlayList"];
 			$user_name = "sau_con_89"; //lấy session
+			$temp = DataProvider::ExecuteQuery("Select * From user Where PlayListID = $playlist_id");
+			if($temp != false)
+			{
+				$row = mysql_fetch_array($temp);
+				$user_name = $row["UserName"];
+			}
 			$source = "Du_Lieu/USER/$user_name/$playlist_id.wpl";
 			?>
 				<div style="margin-top:50px"> 
@@ -106,7 +112,7 @@
 						<embed src="<?php echo("$source"); ?>" autostart="false"
 						type="application/x-mplayer2" 
 						pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
-					</object>
+					</object>                    
 				</div>
 				<?php
 		}

@@ -71,5 +71,37 @@ $sql="INSERT INTO user_info (FullName,UserID,BirthDay,JoinDay,Email,LocationID) 
 DataProvider::ExecuteQuery($sql);
 
 echo("<blink>Chào mừng $tendangnhap đã trở thành thành viên của nhạc số!</blink>");
+
+//*****sau_con_89******
+//tạo folder + playlist cho mỗi người dùng => tiện việc xử lý nghe nhạc
+mkdir("Du_Lieu/USER/$tendangnhap",1);
+
+$noi_dung = "<?wpl version=\"1.0\"?>\n";
+$noi_dung .= "<smil>\n";
+$noi_dung .= "\t<head>\n";
+$noi_dung .= "\t\t<meta name=\"Generator\" content=\"Microsoft Windows Media Player -- 12.0.7600.16385\"/>\n";
+$noi_dung .= "\t\t<meta name=\"ItemCount\" content=\"2\"/>\n";
+$noi_dung .= "\t\t<title>$tendangnhap</title>\n";
+$noi_dung .= "\t</head>\n";
+$noi_dung .= "\t<body>\n";
+$noi_dung .= "\t\t<seq>\n\n";
+$noi_dung .= "\t\t</seq>\n";
+$noi_dung .= "\t</body>\n";
+$noi_dung .= "</smil>\n";
+
+$playlist_id = "";
+
+$sql = "Insert Into playlist (CreateDate, ListenCount, DownLoadCount) values($today,0,0)";
+DataProvider::ExecuteQuery($sql);
+$temp = DataProvider::ExecuteQuery("Select MAX(ID) From playlist");
+if($temp != false)
+{
+	$row = mysql_fetch_array($temp);
+	$playlist_id = $row["MAX(ID)"];
+}
+
+$fp = fopen("DU_LIEU/USER/$tendangnhap/$playlist_id.wpl","w");
+fwrite($fp,$noi_dung);
+//*********************
 }
 ?> 
