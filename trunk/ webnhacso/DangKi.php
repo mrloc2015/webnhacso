@@ -85,71 +85,263 @@
             </td>
             <td width="67%" valign="top" class="mid-col">
                 <div id="idMainContent" class="main-content" align="center">                   
-  					<!-- InstanceBeginEditable name="mainConten" -->                
-                  
-        	<div style="width:600px" align="center">
-            <form id="form1" name="frmdangki"  method="post" action="xulyThemUser.php?issubmit=true">
-        	  <table width="600" border="0">
-        	    <tr>
-        	      <td width="125">Tên đăng nhập:</td>
-        	      <td width="459"><input type="text" name="txttendangnhap"  /></td>
-      	      </tr>
-        	    <tr>
-        	      <td>Mật khẩu:</td>
-        	      <td><input type="password" name="txtmatkhau"  /></td>
-      	      </tr>
-        	    <tr>
-        	      <td>Nhập lại mật khẩu:</td>
-        	      <td><input type="password" name="txtlaplaimatkhau"  /></td>
-      	      </tr>
-        	    <tr>
-        	      <td>Email:</td>
-        	      <td><input type="text" name="txtemail"  /></td>
-      	      </tr>
-        	    <tr>
-        	      <td>Nhập lại Email:</td>
-        	      <td><input type="text" name="txtlaplaiemail"  /></td>
-      	      </tr>
-        	    <tr>
-        	      <td>Họ và tên:</td>
-        	      <td><input type="text" name="txthovaten"  /></td>
-      	      </tr>
-        	    <tr>
-        	      <td height="16">Ngày sinh:</td>
-        	      <td><div>
-        	        <table width="214" border="0">
-        	          <tr>
-        	            <td width="48"><select name="cmbngay">
-        	              <?php 
-						for($i=1;$i<=31;$i++)
-						{ 
-                  ?>
-        	              <option> <?php echo $i?> </option>
-        	              <?php 
-                    	}
-                  ?>
-      	              </select></td>
-        	            <td width="48"><select name="cmbthang">
-        	              <?php 
+				  <!-- InstanceBeginEditable name="mainConten" -->                  
+                  <script language="javascript" type="text/javascript">
+					function cleartextfield()
+					{
+						var nam =$("#txtnam").attr("value","")	;																	
+					}
+					function remove_space( str)
+					{												
+						var tem="";
+						var arrchar = str.split(" ");
+						for(i=0; i < str.length; i ++)
+						{
+							tem = tem + arrchar[i];
+						}
+						return tem;
+					}					
+					function CheckInput()
+					{
+						//Kiểm tra tên đăng nhập
+						var tendangnhap=$("#txttendangnhap");
+						var input = tendangnhap.attr("value");
+						if(remove_space(input)=="")
+						{
+							alert("Xin vui lòng điền tên đăng nhập!");
+							tendangnhap.focus();
+							return false;
+						}						
+						//Kiểm tra password
+						var matkhau=$("#txtmatkhau");
+						var input = matkhau.attr("value");
+						if(remove_space(input)=="")
+						{
+							alert("Xin vui lòng điền mật khẩu!");
+							matkhau.focus();
+							return false;
+						}						
+						//kiểm tra lặp lại password	
+						var laplaimatkhau=$("#txtlaplaimatkhau");
+						var input = laplaimatkhau.attr("value");
+						if(remove_space(input)=="")
+						{
+							alert("Xin vui lòng lặp lại mật khẩu!");
+							laplaimatkhau.focus();
+							return false;
+						}
+						//Kiểm tra sự trùng khớp của 2 password
+						if(matkhau.attr("value")!=laplaimatkhau.attr("value"))
+						{
+							alert("Mật khẩu không trùng khớp!Vui lòng nhập lại");
+							matkhau.attr("value","");
+							laplaimatkhau.attr("value","");
+							matkhau.focus();
+							return false;
+						}						
+						//Kiểm tra email
+						var email=$("#txtemail");
+						var input = email.attr("value");
+						var OnEmail = /^([a-zA-Z0-9_\.\-])+@(([\yahoo\gmail\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+						if(remove_space(input)!="")
+						{
+							if(OnEmail.test(input) == false)
+							{
+								alert("Địa chỉ Email không hợp lệ. Chỉ cho phép Yahoo mail hoặc Google mail.");
+								email.focus();
+								return false;
+							}
+						}
+						else
+						{
+							alert("Vui lòng nhập địa chỉ email!");
+							email.focus();
+							return false;
+						}
+						//Kiểm tra lặp lại email
+						var laplaiemail=$("#txtlaplaiemail");
+						var input = laplaiemail.attr("value");
+						if(remove_space(input)=="")
+						{
+							alert("Xin vui lòng nhập lại email!");
+							laplaiemail.focus();
+							return false;
+						}
+						//Kiểm tra sự trùng khớp của 2 email
+						if(email.attr("value")!=laplaiemail.attr("value"))
+						{
+							alert("Email không trùng khớp!Vui lòng nhập lại");
+							email.attr("value","");
+							laplaiemail.attr("value","");
+							email.focus();
+							return false;
+						}						
+						//Kiểm tra họ và tên
+						var hovaten=$("#txthovaten");
+						var input = hovaten.attr("value");
+						if(remove_space(input)=="")
+						{
+							alert("Xin vui lòng nhập họ tên dầy đủ của bạn!");
+							hovaten.focus();
+							return false;
+						}						
+						//Kiểm tra ngay sinh
+						var ngaysinh=$("#cmbngaysinh");
+						var input=ngaysinh.attr("value");
+						if(input==0)
+						{
+							alert("Vui lòng nhập ngày sinh!");
+							ngaysinh.focus();
+							return false;
+						}						
+						var thangsinh=$("#cmbthang")
+						var input =thangsinh.attr("value");
+						if(input==0)
+						{
+							alert("Vui lòng nhập đầy đủ ngày sinh!");
+							thangsinh.focus();
+							return false;
+						}
+						
+						var OnYear = /^([0-9]+)$/;
+						var date = new Date();
+						var year = date.getFullYear();
+						var namsinh=$("#txtnam");
+						var input = namsinh.attr("value");
+						if(input=="[Năm]" || remove_space(input)=="")
+						{
+							alert("Vui lòng nhập năm sinh!");
+							cleartextfield();
+							namsinh.focus();
+							return false;
+						}
+						if(OnYear.test(input) == false||year-input >100 || year-input < 6)
+						{
+							alert("Năm sinh không hợp lệ!")							
+							cleartextfield();
+							namsinh.focus();
+							return false;
+						}
+						//Kiểm tra nơi ở
+						var local=$("#cmblocal");
+						var input=local.attr("value");												
+						if(input==0)
+						{
+							alert("Vui lòng nhập nơi ở của bạn!");
+							local.focus();
+							return false;
+						}	
+						//Kiểm tra mã xác nhận
+						var maxacnhan=$("#txtmaxacnhan");
+						var input = maxacnhan.attr("value");
+						if(remove_space(input)=="")
+						{
+							alert("Xin vui lòng nhập mã xác nhận!");
+							maxacnhan.focus();
+							return false;
+						}		
+					}
+					</script>                                                       
+				  <div style="width:600px" align="center">
+				    <form id="form1" name="frmdangki"  method="post" action="xulyThemUser.php?DangKi=1">
+				      <h1>&nbsp;</h1>
+				      <h1><strong><font color="#0000FF">Đăng kí thành viên</font></strong></h1>
+				      <p>&nbsp;</p>
+				      <table width="400" border="0">
+				        <tr>
+				          <td width="136"><p>Tên đăng nhập:</p>
+				            <p>&nbsp;</p></td>
+				          <td width="259"><p>
+				            <input type="text" name="txttendangnhap" id="txttendangnhap" style="width:250px"  />
+				            </p>
+				            <p>&nbsp; </p></td>
+			            </tr>
+				        <tr>
+				          <td><p>Mật khẩu:</p>
+				            <p>&nbsp;</p></td>
+				          <td><p>
+				            <input type="password" name="txtmatkhau" id="txtmatkhau" style="width:250px"  />
+				            </p>
+				            <p>&nbsp; </p></td>
+			            </tr>
+				        <tr>
+				          <td><p>Nhập lại mật khẩu:</p>
+				            <p>&nbsp;</p></td>
+				          <td><p>
+				            <input type="password" name="txtlaplaimatkhau"  id="txtlaplaimatkhau" style="width:250px" />
+				            </p>
+				            <p>&nbsp; </p></td>
+			            </tr>
+				        <tr>
+				          <td><p>Email:</p>
+				            <p>&nbsp;</p></td>
+				          <td><p>
+				            <input type="text" name="txtemail" id="txtemail" style="width:250px" />
+				            </p>
+				            <p>&nbsp; </p></td>
+			            </tr>
+				        <tr>
+				          <td><p>Nhập lại Email:</p>
+				            <p>&nbsp;</p></td>
+				          <td><p>
+				            <input type="text" name="txtlaplaiemail" id="txtlaplaiemail" style="width:250px"/>
+				            </p>
+				            <p>&nbsp; </p></td>
+			            </tr>
+				        <tr>
+				          <td><p>Họ và tên:</p>
+				            <p>&nbsp;</p></td>
+				          <td><p>
+				            <input type="text" name="txthovaten" id="txthovaten" style="width:250px" />
+				            </p>
+				            <p>&nbsp; </p></td>
+			            </tr>
+				        <tr>
+				          <td height="16"><p>Ngày sinh:</p>
+				            <p>&nbsp;</p></td>
+				          <td><div>
+				            <table width="260" border="0">
+				              <tr>
+				                <td width="74"><select name="cmbngay" id="cmbngaysinh">
+				                  <option value="0">[Ngày]</option>
+				                  <option>
+				                    <?php 
+									for($i=1;$i<=31;$i++)
+									{ 
+									?>
+			                      </option>
+				                  <option ><?php echo $i?></option>
+				                  <?php 
+                    				}
+                  					?>
+				                  </select></td>
+				                <td width="82"><select name="cmbthang" id="cmbthang">
+				                  <option value="0">[Tháng]</option>
+				                  <option>
+				                    <?php 
 					  for($i=1;$i<=12;$i++)
 					  {
                   ?>
-        	              <option> <?php echo $i;?> </option>
-        	              <?php
+			                      </option>
+				                  <option> <?php echo $i;?></option>
+				                  <?php
                   	  }
                   ?>
-      	              </select ></td>
-        	            <td width="104">&nbsp;&nbsp;
-                          <input name="txtnam" type="text" value="" style="width:60px" /></td>
-      	            </tr>
-      	          </table>
-        	      </div></td>
-      	      </tr>
-        	    <tr>
-        	      <td height="18">Đến từ:</td>
-        	      <td>
-                  <select name="cmblocation">
-                  <?php
+				                  </select ></td>
+				                <td width="83">&nbsp;&nbsp;
+				                  <input name="txtnam" type="text" id="txtnam" style="width:60px" value="[Năm]" onfocus="cleartextfield()" /></td>
+			                  </tr>
+			                </table>
+				            <p>&nbsp;</p>
+				            </div></td>
+			            </tr>
+				        <tr>
+				          <td height="7"><p>Đến từ:</p>
+				            <p>&nbsp;</p></td>
+				          <td><p>
+				            <select name="cmblocation" id="cmblocal">
+				              <option value="0">[ Tỉnh-Thành Phố ]</option>
+				              <?php
 				  	include_once("DataProvider.php");
 				  	$location = DataProvider::ExecuteQuery("SELECT location.Local FROM location");
 					if(location !=false)
@@ -157,30 +349,38 @@
 						while($row=mysql_fetch_array($location))
 						{
 					?>
-                    <option> <?php echo $row["Local"] ?> </option>
-                    
-                    <?php		
+				              <option> <?php echo $row["Local"] ?></option>
+				              <?php		
 						}
 					}					
-				 ?>                                                                        
-                  </select>
-                  </td>
-      	      </tr>
-      	      </table>        	 
-           	  <label>
-</p>
-      <br />   	            
-                <div align="left" style="width:300px">
-                <input type="submit" name="btndangki" id="button" value="Đăng kí" />
-                <input type="reset" name="btnlamlai" id="button2" value="Làm lại" />
-                </div>   	            
-                <br />
-           	  </label>
- 
-        	</form>
-            </div>
-        	
-        	<!-- InstanceEndEditable -->
+				 ?>
+			                </select>
+				            </p>
+				            <p>&nbsp; </p></td>
+			            </tr>
+				        <tr>
+				          <td height="46" colspan="2" align="center">
+                          	<img src="Tai lieu/captcha/captcha.php" /><br/>
+                            <input type="text" name="txtmaxacnhan" id="txtmaxacnhan" style=" width:60px" />
+                          </td>
+			            </tr>
+				        <tr>
+				          <td height="46" colspan="2"><div align="center" style="width:400px">
+				            <input type="submit" name="btndangki" id="button" value="Đăng kí" onclick="return CheckInput()"  />
+				            <input type="reset" name="btnlamlai" id="button2" value="Làm lại" />
+			              </div></td>
+			            </tr>
+			          </table>
+				      <label>
+				        </p>
+				        <br />
+				        <br />
+			          </label>
+			        </form>
+			      </div>
+    
+                  
+				  <!-- InstanceEndEditable -->
                 </div>
             </td>
             <td width="20%" valign="top" class="right-col">
