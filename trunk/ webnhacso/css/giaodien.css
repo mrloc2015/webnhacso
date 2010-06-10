@@ -53,7 +53,7 @@
 	position:relative;
 }
 
-.left-DanhMuc li a
+.left-DanhMuc li a,.left-CaSi li a
 {
 	background:url("../images/menu-box-bg.jpg")  no-repeat scroll left center transparent;
 	height:20px;
@@ -67,7 +67,7 @@
 	color:#360;
 }
 
-.left-DanhMuc li a:hover
+.left-DanhMuc li a:hover,.left-CaSi li a:hover
 {
 	background:url("../images/menu-box-bg-active.jpg")  no-repeat scroll left center transparent;
 	height:20px;
@@ -81,19 +81,16 @@
 	color:#360;
 }
 
-.left-Clip
-{
-	
-}
-
 .left-PlayList
 {
-	
+	height:250px;
+	position:relative;
 }
 
 .left-CaSi
 {
-	
+	height:250px;
+	position:relative;
 }
 
 .left-col
