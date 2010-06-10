@@ -49,8 +49,36 @@
 
 .left-DanhMuc
 {
-	height:200px;
-	margin-top:15px;
+	height:360px;
+	position:relative;
+}
+
+.left-DanhMuc li a
+{
+	background:url("../images/menu-box-bg.jpg")  no-repeat scroll left center transparent;
+	height:20px;
+	width:165px;
+	display:block;
+	overflow:hidden;
+	padding-top:5px;
+	padding-left:15px;
+	font-weight:bold;
+	font-size:11px;
+	color:#360;
+}
+
+.left-DanhMuc li a:hover
+{
+	background:url("../images/menu-box-bg-active.jpg")  no-repeat scroll left center transparent;
+	height:20px;
+	width:165px;
+	display:block;
+	overflow:hidden;
+	padding-top:5px;
+	padding-left:15px;
+	font-weight:bold;
+	font-size:11px;
+	color:#360;
 }
 
 .left-Clip
