@@ -1,4 +1,6 @@
 // JavaScript Document
+
+
 function rate_over(val)
 {
 	for(i=1;i<=val;i++)

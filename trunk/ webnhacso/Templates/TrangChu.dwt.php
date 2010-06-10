@@ -1,16 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php session_start();?>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
 <link href="../css/giaodien.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="../js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="../js/jquery.media.js"></script>
+<script type="text/javascript" src="../js/jquery.timers.js"></script>
 <script type="text/javascript" src="../script/ThemBaiHat.js"></script>
 </head>
 
 <body>
-	<div class="banner" id="idBanner" align="center">
+  <div class="banner" id="idBanner" align="center">
     	<img src="../images/header-02.jpg" width="1000" height="120">
     </div>
   	<div class="main" id="idmain">
@@ -33,21 +36,30 @@
                     </li>
                  </ul>
            	</div>
-   	      	<div class="left-header" id="idLeftMenu" align="center">
+   	      	<div class="left-header" id="idDanhMucBaiHat" align="center">
                  <span>Danh mục bài hát</span>
+              <div class="left-DanhMuc">
+                 	<dl>
+                    	<li>Nhạc Việt</li>
+                    </dl>
+                 </div>
             </div>  
-            <div class="left-header" id="idLeftMenu" align="center">
+            <div class="left-header" id="idClip" align="center">
                  <span>Clip</span>
             </div>
-            <div class="left-header" id="idLeftMenu" align="center">
+            <div class="left-header" id="idPlayList" align="center">
                 <span>Playlist HOT</span>
+                <div class="left-PlayList">
+                 </div>
             </div>
             <div class="left-header" id="idLeftMenu" align="center">
                 <span>Ca sĩ</span>
+                <div class="left-CaSi">
+                 </div>
             </div>
             <td width="67%" valign="top" class="mid-col">
                 <div id="idMainContent" class="main-content" align="center">                   
-  					<!-- TemplateBeginEditable name="mainConten" -->mainConten<!-- TemplateEndEditable -->
+  					<!--TemplateBeginEditable name="mainConten"-->mainContent<!--TemplateEndEditable-->
                 </div>
             </td>
             <td width="20%" valign="top" class="right-col">
