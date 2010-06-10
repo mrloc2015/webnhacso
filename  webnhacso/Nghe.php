@@ -38,12 +38,23 @@
            	</div>
    	      	<div class="left-header" id="idDanhMucBaiHat" align="center">
                  <span>Danh mục bài hát</span>
-              <div class="left-DanhMuc">
-                 	<dl>
-                    	<li>Nhạc Việt</li>
-                    </dl>
-                 </div>
             </div>  
+            <div class="left-DanhMuc">
+                <dl>                
+					<?php
+                        include_once("DataProvider.php");
+                        $sql = "select * from song_style";
+                        $result = DataProvider::ExecuteQuery($sql);
+                        while($row = mysql_fetch_array($result))
+                        {
+                            $idStyle = $row["ID"];
+                            $nameStyle = $row["StyleName"];
+							$duongDan = "../TrangChu.php?styleID=$idStyle";
+							echo(" <li><a href=$duongDan>$nameStyle</a></li>");
+                        } 
+                    ?>
+                </dl>
+             </div>
             <div class="left-header" id="idClip" align="center">
                  <span>Clip</span>
             </div>
