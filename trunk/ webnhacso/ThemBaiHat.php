@@ -5,7 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
 <link href="css/giaodien.css" rel="stylesheet" type="text/css">
-<script src="script/ThemBaiHat.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="script/ThemBaiHat.js"></script>
 </head>
 
 <body>
@@ -95,7 +96,7 @@
     </div>
     <div class="worms_field">
         <div class="worms_left"><label>Writter:</label></div>
-        <input name="Th_Writter" type="text" style="width:145px" value="Không Biết"/>
+        <input name="Th_Writter" id="Th_Writter" type="text" style="width:145px" value="Không Biết"/>
     </div>
 <!--<div class="worms_field">
         <div class="worms_left"><label>Date Up:</label></div>
@@ -128,7 +129,7 @@
     <div class="worms_field">
         <div class="worms_left" style="margin-top:5px"><label>Rate:</label></div>
 		<input name="Th_Rate" id="Th_Rate" type="hidden" style="width:145px" value="0"/>        
-          
+         
         <div style="float:right; margin-right:180px; height:45px">        
             <img onmouseover="rate_over(1)" onmouseout="rate_out(1)" onclick="rate_click(1)" id="1" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
             <img onmouseover="rate_over(2)" onmouseout="rate_out(2)" onclick="rate_click(2)" id="2" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>

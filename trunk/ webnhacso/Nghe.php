@@ -5,7 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
 <link href="css/giaodien.css" rel="stylesheet" type="text/css">
-<script src="script/ThemBaiHat.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="script/ThemBaiHat.js"></script>
 </head>
 
 <body>
@@ -101,6 +102,7 @@
 			{
 				$row = mysql_fetch_array($temp);
 				$user_name = $row["UserName"];
+				echo("$user_name");
 			}
 			$source = "Du_Lieu/USER/$user_name/$playlist_id.wpl";
 			?>
@@ -129,10 +131,10 @@
                 <table width="100%" border="0">                  
                   <tr>
                     <td>
-						<div align="center" style="background:url(file:///C|/wamp/www/Do an - Web nhac so/images/title-login-box-bg.jpg);height:33px">
+						<div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px">
                         </div>
                         <form id="frmDangNhap" name="DangNhap" method="post" action="xulyDangNhap.php">
-                        	<table width="100%" height="200px" border="0" cellspacing="0" bgcolor="#CCCCFF">
+                        	<table width="100%" height="200px" border="0" cellspacing="0" bgcolor="#33FF66">
                                   <tr>
                                     <td width="18%">&nbsp;</td>
                                     <td width="65%">Tên đăng nhập</td>
@@ -151,7 +153,7 @@
                                   </tr>
                                   <tr>
                                     <td colspan="2" align="right"><label>
-                                      <input type="text" name="txtMatKhau" id="txtMatKhau" width="200" />
+                                      <input type="password" name="txtMatKhau" id="txtMatKhau" width="200" />
                                     </label></td>
                                     <td>&nbsp;</td>
                                   </tr>
@@ -163,12 +165,12 @@
                                   </tr>
                                   <tr>
                                     <td>&nbsp;</td>
-                                    <td>Quên mật khẩu</td>
+                                    <td><a>Quên mật khẩu</a></td>
                                     <td>&nbsp;</td>
                                   </tr>
                                   <tr>
                                     <td>&nbsp;</td>
-                                    <td>Đăng ký tài khoản</td>
+                                    <td><a href="DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản</a></td>
                                     <td>&nbsp;</td>
                                   </tr>
                              </table>
@@ -177,10 +179,10 @@
                   </tr>
                   <tr>
                     <td>
-                    	<div align="center" style="background:url(file:///C|/wamp/www/Do an - Web nhac so/images/title-search-box-bg.jpg);height:33px;">
+                    	<div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;">
                         </div>
                         <form id="frmTimKiem" name="TimKiem" method="post" action="xulyTimKiem.php">
-                        	<table width="100%" height="120px" border="0" cellspacing="0" bgcolor="#CCCCFF">
+                        	<table width="100%" height="120px" border="0" cellspacing="0" bgcolor="#33FF66">
                                   <tr>
                                     <td width="18%">&nbsp;</td>
                                     <td width="65%">Từ khóa</td>
