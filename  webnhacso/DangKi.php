@@ -56,18 +56,33 @@
                 </dl>
              </div>
             <div class="left-header" id="idClip" align="center">
-                 <span>Clip</span>
+                 <a href="TrangChu.php?Clip=1"><span>Clip</span></a>
             </div>
             <div class="left-header" id="idPlayList" align="center">
                 <span>Playlist HOT</span>
-                <div class="left-PlayList">
-                 </div>
+            </div>
+            <div class="left-PlayList">
             </div>
             <div class="left-header" id="idLeftMenu" align="center">
-                <span>Ca sĩ</span>
-                <div class="left-CaSi">
-                 </div>
+                <span>Ca sĩ & Ban nhạc</span>
             </div>
+            <div class="left-CaSi">
+            	 <dl>                
+					<?php
+                        include_once("DataProvider.php");
+                        $sql = "select * from singer limit 10";
+                        $result = DataProvider::ExecuteQuery($sql);
+                        while($row = mysql_fetch_array($result))
+                        {
+                            $idStyle = $row["ID"];
+                            $nameStyle = $row["SingerName"];
+							$duongDan = "../TrangChu.php?singerID=$idStyle";
+							echo(" <li><a href=$duongDan>$nameStyle</a></li>");
+                        } 
+                    ?>
+                </dl>
+            </div>
+            </td>
             <td width="67%" valign="top" class="mid-col">
                 <div id="idMainContent" class="main-content" align="center">                   
   					<!-- InstanceBeginEditable name="mainConten" -->                
