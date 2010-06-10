@@ -5,7 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
 <link href="../css/giaodien.css" rel="stylesheet" type="text/css">
-<script src="../script/ThemBaiHat.js"></script>
+<script type="text/javascript" src="../js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="../script/ThemBaiHat.js"></script>
 </head>
 
 <body>

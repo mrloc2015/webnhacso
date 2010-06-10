@@ -2,28 +2,17 @@
 function rate_over(val)
 {
 	for(i=1;i<=val;i++)
-	{
-		var x = document.getElementById(i);
-		x.src="images/sao2.jpg";
-	}
+		$("#" + i).attr("src","images/sao2.jpg");
 }
 function rate_out(val)
 {			
-	for(i=1;i<=5;i++)
-	{
-		var y = document.getElementById(i);
-		y.src="images/sao1.jpg";
-	}
-	rate_over(document.getElementById("Th_Rate").value);
+	var n = $("#Th_Rate").attr("value");
+	for(i=5;i>n;i--)
+		$("#" + i).attr("src","images/sao1.jpg");
 }
 function rate_click(val)
-{
-	document.getElementById("Th_Rate").value = 0;
-	for(i=1;i<=5;i++)
-	{
-		var y = document.getElementById(i);
-		y.src="images/sao1.jpg";
-	}
-	document.getElementById("Th_Rate").value = val;
-	rate_over(val);				
+{	
+	$("#Th_Rate").attr("value",val);
+	for(i=5;i>val;i--)
+		$("#" + i).attr("src","images/sao1.jpg");
 }
