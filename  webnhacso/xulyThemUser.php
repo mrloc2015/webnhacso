@@ -1,9 +1,10 @@
 <?php 
+session_start();
 $date = getdate();
 $today=$date["year"]."-".$date["mon"]."-".$date["mday"];
 
 include_once("DataProvider.php");
-if(isset($_REQUEST["issubmit"]))
+if(isset($_REQUEST["DangKi"]))
 {
 		$tendangnhap = $_REQUEST["txttendangnhap"];
 		$matkhau = $_REQUEST["txtmatkhau"];
@@ -14,12 +15,15 @@ if(isset($_REQUEST["issubmit"]))
 		$ngaysinh=$_REQUEST["txtnam"]."/".$_REQUEST["cmbthang"]."/".$_REQUEST["cmbngay"];
 		$location=$_REQUEST["cmblocation"];	
 		$nam=$_REQUEST["txtnam"];
+		$txtmaxacnhan=$_REQUEST["txtmaxacnhan"];
 		
-		if ( ! $tendangnhap || ! $matkhau || ! $laplaimatkhau || ! $email || ! $laplaiemail || ! 	$hovaten || ! $ngaysinh || !$location ||!$nam)
+		//Kiểm tra mã xác nhận
+		if($txtmaxacnhan!=$_SESSION['code'])
 		{
-			echo "Xin vui lòng điển đầy đủ thông tin!<br/><a href='javascript:history.go(-1)'>Nhấp vào đây để quay trở lại</a>";	
-			exit;			
+			echo "Mã xác nhận không dúng!<br/><a href='javascript:history.go(-1)'>Nhấp vào đây để quay trở lại</a>";	
+			exit;
 		}
+		
 //Kiểm tra tên đăng nhập đã tồn tại hay chưa:
 		$list_user=DataProvider::ExecuteQuery("SELECT username, count( ID ) FROM user WHERE username = '$tendangnhap' group by username");
 		if($list_user!=false)
@@ -40,21 +44,7 @@ if(isset($_REQUEST["issubmit"]))
 				echo "Địa chỉ email đã được sử dụng!<br/><a href='javascript:history.go(-1)'>Nhấp vào đây để quay trở lại</a>";	
 			exit;
 			}
-		}
-		if($email!=$laplaiemail)
-		{
-			echo "Địa chỉ Email không trùng khớp!<br/><a href='javascript:history.go(-1)'>Nhấp vào đây để quay trở lại</a>";	
-			exit;
-		}
-		
-//Kiểm tra mật khẩu
-		if($matkhau!=$laplaimatkhau)
-		{
-			echo "Mật khẩu không trùng khớp!<br/><a href='javascript:history.go(-1)'>Nhấp vào đây để quay trở lại</a>";	
-			exit;
-		}
-//Kiểm tra năm sinh	
-
+		}				
 //Tiến hành tạo tài khoản
 $sql="INSERT INTO user (UserName,Pass,UserStyleID) value ('$tendangnhap','$matkhau','2')";
 DataProvider::ExecuteQuery($sql);
