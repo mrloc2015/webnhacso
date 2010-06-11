@@ -104,9 +104,11 @@
 			<div style="margin-top:50px"> 
 				<object codebase="http://www.apple.com/qtactivex/qtplugin.cab"
 				classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" 
-				type="application/x-oleobject"> 
+				type="application/x-oleobject">        			
 					<param name="url" value="<?php echo("$source"); ?>"> 
-					<embed src="<?php echo("$source"); ?>" autostart="false"
+					<embed src="<?php echo("$source"); ?>"
+                    autostart="true"
+                    autorewind = "true"
 					type="application/x-mplayer2" 
 					pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
 				</object>
@@ -117,44 +119,62 @@
 	{
 		if(isset($_REQUEST["PlayList"]) == true)	//ngựơc lại là playlist
 		{
-
-						/*<?wpl version="1.0"?>
-<smil>
-    <head>
-        <meta name="Generator" content="Microsoft Windows Media Player -- 12.0.7600.16385"/>
-        <meta name="ItemCount" content="2"/>
-        <title>Untitled playlist</title>
-    </head>
-    <body>
-        <seq>
-            <media src="E:\Music\Rosemantic Forever Love\Rosemantic Forever Love\09 Jennifer Warnes - I Know A Heart When I See You.MP3" tid="{FF5CCA3F-489B-4C4B-AA6A-BC5A2C7F8461}"/>
-            <media src="E:\Music\Rosemantic Forever Love\Rosemantic Forever Love\19 Minnie Riperton - Lovin&apos; You.MP3"/>
-        </seq>
-    </body>
-</smil>*/	//$fp = fopen("DU_LIEU/con co.wpl","w");
-			//fwrite($fp,"DF");
 			$playlist_id = $_REQUEST["PlayList"];
-			$user_name = "sau_con_89"; //lấy session
+			$user_name = ""; //lấy session
 			$temp = DataProvider::ExecuteQuery("Select * From user Where PlayListID = $playlist_id");
 			if($temp != false)
 			{
 				$row = mysql_fetch_array($temp);
 				$user_name = $row["UserName"];
-				echo("$user_name");
 			}
 			$source = "Du_Lieu/USER/$user_name/$playlist_id.wpl";
-			?>
-				<div style="margin-top:50px"> 
+			//echo("$source<br />");
+			if(file_exists($source) == true)
+			{
+				$path = getcwd ();
+				$source = $path . "/" . $source;
+				echo("Đường dẫn theo từng máy <br>" . $source . "<br />");
+				?>
+				<div id="playerObj" style="margin-top:50px"> 
 					<object codebase="http://www.apple.com/qtactivex/qtplugin.cab"
 					classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" 
 					type="application/x-oleobject"> 
-						<param name="url" value="<?php echo("$source"); ?>"> 
-						<embed src="<?php echo("$source"); ?>" autostart="false"
+<!--						<param name="url" value="<?php echo("$source"); ?>"> 	-->
+						<embed id="playerEm" src="<?php echo("$source"); ?>"
+                        autostart="true"
 						type="application/x-mplayer2" 
 						pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
 					</object>                    
 				</div>
+                
+                <script type="text/javascript" language="javascript">
+					function playMedia(song_id, source)
+					{						
+						//alert("Du_Lieu/BAI_HAT/" + song_id + "/" + source);
+						var s = "Du_Lieu/BAI_HAT/" + song_id + "/" + source;
+						//document.getElementById('playerEm').URL = s;
+						$("#playerEm").attr("URL",s);
+					} 
+	            </script>
 				<?php
+				//Danh sách bài hát trong playlist
+				$temp = DataProvider::ExecuteQuery("Select SongID, Source From playlist_detail pd, song s Where pd.PlayListID = $playlist_id and pd.SongID = s.ID");
+				if($temp != false)
+				{
+					while($row = mysql_fetch_array($temp))
+					{
+						$s = "<a href=\"javascript: playMedia(";
+						$s .= $row["SongID"] . ",";
+						$s .= "'".$row["Source"]."'";
+						$s .= ")\">".$row["Source"]."</a><br>";
+						echo($s);
+					}
+				}				
+			}
+			else
+			{
+				echo("<h1>Playlist này không tồn tại!!!</h1>");		
+			}
 		}
 		else 	//cuối cùng là chưa chọn bài
 		{
