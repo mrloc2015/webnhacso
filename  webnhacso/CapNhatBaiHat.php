@@ -56,12 +56,26 @@
                 </dl>
              </div>
             <div class="left-header" id="idClip" align="center">
-                 <a href="TrangChu.php?Clip=1"><span>Clip</span></a>
+                 <span><a href="TrangChu.php?Clip=1">Clip</a></span>
             </div>
             <div class="left-header" id="idPlayList" align="center">
                 <span>Playlist HOT</span>
             </div>
             <div class="left-PlayList">
+            	 <dl>                
+					<?php
+                        include_once("DataProvider.php");
+                        $sql = "select u.ID, u.UserName from playlist pl, user u where pl.ID = u.PlaylistID and pl.ListenCount >= 0";
+                        $result = DataProvider::ExecuteQuery($sql);
+                        while($row = mysql_fetch_array($result))
+                        {
+                            $idUser = $row["ID"];
+                            $userName = $row["UserName"];
+							$duongDan = "../TrangChu.php?userID=$idUser";
+							echo(" <li><a href=$duongDan>$userName</a></li>");
+                        } 
+                    ?>
+                </dl>
             </div>
             <div class="left-header" id="idLeftMenu" align="center">
                 <span>Ca sĩ & Ban nhạc</span>
@@ -74,10 +88,10 @@
                         $result = DataProvider::ExecuteQuery($sql);
                         while($row = mysql_fetch_array($result))
                         {
-                            $idStyle = $row["ID"];
-                            $nameStyle = $row["SingerName"];
-							$duongDan = "../TrangChu.php?singerID=$idStyle";
-							echo(" <li><a href=$duongDan>$nameStyle</a></li>");
+                            $idSinger = $row["ID"];
+                            $singerName = $row["SingerName"];
+							$duongDan = "../TrangChu.php?singerID=$idSinger";
+							echo(" <li><a href=$duongDan>$singerName</a></li>");
                         } 
                     ?>
                 </dl>
