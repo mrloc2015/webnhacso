@@ -11,6 +11,32 @@
 	position:absolute;
 }
 
+.header
+{
+	background:url("../images/title-home-info-box-bg.jpg")  no-repeat scroll left center transparent;
+	height:35px;
+	width:500px;
+	position:static;
+	text-align:left;
+}
+
+.header span
+{
+	color:#09F;
+	font-size:18px;
+	margin-left:20px;
+}
+
+.header-content
+{
+	width:500px;
+}
+
+.main-info
+{
+	padding:0 20px;
+}
+
 .main
 {
 	background-color:#FFF;
@@ -53,7 +79,7 @@
 	position:relative;
 }
 
-.left-DanhMuc li a,.left-CaSi li a
+.left-DanhMuc li a,.left-CaSi li a,.left-PlayList li a
 {
 	background:url("../images/menu-box-bg.jpg")  no-repeat scroll left center transparent;
 	height:20px;
@@ -67,7 +93,7 @@
 	color:#360;
 }
 
-.left-DanhMuc li a:hover,.left-CaSi li a:hover
+.left-DanhMuc li a:hover,.left-CaSi li a:hover,.left-PlayList li a:hover
 {
 	background:url("../images/menu-box-bg-active.jpg")  no-repeat scroll left center transparent;
 	height:20px;
@@ -81,13 +107,7 @@
 	color:#360;
 }
 
-.left-PlayList
-{
-	height:250px;
-	position:relative;
-}
-
-.left-CaSi
+.left-CaSi,.left-PlayList
 {
 	height:250px;
 	position:relative;
@@ -108,9 +128,40 @@
 	width:25%;
 }
 
+.header-list
+{
+	background:url("../images/body-bg.jpg") repeat-x scroll left bottom #FFFFFF;
+	height:25px;
+	font-size:24px;
+	font-weight:bold;
+	padding-top:10px;
+	color:#09F;
+}
+
 .main-content
 {
-	
+	border:1px solid #AEAEAE;
+	margin-bottom:5px;
+	overflow:hidden;
+	padding:5px;
+}
+
+.song-icon
+{
+	float:left;
+	width:20px;
+	height:20px;
+	margin-top:15px;
+}
+
+.song-info
+{
+	border-bottom:1px solid #ECECEC;
+	clear:both;
+	line-height:16px;
+	overflow:hidden;
+	padding:3px 0;
+	width:488px;
 }
 
 /*Thêm bài hát - sau_con_89*/
