@@ -87,6 +87,8 @@
                 <div id="idMainContent" class="main-content" align="center">                   
   					<!-- InstanceBeginEditable name="mainConten" -->
 <?php
+	//giả dụ user sau_con_89 mã là 2 đã đăng nhập được
+	$user_id = 2;
 	include_once("DataProvider.php");
 	if(isset($_REQUEST["BaiHat"]) == true)		//Bài hát	
 	{
@@ -113,6 +115,12 @@
 					pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
 				</object>
 			</div>
+            <form name="ThemVaoPlayList" action="xulyThemVaoPlayList.php" method="post">
+                <input name="song_id" type="hidden" value="<?php echo($id); ?>" />
+                <input name="source" type="hidden" value="<?php echo($source); ?>" />
+                <input name="user_id" type="hidden" value="<?php echo($user_id); ?>" />
+                <input style="float:right; margin-right:50px" name="submit" type="submit" value="Thêm Vào Playlist"/>
+            </form>	
             <?php
 	}
 	else	
@@ -163,11 +171,11 @@
 				{
 					while($row = mysql_fetch_array($temp))
 					{
-						$s = "<a href=\"javascript: playMedia(";
-						$s .= $row["SongID"] . ",";
-						$s .= "'".$row["Source"]."'";
-						$s .= ")\">".$row["Source"]."</a><br>";
-						echo($s);
+					?>
+					<div style="height:20px; margin-top:20px; margin-left:120px" align="left">						
+						<a href="javascript: playMedia(<?php echo($row["SongID"]); ?>,'<?php echo($row["Source"]); ?>')"><?php echo($row["Source"]); ?></a>                        					
+					</div>
+                    <?php
 					}
 				}				
 			}
