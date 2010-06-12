@@ -70,7 +70,7 @@
             	 <dl>                
 					<?php
                         include_once("../DataProvider.php");
-                        $sql = "select * from singer limit 10";
+                        $sql = "select si.SingerName,si.ID from singer si, song so where so.SingerID = si.ID group by si.ID, si.SingerName having sum(so.ListenCount) >=0 limit 10";
                         $result = DataProvider::ExecuteQuery($sql);
                         while($row = mysql_fetch_array($result))
                         {
