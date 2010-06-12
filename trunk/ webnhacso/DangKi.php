@@ -85,7 +85,7 @@
             </td>
             <td width="67%" valign="top" class="mid-col">
                 <div id="idMainContent" class="main-content" align="center">                   
-				  <!-- InstanceBeginEditable name="mainConten" -->                  
+  					<!-- InstanceBeginEditable name="mainConten" -->                  
                   <script language="javascript" type="text/javascript">
 					function cleartextfield()
 					{
