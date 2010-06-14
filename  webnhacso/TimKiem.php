@@ -121,10 +121,10 @@
 		$ten_bai_hat = " and s.SongName like '%" . $_REQUEST["Th_TenBaiHat"] . "%'";
 	$ca_si = "";
 	if(isset($_REQUEST["Th_CaSi"]) == true  and $_REQUEST["Th_CaSi"] != "")
-		$ca_si = " and s.SingerID=" . $_REQUEST["Th_CaSi"];
+		$ca_si = " and sin.SingerName like '%" . $_REQUEST["Th_CaSi"] . "%'";
 	$nguoi_dang = "";
 	if(isset($_REQUEST["Th_NguoiDang"]) == true  and $_REQUEST["Th_NguoiDang"] != "")
-		$nguoi_dang = " and s.OwnerID=" . $_REQUEST["Th_NguoiDang"];
+		$nguoi_dang = " and u.UserName like '%" . $_REQUEST["Th_NguoiDang"] . "%'";
 	$the_loai = 0;
 	if(isset($_REQUEST["Th_TheLoai"]) == true)
 		$the_loai = " and s.StyleID=" . $_REQUEST["Th_TheLoai"];
@@ -162,7 +162,7 @@
 			$chat_luong = $_REQUEST["Th_ChatLuong"];
 		}
 		
-
+		//echo($sql);
 		$temp = DataProvider::ExecuteQuery($sql);
 		if($temp != false)
 		{
@@ -252,7 +252,7 @@
 		{
 			while($row = mysql_fetch_array($temp))
 			{
-				if($row["ID"] == $the_loai)
+				if($row["ID"] == $chat_luong)
 					echo("<option selected='selected' value='".$row["ID"]."'>".$row["BitRate"]."</option>");
 				else
 					echo("<option value='".$row["ID"]."'>".$row["BitRate"]."</option>");	

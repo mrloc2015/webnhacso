@@ -129,12 +129,19 @@
 					pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
 				</object>
 			</div>
+             <script type="text/javascript" language="javascript">
+				function TaiVe(url)
+				{					
+					window.location = url;
+				} 
+			</script>
+            <input id="TaiVe" onclick="TaiVe('<?php echo("$source"); ?>')" type="button" value="Tải Về" />
             <form name="ThemVaoPlayList" action="xulyThemVaoPlayList.php" method="post">
                 <input name="song_id" type="hidden" value="<?php echo($id); ?>" />
                 <input name="source" type="hidden" value="<?php echo($source); ?>" />
                 <input name="user_id" type="hidden" value="<?php echo($user_id); ?>" />
                 <input style="float:right; margin-right:50px" name="submit" type="submit" value="Thêm Vào Playlist"/>
-            </form>	
+            </form>
             <?php
 	}
 	else	
