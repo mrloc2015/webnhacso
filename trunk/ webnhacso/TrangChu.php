@@ -159,95 +159,57 @@
                 </div>
             </td>
             <td width="20%" valign="top" class="right-col">
-                <table width="100%" border="0">                  
-                  <tr>
-                    <td>
-						<div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px">
-                        </div>
-                        <form id="frmDangNhap" name="DangNhap" method="post" action="xulyDangNhap.php">
-                        	<table width="100%" height="200px" border="0" cellspacing="0" bgcolor="#33FF66">
-                                  <tr>
-                                    <td width="18%">&nbsp;</td>
-                                    <td width="65%">Tên đăng nhập</td>
-                                    <td width="17%">&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2" align="right"><label>
-                                      <input type="text" name="txtTenDangNhap" id="txtTenDangNhap" width="200" />
-                                    </label></td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td>&nbsp;</td>
-                                    <td>Mật khẩu</td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2" align="right"><label>
-                                      <input type="password" name="txtMatKhau" id="txtMatKhau" width="200" />
-                                    </label></td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2" align="center"><label>
-                                        <input type="submit" name="btnDangNhap" id="btnDangNhap" value="Đăng Nhập"/>
-                                    </label></td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td>&nbsp;</td>
-                                    <td><a>Quên mật khẩu</a></td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td>&nbsp;</td>
-                                    <td><a href="DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản</a></td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                             </table>
-                        </form>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                    	<div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;">
-                        </div>
-                        <form id="frmTimKiem" name="TimKiem" method="post" action="xulyTimKiem.php">
-                        	<table width="100%" height="120px" border="0" cellspacing="0" bgcolor="#33FF66">
-                                  <tr>
-                                    <td width="18%">&nbsp;</td>
-                                    <td width="65%">Từ khóa</td>
-                                    <td width="17%">&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2" align="right"><label>
-                                      <input type="text" name="txtTuKhoa" id="txtTuKhoa" width="200" />
-                                    </label></td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td>&nbsp;</td>
-                                    <td>Theo</td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2" align="right"><label>
-                                      <select name="cmbTheo" id="cmbTheo">
-                                      </select>
-                                    </label></td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="2" align="center"><label>
-                                        <input type="submit" name="btnTimKiem" id="btnTimKiem" value="Tìm Nhạc"/>
-                                    </label></td>
-                                    <td>&nbsp;</td>
-                                  </tr>
-                             </table>
-                        </form>
-                    </td>
-                  </tr>
-                </table>
+                <div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px;width:240px">
+                </div>
+                <div class="right-login">
+                    <form id="frmDangNhap" action="xulyDangNhap.php" name="frmDangNhap" method="get">
+                        <label for="txtTenDangNhap">Tên đăng nhập</label>
+                        <input type="text" maxlength="30" name="txtTenDangNhap" id="txtTenDangNhap" tabindex="1"><br>
+                        <label for="txtMatKhau">Mật khẩu</label><br>
+                        <input type="password" maxlength="30" name="txtMatKhau" id="txtMatKhau" tabindex="2">
+                        <input type="submit" id="btnDangNhap" name="btnDangNhap" value="Đăng nhập">        
+                    </form> 
+                    <ul>
+                        <li><a>Quên mật khẩu</a></li>
+                        <li><a>Đăng ký thành viên</a></li>
+                    </ul>  
+                </div>
+                <div class="right-username">
+                    Thành viên chính thức
+                </div>
+                <div class="right-userinfo">
+                  <div>
+                    <div>
+                        <b>Xin chào:</b><span style="color:#09F;font-weight:bold;">Taki Squall</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="quanlytaikhoan" title="Quản lý tài khoản">Quản lý tài khoản</a>
+                        </li>
+                        <li>
+                            <a href="ngheplaylist" title="Nghe playlist">Nghe Playlist</a>
+                        </li>
+                        <li>
+                            <a href="xulyThoat" title="Thoát">Thoát</a>
+                        </li>
+                    </ul>
+                </div>
+              </div>
+              <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:240px;">
+              </div>
+              <div class="right-search">
+                    <form id="frmTimKiem" name="TimKiem" method="post" action="xulyTimKiem.php">
+                        <label for="txtTuKhoa">Từ khóa</label><br>
+                      <input type="text" name="txtTuKhoa" id="txtTuKhoa" style="width:200px;"/><br>
+                        <label for="cmbTheo">Theo</label><br>
+                      <select name="cmbTheo" id="cmbTheo" style="width:200px">
+                       	<option>&nbsp;</option>
+                      </select>
+                      <p style="margin-top:10px;">
+                        	<input type="submit" name="btnTimKiem" id="btnTimKiem" value="Tìm Nhạc"/>
+                      </p>
+                    </form>
+                </div>
                 <div class="right-content" id="idRightContent" align="center">
                     <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->
                 </div>

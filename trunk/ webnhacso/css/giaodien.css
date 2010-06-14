@@ -128,6 +128,49 @@
 	width:25%;
 }
 
+.right-username
+{
+	background:url(../images/title-box-bg.jpg);
+	height:25px;
+	width:220px;
+	color:#FFF;
+	font-size:16px;
+	padding-top:10px;
+	padding-left:18px;
+	margin-top:130px;
+}
+
+.right-login,.right-search
+{
+	float:left;
+	height:120px;
+	padding:5px 0 0 5px;
+	position:relative;
+	width:234px;
+	background-color:#6F9;
+}
+
+.right-userinfo
+{
+	background:url("../images/login-body-box-bg.jpg") no-repeat scroll left top transparent;
+	height:100px;
+	padding-left:14px;
+	padding-top:8px;
+}
+
+.right-userinfo li
+{
+	background:url("../images/login-box-pointer.jpg") no-repeat scroll left center transparent;
+	padding:2px 0 2px 18px;
+}
+
+.right-content
+{
+	width:100%;
+	position:relative;
+	float:left;
+}
+
 .header-list
 {
 	background:url("../images/body-bg.jpg") repeat-x scroll left bottom #FFFFFF;
