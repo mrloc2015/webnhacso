@@ -49,8 +49,8 @@
                         {
                             $idStyle = $row["ID"];
                             $nameStyle = $row["StyleName"];
-							$duongDan = "../TrangChu.php?styleID=$idStyle";
-							echo(" <li><a href=$duongDan>$nameStyle</a></li>");
+							$duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
+							echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
                         } 
                     ?>
                 </dl>
@@ -71,8 +71,8 @@
                         {
                             $idUser = $row["ID"];
                             $userName = $row["UserName"];
-							$duongDan = "../TrangChu.php?userID=$idUser";
-							echo(" <li><a href=$duongDan>$userName</a></li>");
+							$duongDan = "TimKiem.php?Th_NguoiDang=$idUser";
+							echo(" <li><a href='$duongDan'>$userName</a></li>");
                         } 
                     ?>
                 </dl>
@@ -90,8 +90,8 @@
                         {
                             $idSinger = $row["ID"];
                             $singerName = $row["SingerName"];
-							$duongDan = "../TrangChu.php?singerID=$idSinger";
-							echo(" <li><a href=$duongDan>$singerName</a></li>");
+							$duongDan = "TimKiem.php?Th_CaSi=$idSinger";
+							echo(" <li><a href='$duongDan'>$singerName</a></li>");
                         } 
                     ?>
                 </dl>
