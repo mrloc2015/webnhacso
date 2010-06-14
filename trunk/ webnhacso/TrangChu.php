@@ -126,10 +126,10 @@
 								$idStyle = $row["StyleID"];
 								$idUser = $row["OwnerID"];
 								$idSinger = $row["SingerID"];
-								$duongDanBaiHat = "../Nghe.php?BaiHat=$idSong";
-								$duongDanTheLoai = "../TrangChu.php?styleID=$idStyle";
-								$duongDanNguoiDung = "../TrangChu.php?userID=$idUser";
-								$duongDanCaSi = "../TrangChu.php?singerID=$idSinger";
+								$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
+								$duongDanTheLoai = "TrangChu.php?styleID=$idStyle";
+								$duongDanNguoiDung = "TrangChu.php?userID=$idUser";
+								$duongDanCaSi = "TrangChu.php?singerID=$idSinger";
 								
 								echo("<div class='song-info' align='left'>");
 								echo("<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>");
