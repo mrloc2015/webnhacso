@@ -49,8 +49,8 @@
                         {
                             $idStyle = $row["ID"];
                             $nameStyle = $row["StyleName"];
-							$duongDan = "../TrangChu.php?styleID=$idStyle";
-							echo(" <li><a href=$duongDan>$nameStyle</a></li>");
+							$duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
+							echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
                         } 
                     ?>
                 </dl>
@@ -71,8 +71,8 @@
                         {
                             $idUser = $row["ID"];
                             $userName = $row["UserName"];
-							$duongDan = "../TrangChu.php?userID=$idUser";
-							echo(" <li><a href=$duongDan>$userName</a></li>");
+							$duongDan = "TimKiem.php?Th_NguoiDang=$idUser";
+							echo(" <li><a href='$duongDan'>$userName</a></li>");
                         } 
                     ?>
                 </dl>
@@ -90,8 +90,8 @@
                         {
                             $idSinger = $row["ID"];
                             $singerName = $row["SingerName"];
-							$duongDan = "../TrangChu.php?singerID=$idSinger";
-							echo(" <li><a href=$duongDan>$singerName</a></li>");
+							$duongDan = "TimKiem.php?Th_CaSi=$idSinger";
+							echo(" <li><a href='$duongDan'>$singerName</a></li>");
                         } 
                     ?>
                 </dl>
@@ -127,9 +127,9 @@
 								$idUser = $row["OwnerID"];
 								$idSinger = $row["SingerID"];
 								$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
-								$duongDanTheLoai = "TrangChu.php?styleID=$idStyle";
-								$duongDanNguoiDung = "TrangChu.php?userID=$idUser";
-								$duongDanCaSi = "TrangChu.php?singerID=$idSinger";
+								$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
+								$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
+								$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
 								
 								echo("<div class='song-info' align='left'>");
 								echo("<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>");
