@@ -162,7 +162,7 @@
 			$chat_luong = $_REQUEST["Th_ChatLuong"];
 		}
 		
-		echo($sql);
+
 		$temp = DataProvider::ExecuteQuery($sql);
 		if($temp != false)
 		{
@@ -267,7 +267,7 @@
 </form>
 <div style="height:30px">
 </div>
-<div id="TheHien" align="left" style="margin-left:30px">
+<div id="TheHien" align="center" class="main-content">
 	<?php echo($noi_dung); ?>
 </div>
 <div align="right" style="margin-right:30px">
