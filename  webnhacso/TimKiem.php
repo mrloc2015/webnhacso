@@ -281,16 +281,16 @@
 		if(isset($_REQUEST["Trang"]) == true)
 		{
 			if($_REQUEST["Trang"] == $i)
-				echo("[<a href='/Do an - Web nhac so/TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a>]");	
+				echo("[<a href='TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a>]");	
 			else
-				echo(" <a href='/Do an - Web nhac so/TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a> ");	
+				echo(" <a href='TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a> ");	
 		}
 		else
 		{
 			if($i == 1)
-				echo("[<a href='/Do an - Web nhac so/TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a>]");	
+				echo("[<a href='TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a>]");	
 			else
-				echo(" <a href='/Do an - Web nhac so/TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a> ");	
+				echo(" <a href='TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a> ");	
 		}
 		$i++;
 	}
