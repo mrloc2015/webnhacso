@@ -436,13 +436,38 @@
               </div>
               <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:240px;">
               </div>
+              <script type="text/javascript" language="javascript">
+              	function XuLyGoiDi()
+				{
+					var dia_chi = "../TimKiem.php?TimKiem=true";
+					dia_chi += "&Th_TenBaiHat=";
+					var v = $("#cmbTheo").attr("value");
+					if(v == "0")
+						dia_chi += $("#txtTuKhoa").attr("value");
+					dia_chi += "&Th_CaSi=";
+					if(v == "1")
+						dia_chi += $("#txtTuKhoa").attr("value");
+					dia_chi += "&Th_NguoiDang=";
+					if(v == "2")
+						dia_chi += $("#txtTuKhoa").attr("value");
+					dia_chi += "&Th_TheLoai=0&Th_ChatLuong=0";/**/
+					//alert(v + 2);
+					//alert(document.getElementById("txtTuKhoa").value);
+					//alert(dia_chi);
+					$("#frmTimKiem").attr("action",dia_chi);
+					
+					return true;	
+				}
+              </script>
               <div class="right-search">
-                    <form id="frmTimKiem" name="TimKiem" method="post" action="xulyTimKiem.php">
+                    <form id="frmTimKiem" name="TimKiem" method="post" action="TimKiem.php" onsubmit="XuLyGoiDi()">
                         <label for="txtTuKhoa">Từ khóa</label><br>
                       <input type="text" name="txtTuKhoa" id="txtTuKhoa" style="width:200px;"/><br>
                         <label for="cmbTheo">Theo</label><br>
-                      <select name="cmbTheo" id="cmbTheo" style="width:200px">
-                       	<option>&nbsp;</option>
+                      <select name="cmbTheo" id="cmbTheo" style="width:200px">                       	
+                       	<option selected="selected" value="0">Tên bài hát / Chủ đề</option>
+                        <option value="1">Ca sĩ</option>
+                        <option value="2">Người đăng</option>
                       </select>
                       <p style="margin-top:10px;">
                         	<input type="submit" name="btnTimKiem" id="btnTimKiem" value="Tìm Nhạc"/>
