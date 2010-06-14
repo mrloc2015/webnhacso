@@ -200,7 +200,7 @@
               <script type="text/javascript" language="javascript">
               	function XuLyGoiDi()
 				{
-					var dia_chi = "../TimKiem.php?TimKiem=true";
+					var dia_chi = "TimKiem.php?TimKiem=true";
 					dia_chi += "&Th_TenBaiHat=";
 					var v = $("#cmbTheo").attr("value");
 					if(v == "0")
