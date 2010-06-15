@@ -49,7 +49,7 @@
                         {
                             $idStyle = $row["ID"];
                             $nameStyle = $row["StyleName"];
-							$duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
+							$duongDan = "TimKiem.php?TimKiem=true&Th_TheLoai=$idStyle";
 							echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
                         } 
                     ?>
@@ -71,7 +71,7 @@
                         {
                             $idUser = $row["ID"];
                             $userName = $row["UserName"];
-							$duongDan = "TimKiem.php?Th_NguoiDang=$idUser";
+							$duongDan = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
 							echo(" <li><a href='$duongDan'>$userName</a></li>");
                         } 
                     ?>
@@ -90,7 +90,7 @@
                         {
                             $idSinger = $row["ID"];
                             $singerName = $row["SingerName"];
-							$duongDan = "TimKiem.php?Th_CaSi=$idSinger";
+							$duongDan = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
 							echo(" <li><a href='$duongDan'>$singerName</a></li>");
                         } 
                     ?>
@@ -116,51 +116,41 @@
 	//echo($so_bai);
 	//echo($tu_bai);
 	$noi_dung = "";
+	
 	$ten_bai_hat = "";
-	if(isset($_REQUEST["Th_TenBaiHat"]) == true and $_REQUEST["Th_TenBaiHat"] != "")
-		$ten_bai_hat = " and s.SongName like '%" . $_REQUEST["Th_TenBaiHat"] . "%'";
 	$ca_si = "";
-	if(isset($_REQUEST["Th_CaSi"]) == true  and $_REQUEST["Th_CaSi"] != "")
-		$ca_si = " and sin.SingerName like '%" . $_REQUEST["Th_CaSi"] . "%'";
 	$nguoi_dang = "";
-	if(isset($_REQUEST["Th_NguoiDang"]) == true  and $_REQUEST["Th_NguoiDang"] != "")
-		$nguoi_dang = " and u.UserName like '%" . $_REQUEST["Th_NguoiDang"] . "%'";
 	$the_loai = 0;
-	if(isset($_REQUEST["Th_TheLoai"]) == true)
-		$the_loai = " and s.StyleID=" . $_REQUEST["Th_TheLoai"];
 	$chat_luong = 0;
+	
+	if(isset($_REQUEST["Th_TenBaiHat"]) == true)
+		if($_REQUEST["Th_TenBaiHat"] != "")
+			$ten_bai_hat = $_REQUEST["Th_TenBaiHat"];	
+	if(isset($_REQUEST["Th_CaSi"]) == true)
+		if($_REQUEST["Th_CaSi"] != "")
+			$ca_si = $_REQUEST["Th_CaSi"];	
+	if(isset($_REQUEST["Th_NguoiDang"]) == true)
+		if($_REQUEST["Th_NguoiDang"] != "")
+			$nguoi_dang = $_REQUEST["Th_NguoiDang"];
+	if(isset($_REQUEST["Th_TheLoai"]) == true)
+		$the_loai = $_REQUEST["Th_TheLoai"];
 	if(isset($_REQUEST["Th_ChatLuong"]) == true)
-		$chat_luong = " and s.BitRateID=" . $_REQUEST["Th_ChatLuong"];
+		$chat_luong = $_REQUEST["Th_ChatLuong"];
 		
 	if(isset($_REQUEST["TimKiem"]) == true)
 	{
 		$sql = "Select count(s.ID) From song s, song_style ss, user u, singer sin, bit_rate br Where s.StyleID = ss.ID and s.OwnerID = u.ID and s.SingerID = sin.ID and s.BitRateID = br.ID";						
 						
-		if(trim($_REQUEST["Th_TenBaiHat"]) != "")
-		{
-			$sql .= $ten_bai_hat;
-			$ten_bai_hat = 	$_REQUEST["Th_TenBaiHat"];
-		}
-		if($_REQUEST["Th_CaSi"] != "")
-		{
-			$sql .= $ca_si;
-			$ca_si = $_REQUEST["Th_CaSi"];
-		}
-		if($_REQUEST["Th_NguoiDang"] != "")
-		{
-			$sql .= $nguoi_dang;
-			$nguoi_dang = $_REQUEST["Th_NguoiDang"];
-		}
-		if($_REQUEST["Th_TheLoai"] != 0)
-		{
-			$sql .= $the_loai;
-			$the_loai = $_REQUEST["Th_TheLoai"];
-		}
-		if($_REQUEST["Th_ChatLuong"] != 0)
-		{
-			$sql .= $chat_luong;		
-			$chat_luong = $_REQUEST["Th_ChatLuong"];
-		}
+		if(trim($ten_bai_hat) != "")
+			$sql .= " and s.SongName like '%" . $ten_bai_hat . "%'";
+		if(trim($ca_si) != "")
+			$sql .= " and sin.SingerName like '%" . $ca_si . "%'";
+		if(trim($nguoi_dang) != "")
+			$sql .= " and u.UserName like '%" . $nguoi_dang . "%'";
+		if($the_loai != 0)
+			$sql .=  " and s.StyleID=" . $the_loai;
+		if($chat_luong != 0)
+			$sql .= " and s.BitRateID=" . $chat_luong;
 		
 		//echo($sql);
 		$temp = DataProvider::ExecuteQuery($sql);
@@ -265,8 +255,9 @@
     </select>
 </div>
 <div align="center">
-	<input name="TimKiem" type="submit" value="Tìm Kiếm" />
+	<input id="TimKiem" name="TimKiem" type="submit" value="Tìm Kiếm" />
 </div>
+<input id="Trang" name="Trang" type="hidden" value="1" />
 </form>
 <div style="height:30px">
 </div>
@@ -274,24 +265,25 @@
 	<?php echo($noi_dung); ?>
 </div>
 <div align="right" style="margin-right:30px">
+
+<script type="text/javascript" language="javascript">
+	function abc(t)
+	{
+		//alert("SDFDS");
+		$("#Trang").attr("value",t);
+		$("#TimKiem").click();
+	}
+</script>
+                
 	<?php
 	$i = 1;
 	while($i <= $tong_so_trang)
 	{
 		if(isset($_REQUEST["Trang"]) == true)
-		{
 			if($_REQUEST["Trang"] == $i)
-				echo("[<a href='TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a>]");	
+				echo("[<a href='javascript:abc($i);'>$i</a>]");	
 			else
-				echo(" <a href='TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a> ");	
-		}
-		else
-		{
-			if($i == 1)
-				echo("[<a href='TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a>]");	
-			else
-				echo(" <a href='TimKiem.php?Trang=$i&TimKiem=true&Th_TenBaiHat=".$_REQUEST["Th_TenBaiHat"]."&Th_CaSi=". $_REQUEST["Th_CaSi"]."&Th_NguoiDang=".$_REQUEST["Th_NguoiDang"]."&Th_TheLoai=".$_REQUEST["Th_TheLoai"]."&Th_ChatLuong=".$_REQUEST["Th_ChatLuong"]."'>$i</a> ");	
-		}
+				echo(" <a href='javascript:abc($i);'>$i</a> ");	
 		$i++;
 	}
 	?>
@@ -343,17 +335,14 @@
               	function XuLyGoiDi()
 				{
 					var dia_chi = "TimKiem.php?TimKiem=true";
-					dia_chi += "&Th_TenBaiHat=";
 					var v = $("#cmbTheo").attr("value");
+
 					if(v == "0")
-						dia_chi += $("#txtTuKhoa").attr("value");
-					dia_chi += "&Th_CaSi=";
+						dia_chi += "&Th_TenBaiHat=" + $("#txtTuKhoa").attr("value");
 					if(v == "1")
-						dia_chi += $("#txtTuKhoa").attr("value");
-					dia_chi += "&Th_NguoiDang=";
+						dia_chi += "&Th_CaSi=" + $("#txtTuKhoa").attr("value");
 					if(v == "2")
-						dia_chi += $("#txtTuKhoa").attr("value");
-					dia_chi += "&Th_TheLoai=0&Th_ChatLuong=0";/**/
+						dia_chi += "&Th_NguoiDang=" + $("#txtTuKhoa").attr("value");
 					//alert(v + 2);
 					//alert(document.getElementById("txtTuKhoa").value);
 					//alert(dia_chi);

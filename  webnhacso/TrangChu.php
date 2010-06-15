@@ -49,7 +49,7 @@
                         {
                             $idStyle = $row["ID"];
                             $nameStyle = $row["StyleName"];
-							$duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
+							$duongDan = "TimKiem.php?TimKiem=true&Th_TheLoai=$idStyle";
 							echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
                         } 
                     ?>
@@ -71,7 +71,7 @@
                         {
                             $idUser = $row["ID"];
                             $userName = $row["UserName"];
-							$duongDan = "TimKiem.php?Th_NguoiDang=$idUser";
+							$duongDan = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
 							echo(" <li><a href='$duongDan'>$userName</a></li>");
                         } 
                     ?>
@@ -90,7 +90,7 @@
                         {
                             $idSinger = $row["ID"];
                             $singerName = $row["SingerName"];
-							$duongDan = "TimKiem.php?Th_CaSi=$idSinger";
+							$duongDan = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
 							echo(" <li><a href='$duongDan'>$singerName</a></li>");
                         } 
                     ?>
@@ -201,17 +201,14 @@
               	function XuLyGoiDi()
 				{
 					var dia_chi = "TimKiem.php?TimKiem=true";
-					dia_chi += "&Th_TenBaiHat=";
 					var v = $("#cmbTheo").attr("value");
+
 					if(v == "0")
-						dia_chi += $("#txtTuKhoa").attr("value");
-					dia_chi += "&Th_CaSi=";
+						dia_chi += "&Th_TenBaiHat=" + $("#txtTuKhoa").attr("value");
 					if(v == "1")
-						dia_chi += $("#txtTuKhoa").attr("value");
-					dia_chi += "&Th_NguoiDang=";
+						dia_chi += "&Th_CaSi=" + $("#txtTuKhoa").attr("value");
 					if(v == "2")
-						dia_chi += $("#txtTuKhoa").attr("value");
-					dia_chi += "&Th_TheLoai=0&Th_ChatLuong=0";/**/
+						dia_chi += "&Th_NguoiDang=" + $("#txtTuKhoa").attr("value");
 					//alert(v + 2);
 					//alert(document.getElementById("txtTuKhoa").value);
 					//alert(dia_chi);
