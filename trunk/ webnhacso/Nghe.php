@@ -115,7 +115,7 @@
 			$id = $row["ID"];
 			$source = $row["Source"];
 		}
-		$source = "Du_Lieu/BAI_HAT/$id/$source";
+		//$source = "Du_Lieu/BAI_HAT/$id/$source";
 		?>
 			<div style="margin-top:50px"> 
 				<object codebase="http://www.apple.com/qtactivex/qtplugin.cab"
