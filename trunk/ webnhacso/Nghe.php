@@ -108,16 +108,37 @@
 	{
 		$id = "";
 		$source = "";
-		$temp = DataProvider::ExecuteQuery("Select * From song Where ID = " . $_REQUEST["BaiHat"]);
+		$temp = DataProvider::ExecuteQuery("Select * From song so, singer si, bit_rate br, user u, song_style st Where so.SingerID = si.ID and so.BitRateID = br.ID and so.OwnerID = u.ID and so.StyleID = st.ID and so.ID = " . $_REQUEST["BaiHat"]);
 		if($temp != false)
 		{
 			$row = mysql_fetch_array($temp);
 			$id = $row["ID"];
 			$source = $row["Source"];
+			$songName = $row["SongName"];
+			$style = $row["StyleName"];
+			$userName = $row["UserName"];
+			$bitRate = $row["BitRate"];
+			$singerName = $row["SingerName"];
+			$listenCount = $row["ListenCount"];
+			$duongDanCaSi = "TimKiem.php?Th_CaSi=" . $row["SingerID"];
+			$duongDanTheLoai = "TimKiem.php?Th_TheLoai=" . $row["StyleID"];
+			$duongDanNguoiDang = "TimKiem.php?Th_NguoiDang=" . $row["OwnerID"];
 		}
 		//$source = "Du_Lieu/BAI_HAT/$id/$source";
 		?>
-			<div style="margin-top:50px"> 
+        	
+        	<div class="song-info">
+            	<div class="song-title" align="left">
+            		<?php echo("$songName");?>
+            	</div>
+                <div class="song-info">
+                	<?php echo("Trình bày:<a href='$duongDanCaSi'>$singerName</a>");?>
+                </div>
+                <div class="song-info">
+                	<?php echo("Người đăng:<a href='$duongDanNguoiDang'>$userName</a> | Lượt nghe:$listenCount | Bit rate:$bitRate kb/s | <a href='$duongDanTheLoai'>$style</a>");?>
+                </div>
+            </div>
+			<div align="center" style="margin-top:50px"> 
 				<object codebase="http://www.apple.com/qtactivex/qtplugin.cab"
 				classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" 
 				type="application/x-oleobject">        			
@@ -135,13 +156,16 @@
 					window.location = url;
 				} 
 			</script>
-            <input id="TaiVe" onclick="TaiVe('<?php echo("$source"); ?>')" type="button" value="Tải Về" />
-            <form name="ThemVaoPlayList" action="xulyThemVaoPlayList.php" method="post">
+            <div class="main-content">
+            	<input id="TaiVe" onclick="TaiVe('<?php echo("$source"); ?>')" type="button" value="Tải Về" />
+           		<form name="ThemVaoPlayList" action="xulyThemVaoPlayList.php" method="post">
                 <input name="song_id" type="hidden" value="<?php echo($id); ?>" />
                 <input name="source" type="hidden" value="<?php echo($source); ?>" />
                 <input name="user_id" type="hidden" value="<?php echo($user_id); ?>" />
                 <input style="float:right; margin-right:50px" name="submit" type="submit" value="Thêm Vào Playlist"/>
-            </form>
+            	</form>
+            </div>
+            
             <?php
 	}
 	else	
