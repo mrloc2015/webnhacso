@@ -189,6 +189,21 @@
 	padding:5px;
 }
 
+.song-title
+{
+	background-color:#1685B4;
+	color:#FFF;
+	height:25px;
+	width:500px;
+	font-family:Tahoma;
+	font-size:20px;
+	left:20px;
+	position:relative;
+	top:3px;
+	padding-top:10px;
+	padding-left:10px;
+}
+
 .song-icon
 {
 	float:left;
