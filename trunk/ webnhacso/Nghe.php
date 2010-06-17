@@ -49,7 +49,7 @@
                         {
                             $idStyle = $row["ID"];
                             $nameStyle = $row["StyleName"];
-							$duongDan = "TimKiem.php?TimKiem=true&Th_TheLoai=$idStyle";
+							$duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
 							echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
                         } 
                     ?>
@@ -69,9 +69,8 @@
                         $result = DataProvider::ExecuteQuery($sql);
                         while($row = mysql_fetch_array($result))
                         {
-                            $idUser = $row["ID"];
                             $userName = $row["UserName"];
-							$duongDan = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
+							$duongDan = "TimKiem.php?Th_NguoiDang=$userName";
 							echo(" <li><a href='$duongDan'>$userName</a></li>");
                         } 
                     ?>
@@ -88,9 +87,8 @@
                         $result = DataProvider::ExecuteQuery($sql);
                         while($row = mysql_fetch_array($result))
                         {
-                            $idSinger = $row["ID"];
                             $singerName = $row["SingerName"];
-							$duongDan = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
+							$duongDan = "TimKiem.php?Th_CaSi=$singerName";
 							echo(" <li><a href='$duongDan'>$singerName</a></li>");
                         } 
                     ?>
@@ -164,6 +162,53 @@
                 <input name="user_id" type="hidden" value="<?php echo($user_id); ?>" />
                 <input style="float:right; margin-right:50px" name="submit" type="submit" value="Thêm Vào Playlist"/>
             	</form>
+            </div>
+            
+            <div class="main-content">
+            	<?php
+					include_once("DataProvider.php");
+					$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID and so.SingerID in(select si1.ID from singer si1, song so1 where si1.ID = so1.SingerID and so1.ID = " . $_REQUEST["BaiHat"] . ") limit 0,10";
+					$result = DataProvider::ExecuteQuery($sql);
+					while($row = mysql_fetch_array($result))
+					{
+						$songName = $row["SongName"];
+						$singerName = $row["SingerName"];
+						$userName = $row["UserName"];
+						$nameStyle = $row["StyleName"];
+						$listenCount = $row["ListenCount"];
+						$bitRate = $row["BitRate"];
+						$idSong = $row["ID"];
+						$idStyle = $row["StyleID"];
+						$idUser = $row["OwnerID"];
+						$idSinger = $row["SingerID"];
+						$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
+						$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
+						$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
+						$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
+						
+						echo("<div class='song-info' align='left'>");
+						echo("<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>");
+						echo("<h2><a href='$duongDanBaiHat'>$songName</a></h2>");
+						echo(
+							 "<p>
+								<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+							</p>"); 
+						echo(
+							 "<p>
+								<label>Đăng bởi</label>: 
+								<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
+								<span>"); 
+						echo( "|"); 
+						echo ("$bitRate kb/s"); 
+						echo( "|"); 
+						echo("<label>Lượt nghe</label>: $listenCount"); 
+						echo( "|"); 
+						echo("</span>");
+						echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
+						echo("</div>");
+						
+					} 
+				?>
             </div>
             
             <?php
