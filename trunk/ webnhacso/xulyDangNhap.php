@@ -1,10 +1,6 @@
-<html>
-<head>
-<meta http-equiv="refresh" content="3;url=http://localhost:8080/Do an - Web nhac so/TrangChu.php">
-</head>
-</html>
+
 <?php	
-	session_start();			
+	session_start();		
 	include_once("DataProvider.php");	
 	if(isset($_REQUEST["btnDangNhap"])) 					   
 	{		
@@ -12,23 +8,15 @@
 		$PassWord=$_REQUEST["txtMatKhau"];		
 		if(trim($UserName)=="")
 		{
-			?>
-			<script type="text/javascript" language="javascript">
-        	alert("Vui lòng nhập UserName!");			
-			window.history.go(-1);
-        	</script>
-            <?php			
+			$_SESSION['status']="chua_nhap_username";			
+			exit;
 		}
 		else
 		{
 			if(trim($PassWord)=="")
 			{
-				?>
-				<script type="text/javascript" language="javascript">
-                alert("Chưa nhập PassWord");			
-                window.history.go(-1);
-                </script>
-                <?php				
+				$_SESSION['status']="chua_nhap_password";
+				exit;
 			}
 			else
 			{
@@ -38,12 +26,8 @@
 				{
 					if($PassWord!=$Row["Pass"])
 					{
-						?>
-						<script type="text/javascript" language="javascript">
-                        alert("Sai PassWord!");			
-                        window.history.go(-1);
-                        </script>
-                        <?php						
+						$_SESSION['status']="pass_word_khong_dung";
+						exit;
 					}
 					else
 					{
@@ -51,23 +35,14 @@
 						$_SESSION["Pass"]=$Row["Pass"];
 						$_SESSION["IsLogin"]=true;
 						$_SESSION["UserType"]=$Row["UserStyleID"];
-						echo("Xin chào $UserName!<br/>Click <a href='./TrangChu.php'>vào đây</a> để trở lại trang chủ nếu trình duyệt không tự chuyển!");																                        
-                    						
+						$_SESSION['status']="login_successful";							
 					}
 				}				
 				else
 				{
-						?>
-						<script type="text/javascript" language="javascript">
-                        alert("Tài khoản chưa được đăng kí!");			
-                        window.history.go(-1);
-                        </script>
-                        <?php					
+						$_SESSION['status']="tai_khoan_chua_duoc_dang_ki";						
 				}
 			}
 		}				
-	}
-			
-	session_unset();
-	session_destroy();	
+	}				
 ?>

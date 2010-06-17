@@ -112,7 +112,19 @@
 							tem = tem + arrchar[i];
 						}
 						return tem;
-					}					
+					}
+					
+					//Tạo mới mã xác nhận
+					$(document).ready(function()
+					{
+        				$('#imgmaxacnhan').click(function()
+						{
+            				var maxacnhan = $('#imgmaxacnhan');
+            				var maxacnhan_new_src = maxacnhan.attr('src') + '?' + Math.floor(Math.random()*11);
+            				maxacnhan.attr('src', maxacnhan_new_src );
+            				return false;
+        				}	);
+    				}	);
 					function CheckInput()
 					{
 						//Kiểm tra tên đăng nhập
@@ -251,7 +263,7 @@
 							alert("Xin vui lòng nhập mã xác nhận!");
 							maxacnhan.focus();
 							return false;
-						}		
+						}												
 					}
 					</script>                                                       
 				  <div style="width:600px" align="center">
@@ -372,9 +384,11 @@
 			            </tr>
 				        <tr>
 				          <td height="46" colspan="2" align="center">
-                          	<img src="Tai lieu/captcha/captcha.php" /><br/>
-                            <input type="text" name="txtmaxacnhan" id="txtmaxacnhan" style=" width:60px" />
-                          </td>
+                       	    <p id=><img src="Tai lieu/captcha/captcha.php" id="imgmaxacnhan" title="Click để tạo mã xác nhận mới"/></p>
+                       	    <p>
+                       	      <input type="text" name="txtmaxacnhan" id="txtmaxacnhan" style=" width:60px" />                       	  
+                       	      <br/>
+               	          </p></td>
 			            </tr>
 				        <tr>
 				          <td height="46" colspan="2"><div align="center" style="width:400px">

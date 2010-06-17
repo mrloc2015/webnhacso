@@ -7,8 +7,8 @@ include_once("DataProvider.php");
 if(isset($_REQUEST["DangKi"]))
 {
 		$tendangnhap = $_REQUEST["txttendangnhap"];
-		$matkhau = $_REQUEST["txtmatkhau"];
-		$laplaimatkhau = $_REQUEST["txtlaplaimatkhau"];
+		$matkhau = md5($_REQUEST["txtmatkhau"]);
+		$laplaimatkhau = md5($_REQUEST["txtlaplaimatkhau"]);
 		$email = $_REQUEST["txtemail"];
 		$laplaiemail=$_REQUEST["txtlaplaiemail"];
 		$hovaten=$_REQUEST["txthovaten"];
@@ -60,7 +60,7 @@ $localID =$row_Location["ID"];
 $sql="INSERT INTO user_info (FullName,UserID,BirthDay,JoinDay,Email,LocationID) value ('$hovaten','$userID','$ngaysinh','$today','$email','$localID')";
 DataProvider::ExecuteQuery($sql);
 
-echo("<blink>Chào mừng $tendangnhap đã trở thành thành viên của nhạc số!</blink>");
+echo("<blink>Chào mừng $tendangnhap đã trở thành thành viên của nhạc số!</blink><br/>Click <a href='TrangChu.php'>vào đây</a> để trở lại trang chủ!");
 
 //*****sau_con_89******
 //tạo folder + playlist cho mỗi người dùng => tiện việc xử lý nghe nhạc
