@@ -49,7 +49,7 @@
                         {
                             $idStyle = $row["ID"];
                             $nameStyle = $row["StyleName"];
-							$duongDan = "TimKiem.php?TimKiem=true&Th_TheLoai=$idStyle";
+							$duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
 							echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
                         } 
                     ?>
@@ -69,9 +69,8 @@
                         $result = DataProvider::ExecuteQuery($sql);
                         while($row = mysql_fetch_array($result))
                         {
-                            $idUser = $row["ID"];
                             $userName = $row["UserName"];
-							$duongDan = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
+							$duongDan = "TimKiem.php?Th_NguoiDang=$userName";
 							echo(" <li><a href='$duongDan'>$userName</a></li>");
                         } 
                     ?>
@@ -88,9 +87,8 @@
                         $result = DataProvider::ExecuteQuery($sql);
                         while($row = mysql_fetch_array($result))
                         {
-                            $idSinger = $row["ID"];
                             $singerName = $row["SingerName"];
-							$duongDan = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
+							$duongDan = "TimKiem.php?Th_CaSi=$singerName";
 							echo(" <li><a href='$duongDan'>$singerName</a></li>");
                         } 
                     ?>
@@ -174,9 +172,9 @@
 			while($row = mysql_fetch_array($temp))
 			{
 				$duongDanBaiHat = "Nghe.php?BaiHat=".$row["ID"];
-				$duongDanTheLoai = "TrangChu.php?styleID=".$row["StyleID"];
-				$duongDanNguoiDung = "TrangChu.php?userID=".$row["OwnerID"];
-				$duongDanCaSi = "TrangChu.php?singerID=".$row["SingerID"];
+				$duongDanTheLoai = "TimKiem.php?Th_TheLoai=".$row["StyleID"];
+				$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=".$row["OwnerID"];
+				$duongDanCaSi = "TimKiem.php?Th_CaSi=".$row["SingerID"];
 								
 				$songName = $row["SongName"];
 				$singerName = $row["SingerName"];
