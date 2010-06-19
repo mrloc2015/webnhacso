@@ -14,90 +14,89 @@
 
 <body>
   <div class="banner" id="idBanner" align="center">
-    	<img src="images/header-02.jpg" width="1000" height="120">
+    	<img src="images/digital music-banner.jpg" width="1000" height="120">
     </div>
   	<div class="main" id="idmain">
-        <table width="100%" border="0" cellspacing="0">
-          <tr>
-            <td width="18%" class="left-col" valign="top">
+            <div class="left-col">
             	 <div class="left-header" id="idLeftMenu" align="center">
                     <span>Menu</span>
             	 </div>
-             <div class="left-menu" id="idFirstLeftMenu">
-                 <ul class="pointer">
-                    <li>
-                      <a href="TrangChu.php" title="Trang chủ">Trang chủ</a>
-                   </li>
-                    <li>
-                      <a href="ThemBaiHat.php" title="Đăng/upload Bài Hát">Đăng/upload Bài Hát</a>
-                    </li>
-                    <li class="last">
-                      <a href="DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản mới</a>
-                    </li>
-                 </ul>
-           	</div>
-   	      	<div class="left-header" id="idDanhMucBaiHat" align="center">
-                 <span>Danh mục bài hát</span>
-            </div>  
-            <div class="left-DanhMuc">
-                <dl>                
-					<?php
-                        include_once("DataProvider.php");
-                        $sql = "select * from song_style";
-                        $result = DataProvider::ExecuteQuery($sql);
-                        while($row = mysql_fetch_array($result))
-                        {
-                            $idStyle = $row["ID"];
-                            $nameStyle = $row["StyleName"];
-							$duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
-							echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
-                        } 
-                    ?>
-                </dl>
-             </div>
-            <div class="left-header" id="idClip" align="center">
-                 <span><a href="TrangChu.php?Clip=1">Clip</a></span>
+             	 <div class="left-menu" id="idFirstLeftMenu">
+                     <ul class="pointer">
+                        <li>
+                          <a href="TrangChu.php" title="Trang chủ">Trang chủ</a>
+                       </li>
+                        <li>
+                          <a href="ThemBaiHat.php" title="Đăng/upload Bài Hát">Đăng/upload Bài Hát</a>
+                        </li>
+                        <li class="last">
+                          <a href="DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản mới</a>
+                        </li>
+                     </ul>
+           		</div>
+                <div class="left-header" id="idDanhMucBaiHat" align="center">
+                     <span>Danh mục bài hát</span>
+                </div>  
+                 <div class="left-DanhMuc">
+                    <dl>                
+                        <?php
+                            include_once("DataProvider.php");
+                            $sql = "select * from song_style";
+                            $result = DataProvider::ExecuteQuery($sql);
+                            while($row = mysql_fetch_array($result))
+                            {
+                                $idStyle = $row["ID"];
+                                $nameStyle = $row["StyleName"];
+                                $duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
+                                echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
+                            } 
+                        ?>
+                    </dl>
+                 </div>
+                <div class="left-header" id="idClip" align="center">
+                     <span><a href="TrangChu.php?Clip=1">Clip</a></span>
+                </div>
+                <div class="left-header" id="idPlayList" align="center">
+                    <span>Playlist HOT</span>
+                </div>
+                 <div class="left-PlayList">
+                     <dl>                
+                        <?php
+                            include_once("DataProvider.php");
+                            $sql = "select u.ID, u.UserName from playlist pl, user u where pl.ID = u.PlaylistID and pl.ListenCount >= 0";
+                            $result = DataProvider::ExecuteQuery($sql);
+                            while($row = mysql_fetch_array($result))
+                            {
+                                $userName = $row["UserName"];
+                                $duongDan = "TimKiem.php?Th_NguoiDang=$userName";
+                                echo(" <li><a href='$duongDan'>$userName</a></li>");
+                            } 
+                        ?>
+                    </dl>
+                  </div>
+                <div class="left-header" id="idLeftMenu" align="center">
+                    <span>Ca sĩ & Ban nhạc</span>
+                </div>
+                <div class="left-CaSi">
+                     <dl>                
+                        <?php
+                            include_once("DataProvider.php");
+                            $sql = "select si.SingerName,si.ID from singer si, song so where so.SingerID = si.ID group by si.ID, si.SingerName having sum(so.ListenCount) >=0 limit 10";
+                            $result = DataProvider::ExecuteQuery($sql);
+                            while($row = mysql_fetch_array($result))
+                            {
+                                $singerName = $row["SingerName"];
+                                $duongDan = "TimKiem.php?Th_CaSi=$singerName";
+                                echo(" <li><a href='$duongDan'>$singerName</a></li>");
+                            } 
+                        ?>
+                    </dl>
+              </div>
             </div>
-            <div class="left-header" id="idPlayList" align="center">
-                <span>Playlist HOT</span>
-            </div>
-            <div class="left-PlayList">
-            	 <dl>                
-					<?php
-                        include_once("DataProvider.php");
-                        $sql = "select u.ID, u.UserName from playlist pl, user u where pl.ID = u.PlaylistID and pl.ListenCount >= 0";
-                        $result = DataProvider::ExecuteQuery($sql);
-                        while($row = mysql_fetch_array($result))
-                        {
-                            $userName = $row["UserName"];
-							$duongDan = "TimKiem.php?Th_NguoiDang=$userName";
-							echo(" <li><a href='$duongDan'>$userName</a></li>");
-                        } 
-                    ?>
-                </dl>
-            </div>
-            <div class="left-header" id="idLeftMenu" align="center">
-                <span>Ca sĩ & Ban nhạc</span>
-            </div>
-            <div class="left-CaSi">
-            	 <dl>                
-					<?php
-                        include_once("DataProvider.php");
-                        $sql = "select si.SingerName,si.ID from singer si, song so where so.SingerID = si.ID group by si.ID, si.SingerName having sum(so.ListenCount) >=0 limit 10";
-                        $result = DataProvider::ExecuteQuery($sql);
-                        while($row = mysql_fetch_array($result))
-                        {
-                            $singerName = $row["SingerName"];
-							$duongDan = "TimKiem.php?Th_CaSi=$singerName";
-							echo(" <li><a href='$duongDan'>$singerName</a></li>");
-                        } 
-                    ?>
-                </dl>
-            </div>
-            </td>
-            <td width="67%" valign="top" class="mid-col">
-                <div id="idMainContent" class="main-content" align="center">                   
-  					<!-- InstanceBeginEditable name="mainConten" -->
+            <div class="right-mid">
+                  <div class="mid-col">
+                        <div id="idMainContent" class="main-content" align="center">                   
+                            <!-- InstanceBeginEditable name="mainConten" -->
                     
             <?php
 	include_once("DataProvider.php");	
@@ -202,9 +201,9 @@
 </div>    
 </form>
 			<!-- InstanceEndEditable -->
-                </div>
-            </td>
-            <td width="20%" valign="top" class="right-col">
+                        </div>
+                  </div>
+            <div class="right-col">
                 <div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px;width:240px">
                 </div>
                 <div class="right-login">
@@ -226,7 +225,7 @@
                 <div class="right-userinfo">
                   <div>
                     <div>
-                        <b>Xin chào:</b><span style="color:#09F;font-weight:bold;">Taki Squall</span>
+                        <b>Xin chào:</b><span style="color:#33F;font-size:16px;font-weight:bold;">Taki Squall</span>
                     </div>
                     <ul>
                         <li>
@@ -281,10 +280,8 @@
                 <div class="right-content" id="idRightContent" align="center">
                     <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->
                 </div>
-            </td>
-          </tr>
-       </table>  
+            </div>  
+        </div>     
    </div>
-
 </body>
 <!-- InstanceEnd --></html>

@@ -40,11 +40,11 @@
 .main
 {
 	background-color:#FFF;
-	height:100%;
-	position:static;
+	height:auto;
 	margin:125px auto;
-	padding:5px 5px;
+	padding:5px 5px 0;
 	width:1000px;
+	overflow:hidden;
 }
 
 .left-header
@@ -73,9 +73,9 @@
 	background-color:#00c41a;
 }
 
-.left-DanhMuc
+.left-DanhMuc,.left-CaSi,.left-PlayList
 {
-	height:360px;
+	/*height:360px;*/
 	position:relative;
 }
 
@@ -107,25 +107,28 @@
 	color:#360;
 }
 
-.left-CaSi,.left-PlayList
-{
-	height:250px;
-	position:relative;
-}
-
 .left-col
 {
-	width:15%;
+	width:18%;
+	float:left;
+}
+
+.right-mid
+{
+	width:82%;
+	float:right;
 }
 
 .mid-col
 {
-	width:60%;
+	width:71%;
+	float:left;
 }
 
 .right-col
 {
-	width:25%;
+	width:29%;
+	float:right;
 }
 
 .right-username
@@ -222,6 +225,11 @@
 	width:488px;
 }
 
+.song-info a
+{
+	font-weight:normal;
+}
+
 /*Thêm bài hát - sau_con_89*/
 .worms_field
 {
@@ -266,7 +274,7 @@ a
 {
 	text-decoration:none;
 	font-weight:bold;
-	color:#000;
+	color:#1888B6;
 }
 
 .pointer
@@ -299,17 +307,17 @@ a
 .pointer li a, .pointer li a:hover
 {
 	margin-left:20px;
-	color:#0F0;
+	color:#360;
 	font-weight:bold;
 }
 
-td a
+.right-login a
 {
 	font-weight:normal;
 	color:#06F;
 }
 
-td a:hover
+.right-login a:hover
 {
 	font-weight:normal;
 	color:#F90;
