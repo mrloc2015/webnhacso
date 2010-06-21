@@ -47,7 +47,7 @@
                             {
                                 $idStyle = $row["ID"];
                                 $nameStyle = $row["StyleName"];
-                                $duongDan = "TimKiem.php?Th_TheLoai=$idStyle";
+                                $duongDan = "TimKiem.php?TimKiem=true&Th_TheLoai=$idStyle";
                                 echo(" <li><a href='$duongDan'>$nameStyle</a></li>");
                             } 
                         ?>
@@ -68,7 +68,7 @@
                             while($row = mysql_fetch_array($result))
                             {
                                 $userName = $row["UserName"];
-                                $duongDan = "TimKiem.php?Th_NguoiDang=$userName";
+                                $duongDan = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
                                 echo(" <li><a href='$duongDan'>$userName</a></li>");
                             } 
                         ?>
@@ -86,7 +86,7 @@
                             while($row = mysql_fetch_array($result))
                             {
                                 $singerName = $row["SingerName"];
-                                $duongDan = "TimKiem.php?Th_CaSi=$singerName";
+                                $duongDan = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
                                 echo(" <li><a href='$duongDan'>$singerName</a></li>");
                             } 
                         ?>
@@ -409,20 +409,21 @@
                         </div>
                   </div>
             <div class="right-col">
-                <div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px;width:240px">
-                </div>
-                <div class="right-login">
-                    <form id="frmDangNhap" action="xulyDangNhap.php" name="frmDangNhap" method="get">
-                        <label for="txtTenDangNhap">Tên đăng nhập</label>
-                        <input type="text" maxlength="30" name="txtTenDangNhap" id="txtTenDangNhap" tabindex="1"><br>
-                        <label for="txtMatKhau">Mật khẩu</label><br>
-                        <input type="password" maxlength="30" name="txtMatKhau" id="txtMatKhau" tabindex="2">
-                        <input type="submit" id="btnDangNhap" name="btnDangNhap" value="Đăng nhập">        
-                    </form> 
-                    <ul>
-                        <li><a>Quên mật khẩu</a></li>
-                        <li><a>Đăng ký thành viên</a></li>
-                    </ul>  
+            	<div id="idLoginBox">
+                	<div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px;width:240px">
+                	</div>
+                    <div class="right-login">
+                        <form id="frmDangNhap" action="xulyDangNhap.php" name="frmDangNhap" method="get">
+                            <label for="txtTenDangNhap">Tên đăng nhập</label>
+                            <input type="text" maxlength="30" name="txtTenDangNhap" id="txtTenDangNhap" tabindex="1"><br>
+                            <label for="txtMatKhau">Mật khẩu</label><br>
+                            <input type="password" maxlength="30" name="txtMatKhau" id="txtMatKhau" tabindex="2">
+                            <input type="submit" id="btnDangNhap" name="btnDangNhap" value="Đăng nhập">        
+                        </form> 
+                        <ul>
+                            <li><a>Đăng ký thành viên</a></li>
+                        </ul>  
+                    </div>
                 </div>
                 <div class="right-username">
                     Thành viên chính thức

@@ -42,7 +42,7 @@
 	background-color:#FFF;
 	height:auto;
 	margin:125px auto;
-	padding:5px 5px 0;
+	padding:5px 5px 5px 5px;
 	width:1000px;
 	overflow:hidden;
 }
@@ -115,13 +115,13 @@
 
 .right-mid
 {
-	width:82%;
+	width:81%;
 	float:right;
 }
 
 .mid-col
 {
-	width:71%;
+	width:70%;
 	float:left;
 }
 
@@ -129,6 +129,12 @@
 {
 	width:29%;
 	float:right;
+	margin-right:3px;
+}
+
+#idLoginBox
+{
+	
 }
 
 .right-username
@@ -148,7 +154,6 @@
 	float:left;
 	height:120px;
 	padding:5px 0 0 5px;
-	position:relative;
 	width:234px;
 	background-color:#6F9;
 }
