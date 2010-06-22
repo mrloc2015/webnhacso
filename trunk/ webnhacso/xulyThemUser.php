@@ -53,11 +53,12 @@ $temp_user = DataProvider::ExecuteQuery("select * from user where UserName='$ten
 $row_user = mysql_fetch_array($temp_user);
 $userID=$row_user["ID"];
 
-$temp_Location=DataProvider::ExecuteQuery("select * from Location where Local='$location'");
-$row_Location = mysql_fetch_array($temp_Location);
-$localID =$row_Location["ID"];
+//$temp_Location=DataProvider::ExecuteQuery("select * from Location where Local='$location'");
+//$row_Location = mysql_fetch_array($temp_Location);
+//$localID =$row_Location["ID"];
 
-$sql="INSERT INTO user_info (FullName,UserID,BirthDay,JoinDay,Email,LocationID) value ('$hovaten','$userID','$ngaysinh','$today','$email','$localID')";
+
+$sql="INSERT INTO user_info (FullName,UserID,BirthDay,JoinDay,Email,LocationID) value ('$hovaten','$userID','$ngaysinh','$today','$email','$location')";
 DataProvider::ExecuteQuery($sql);
 
 echo("<blink>Chào mừng $tendangnhap đã trở thành thành viên của nhạc số!</blink><br/>Click <a href='TrangChu.php'>vào đây</a> để trở lại trang chủ!");

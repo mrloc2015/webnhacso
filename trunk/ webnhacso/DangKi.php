@@ -210,15 +210,16 @@
 						}						
 						//Kiểm tra ngay sinh
 						var ngaysinh=$("#cmbngaysinh");
-						var input=ngaysinh.attr("value");
+						var input=ngaysinh.attr("value");						
 						if(input==0)
-						{
+						{							
 							alert("Vui lòng nhập ngày sinh!");
 							ngaysinh.focus();
 							return false;
 						}						
 						var thangsinh=$("#cmbthang")
 						var input =thangsinh.attr("value");
+						
 						if(input==0)
 						{
 							alert("Vui lòng nhập đầy đủ ngày sinh!");
@@ -247,8 +248,8 @@
 						}
 						//Kiểm tra nơi ở
 						var local=$("#cmblocal");
-						var input=local.attr("value");												
-						if(input==0)
+						var input=local.attr("value");							
+						if(input==0)						
 						{
 							alert("Vui lòng nhập nơi ở của bạn!");
 							local.focus();
@@ -330,11 +331,9 @@
 				                  <option>
 				                    <?php 
 									for($i=1;$i<=31;$i++)
-									{ 
-									?>
-			                      </option>
-				                  <option ><?php echo $i?></option>
-				                  <?php 
+									{ 												                      
+				                  		echo("<option value='$i'>$i</option>");
+				                  
                     				}
                   					?>
 				                  </select></td>
@@ -342,14 +341,11 @@
 				                  <option value="0">[Tháng]</option>
 				                  <option>
 				                    <?php 
-					  for($i=1;$i<=12;$i++)
-					  {
-                  ?>
-			                      </option>
-				                  <option> <?php echo $i;?></option>
-				                  <?php
-                  	  }
-                  ?>
+					  					for($i=1;$i<=12;$i++)
+					  					{
+                  							echo("<option value='$i'>$i</option>");
+                  	  					}
+                  					?>
 				                  </select ></td>
 				                <td width="83">&nbsp;&nbsp;
 				                  <input name="txtnam" type="text" id="txtnam" style="width:60px" value="[Năm]" onfocus="cleartextfield()" /></td>
@@ -365,18 +361,20 @@
 				            <select name="cmblocation" id="cmblocal">
 				              <option value="0">[ Tỉnh-Thành Phố ]</option>
 				              <?php
-				  	include_once("DataProvider.php");
-				  	$location = DataProvider::ExecuteQuery("SELECT location.Local FROM location");
-					if(location !=false)
-					{
-						while($row=mysql_fetch_array($location))
-						{
-					?>
-				              <option> <?php echo $row["Local"] ?></option>
-				              <?php		
-						}
-					}					
-				 ?>
+							  $i=1;
+							  include_once("DataProvider.php");
+							  $location = DataProvider::ExecuteQuery("SELECT location.Local FROM location");
+							  if(location !=false)
+							  {
+								 while($row=mysql_fetch_array($location))
+								 {									
+							  ?>
+									 <option value="<?php echo($i)?>"> <?php echo $row["Local"] ?></option>
+							 <?php	
+									 $i++;
+								 }
+							  }					
+				 			  ?>
 			                </select>
 				            </p>
 				            <p>&nbsp; </p></td>
