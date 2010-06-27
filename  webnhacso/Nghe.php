@@ -1,7 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php
-	session_start();
-?>
+<?php session_start();?>
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/TrangChu.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,14 +10,9 @@
 <script type="text/javascript" src="js/jquery.media.js"></script>
 <script type="text/javascript" src="js/jquery.timers.js"></script>
 <script type="text/javascript" src="script/ThemBaiHat.js"></script>
-<script type="text/javascript" src="script/Ajax_DangNhap.js"></script>
-<script type="text/javascript" language="javascript">
-		$("document").ready(TaoDangNhap());
-</script>
 </head>
 
 <body>
-
   <div class="banner" id="idBanner" align="center">
     	<img src="images/digital music-banner.jpg" width="1000" height="120">
     </div>
@@ -107,16 +100,19 @@
 <?php
 	//giả dụ user sau_con_89 mã là 2 đã đăng nhập được
 	$user_id = 2; //lấy session
+	$id = "";
 	include_once("DataProvider.php");
 	if(isset($_REQUEST["BaiHat"]) == true)		//Bài hát	
-	{
-		$id = "";
+	{		
 		$source = "";
-		$temp = DataProvider::ExecuteQuery("Select * From song so, singer si, bit_rate br, user u, song_style st Where so.SingerID = si.ID and so.BitRateID = br.ID and so.OwnerID = u.ID and so.StyleID = st.ID and so.ID = " . $_REQUEST["BaiHat"]);
+		$sql = "Select * From song so, singer si, bit_rate br, user u, song_style st Where so.SingerID = si.ID and so.BitRateID = br.ID and so.OwnerID = u.ID and so.StyleID = st.ID and so.ID = " . $_REQUEST["BaiHat"];
+		//echo($sql);
+		$temp = DataProvider::ExecuteQuery($sql);
 		if($temp != false)
 		{
 			$row = mysql_fetch_array($temp);
-			$id = $row["ID"];
+			$id = $_REQUEST["BaiHat"];// $row["song.ID"];
+			//echo($id);
 			$source = $row["Source"];
 			$songName = $row["SongName"];
 			$style = $row["StyleName"];
@@ -124,11 +120,19 @@
 			$bitRate = $row["BitRate"];
 			$singerName = $row["SingerName"];
 			$listenCount = $row["ListenCount"];
-			$duongDanCaSi = "TimKiem.php?TimKiem=true&Th_CaSi=" . $row["SingerID"];
-			$duongDanTheLoai = "TimKiem.php?TimKiem=true&Th_TheLoai=" . $row["StyleID"];
-			$duongDanNguoiDang = "TimKiem.php?TimKiem=true&Th_NguoiDang=" . $row["OwnerID"];
+			$listenCount = $listenCount + 1;
+			//echo ($listenCount);
+			$duongDanCaSi = "TimKiem.php?Th_CaSi=" . $row["SingerID"];
+			$duongDanTheLoai = "TimKiem.php?Th_TheLoai=" . $row["StyleID"];
+			$duongDanNguoiDang = "TimKiem.php?Th_NguoiDang=" . $row["OwnerID"];
 		}
 		//$source = "Du_Lieu/BAI_HAT/$id/$source";
+		//echo($source);
+				
+		$sql = "Update song Set ListenCount = $listenCount Where ID = $id";
+		//echo($sql);
+		DataProvider::ExecuteQuery($sql)
+		
 		?>
         	
         	<div class="song-info">
@@ -153,7 +157,8 @@
 					type="application/x-mplayer2" 
 					pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
 				</object>
-			</div>
+			</div><br />
+            
              <script type="text/javascript" language="javascript">
 				function TaiVe(url)
 				{					
@@ -161,12 +166,12 @@
 				} 
 			</script>
             <div class="main-content">
-            	<input id="TaiVe" onclick="TaiVe('<?php echo("$source"); ?>')" type="button" value="Tải Về" />
+            	<div style="float:left;margin-left:30px;margin-right:10px"><input id="TaiVe" onclick="TaiVe('<?php echo("$source"); ?>')" type="button" value="Tải Về" /></div>                
            		<form name="ThemVaoPlayList" action="xulyThemVaoPlayList.php" method="post">
                 <input name="song_id" type="hidden" value="<?php echo($id); ?>" />
                 <input name="source" type="hidden" value="<?php echo($source); ?>" />
                 <input name="user_id" type="hidden" value="<?php echo($user_id); ?>" />
-                <input style="float:right; margin-right:50px" name="submit" type="submit" value="Thêm Vào Playlist"/>
+                <div align="left"><input name="submit" type="submit" value="Thêm Vào Playlist"/></div>               
             	</form>
             </div>
             
@@ -213,10 +218,39 @@
 						echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
 						echo("</div>");
 						
-					} 
+					} 					                        
 				?>
             </div>
-            
+            <div align="left" style="vertical-align:middle;margin-left:100px;margin-top:20px;margin-bottom:20px;margin-right:100px">
+            	<h2>Bình Luận</h2>
+                <hr />
+            </div>      
+            <?php
+			$sql = "Select * From comment c, comment_detail cd, user u Where c.ID = cd.CommentID and c.UserID = u.ID and c.SongID = $id";
+            $temp = DataProvider::ExecuteQuery($sql);
+            if($temp != false)
+            {
+                while($row = mysql_fetch_array($temp))
+                {
+                    echo("<div class='main-content' align='left'>");
+					echo("<a>".$row["UserName"]."</a>&nbsp;");
+					echo("<font color='#999999'>".$row["CreateDate"]."</font>");
+                    echo("<br>".$row["Content"]);
+                    echo("</div>");
+                }
+            }
+			?>
+            <div class="main-content">
+                <!--<?php echo($user_id); ?> <?php echo($id); ?> -->
+                <form id="form1" name="form1" method="post" action="xulyBinhLuan.php">
+                    <input name="UserID" id="UserID" type="hidden" value="<?php echo($user_id); ?>" />
+                    <input name="SongID" id="SongID" type="hidden" value="<?php echo($id); ?>" />
+                    Xin vui lòng viết bình luận cho bài hát	<br /><br />
+                    <textarea name="NoiDung" id="NoiDung" style="display:block" cols="30" rows="3"></textarea> 
+                    <input type="submit" value="IQ Cao" title="Bạn có chỉ số IQ cao không?" /><br /><br />
+                    p/s: chỉ có người có chỉ số IQ cao mới để lại bình luận
+                </form>
+            </div>
             <?php
 	}
 	else	
@@ -237,8 +271,31 @@
 			{
 				$path = getcwd ();
 				$source = $path . "/" . $source;
-				echo("Đường dẫn theo từng máy <br>" . $source . "<br />");
+				$duongDanNguoiDang = "TimKiem.php?Th_NguoiDang='$user_name'";				
+				//echo("Đường dẫn theo từng máy <br>" . $source . "<br />");
+		
+				$listenCount = 0;
+				$temp = DataProvider::ExecuteQuery("Select * From playlist Where ID = $playlist_id");
+				if($temp != false)
+				{
+					$row = mysql_fetch_array($temp);
+					$listenCount = $row["ListenCount"] + 1;
+					//echo($listenCount);
+				}
+				$sql = "Update playlist Set ListenCount = $listenCount Where ID = $playlist_id";
+				//echo($sql);
+				DataProvider::ExecuteQuery($sql)
+		
 				?>
+                <div class="song-info">
+            	<div class="song-title" align="left">
+            		<?php echo("$user_name");?>
+            	</div>
+                <div class="song-info">
+                	<?php echo("Người đăng:<a href='$duongDanNguoiDang'>$user_name</a>"); ?>
+                    <?php echo(" | Lượt nghe: $listenCount"); ?>
+                </div>
+            </div>
 				<div id="playerObj" style="margin-top:50px"> 
 					<object codebase="http://www.apple.com/qtactivex/qtplugin.cab"
 					classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" 
@@ -249,31 +306,101 @@
 						type="application/x-mplayer2" 
 						pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
 					</object>                    
-				</div>
+				</div><br />
                 
                 <script type="text/javascript" language="javascript">
 					function playMedia(song_id, source)
 					{						
 						//alert("Du_Lieu/BAI_HAT/" + song_id + "/" + source);
-						var s = "Du_Lieu/BAI_HAT/" + song_id + "/" + source;
+						//var s = "Du_Lieu/BAI_HAT/" + song_id + "/" + source;
 						//document.getElementById('playerEm').URL = s;
-						$("#playerEm").attr("URL",s);
+						$("#playerEm").attr("URL",source);
 					} 
 	            </script>
-				<?php
+                <div class="main-content">
+				<?php				
 				//Danh sách bài hát trong playlist
-				$temp = DataProvider::ExecuteQuery("Select SongID, Source From playlist_detail pd, song s Where pd.PlayListID = $playlist_id and pd.SongID = s.ID");
+				$temp = DataProvider::ExecuteQuery("Select * From playlist_detail pd, song s, singer si, song_style ss, user u, bit_rate br Where pd.PlayListID = 1 and pd.SongID = s.ID and s.SingerID = si.ID and s.StyleID = ss.ID and s.OwnerID = u.ID and s.BitRateID = br.ID and pd.PlayListID = $playlist_id");
 				if($temp != false)
 				{
 					while($row = mysql_fetch_array($temp))
 					{
-					?>
-					<div style="height:20px; margin-top:20px; margin-left:120px" align="left">						
-						<a href="javascript: playMedia(<?php echo($row["SongID"]); ?>,'<?php echo($row["Source"]); ?>')"><?php echo($row["Source"]); ?></a>                        					
-					</div>
-                    <?php
+						$mang = explode("/",$row["Source"]);
+						$tenbai = $mang[3];
+						
+						$songName = $row["SongName"];
+						$singerName = $row["SingerName"];
+						$userName = $row["UserName"];
+						$nameStyle = $row["StyleName"];
+						$listenCount = $row["ListenCount"];
+						$bitRate = $row["BitRate"];
+						$idSong = $row["ID"];
+						$idStyle = $row["StyleID"];
+						$idUser = $row["OwnerID"];
+						$idSinger = $row["SingerID"];
+						$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
+						$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
+						$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
+						$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
+						
+						echo("<div class='song-info' align='left'>");
+						echo("<div class='song-icon'>
+							<img alt='Music Icon' src='images/MP3.gif'>
+							 </div>");
+						echo("<h2><a href=\"javascript: playMedia($idSong,'".$row["Source"]."')\">$tenbai</a></h2>");
+						echo(
+							 "<p>
+								<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+							</p>"); 
+						echo(
+							 "<p>
+								<label>Đăng bởi</label>: 
+								<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
+								<span>"); 
+						echo( "|"); 
+						echo ("$bitRate kb/s"); 
+						echo( "|"); 
+						echo("<label>Lượt nghe</label>: $listenCount"); 
+						echo( "|"); 
+						echo("</span>");
+						echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
+						echo("</div>");					
 					}
-				}				
+				}	
+				?>
+                </div>
+				<div align="left" style="vertical-align:middle;margin-left:100px;margin-top:20px;margin-bottom:20px;margin-right:100px">
+            	<h2>Bình Luận</h2>
+                <hr />
+            </div>      
+            <?php
+			$sql = "Select * From comment c, comment_detail cd, user u Where c.ID = cd.CommentID and c.UserID = u.ID and c.PlayListID = $playlist_id";
+            $temp = DataProvider::ExecuteQuery($sql);
+            if($temp != false)
+            {
+                while($row = mysql_fetch_array($temp))
+                {
+                    echo("<div class='main-content' align='left'>");
+					echo("<a>".$row["UserName"]."</a>&nbsp;");
+					echo("<font color='#999999'>".$row["CreateDate"]."</font>");
+                    echo("<br>".$row["Content"]);
+                    echo("</div>");
+                }
+            }
+			?>
+            <div class="main-content">
+                <!--<?php echo($user_id); ?> <?php echo($id); ?> -->
+                <form id="form1" name="form1" method="post" action="xulyBinhLuan.php">
+                    <input name="UserID" id="UserID" type="hidden" value="<?php echo($user_id); ?>" />
+                    <input name="SongID" id="SongID" type="hidden" value="<?php echo($id); ?>" />
+                    <input name="PlayListID" id="PlayListID" type="hidden" value="<?php echo($_REQUEST["PlayList"]); ?>" />
+                    Xin vui lòng viết bình luận cho bài hát	<br /><br />
+                    <textarea name="NoiDung" id="NoiDung" style="display:block" cols="30" rows="3"></textarea> 
+                    <input type="submit" value="IQ Cao" title="Bạn có chỉ số IQ cao không?" /><br /><br />
+                    p/s: chỉ có người có chỉ số IQ cao mới để lại bình luận
+                </form>
+            </div>
+            <?php
 			}
 			else
 			{
@@ -284,14 +411,52 @@
 		{
 			echo("<h1>Bạn Chưa Chọn Bài Hát Để Nghe!!!</h1>");			
 		}
-	}
-?>						
-					<!-- InstanceEndEditable --></div>
-                  </div> 
+	}	
+
+?>
+
+					
+					<!-- InstanceEndEditable -->
+                        </div>
+                  </div>
             <div class="right-col">
             	<div id="idLoginBox">
-                	
-              	</div>
+                	<div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px;width:240px">
+                	</div>
+                    <div class="right-login">
+                        <form id="frmDangNhap" action="xulyDangNhap.php" name="frmDangNhap" method="get">
+                            <label for="txtTenDangNhap">Tên đăng nhập</label>
+                            <input type="text" maxlength="30" name="txtTenDangNhap" id="txtTenDangNhap" tabindex="1"><br>
+                            <label for="txtMatKhau">Mật khẩu</label><br>
+                            <input type="password" maxlength="30" name="txtMatKhau" id="txtMatKhau" tabindex="2">
+                            <input type="submit" id="btnDangNhap" name="btnDangNhap" value="Đăng nhập">        
+                        </form> 
+                        <ul>
+                            <li><a>Đăng ký thành viên</a></li>
+                        </ul>  
+                    </div>
+                </div>
+                <div class="right-username">
+                    Thành viên chính thức
+                </div>
+                <div class="right-userinfo">
+                  <div>
+                    <div>
+                        <b>Xin chào:</b><span style="color:#33F;font-size:16px;font-weight:bold;">Taki Squall</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="quanlytaikhoan" title="Quản lý tài khoản">Quản lý tài khoản</a>
+                        </li>
+                        <li>
+                            <a href="ngheplaylist" title="Nghe playlist">Nghe Playlist</a>
+                        </li>
+                        <li>
+                            <a href="xulyThoat" title="Thoát">Thoát</a>
+                        </li>
+                    </ul>
+                </div>
+              </div>
               <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:240px;">
               </div>
               <script type="text/javascript" language="javascript">
@@ -330,7 +495,7 @@
                     </form>
                 </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->   
+                    <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->
                 </div>
             </div>  
         </div>     
