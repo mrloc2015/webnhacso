@@ -184,10 +184,10 @@
         </select> 
 	</div> 
     <div class="worms_field">
-        <div class="worms_left" style="margin-top:5px"><label>Rate:</label></div>
-		<input name="Th_Rate" id="Th_Rate" type="hidden" style="width:145px" value="0"/>        
+        <div class="worms_left" style="margin-top:5px"><label>Rate:</label></div>		
          
-        <div style="float:right; margin-right:180px; height:45px">        
+
+        	<input name="Th_Rate" id="Th_Rate" type="hidden" style="width:145px" value="0"/>               
             <img onmouseover="rate_over(1)" onmouseout="rate_out(1)" onclick="rate_click(1)" id="1" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
             <img onmouseover="rate_over(2)" onmouseout="rate_out(2)" onclick="rate_click(2)" id="2" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
             <img onmouseover="rate_over(3)" onmouseout="rate_out(3)" onclick="rate_click(3)" id="3" style="border:none;outline:none;text-decoration:none;" src="images/sao1.jpg" width="25" height="25"/>
@@ -196,12 +196,11 @@
             <script type="text/javascript" language="javascript">
         		document.getElementById("Th_Rate").value = 0;
 			</script>
-        </div><br />
 	</div>
     <div class="worms_field">
-		<div class="worms_left" style="margin-top:18px"><label>Source:</label></div>
+		<div class="worms_left" style="margin-top:12px"><label>Source:</label></div>
         <!-- <input name="Th_Source" type="text" width="150px"/> -->
-		<input type="file" name="Th_Source"/>
+		<input style="margin-top:10px" type="file" name="Th_Source"/>
     </div>
     
 	<div style="margin-top:30px; margin-right:100px"><input type="submit" value="Thêm" /></div>
