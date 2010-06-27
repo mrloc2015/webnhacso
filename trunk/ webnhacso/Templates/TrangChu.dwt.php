@@ -1,5 +1,8 @@
+<?php
+	session_start();
+	$_SESSION["IsLogin"] = false;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,9 +13,14 @@
 <script type="text/javascript" src="../js/jquery.media.js"></script>
 <script type="text/javascript" src="../js/jquery.timers.js"></script>
 <script type="text/javascript" src="../script/ThemBaiHat.js"></script>
+<script type="text/javascript" src="../script/Ajax_DangNhap.js"></script>
+<script type="text/javascript" language="javascript">
+		$("document").ready(TaoDangNhap());
+</script>
 </head>
 
 <body>
+
   <div class="banner" id="idBanner" align="center">
     	<img src="../images/digital music-banner.jpg" width="1000" height="120">
     </div>
@@ -96,47 +104,12 @@
             <div class="right-mid">
                   <div class="mid-col">
                         <div id="idMainContent" class="main-content" align="center">                   
-                            <!--TemplateBeginEditable name="mainConten"-->mainContent<!--TemplateEndEditable-->
-                        </div>
-                  </div>
+                            <!--TemplateBeginEditable name="mainConten"-->mainContent<!--TemplateEndEditable--></div>
+                  </div> 
             <div class="right-col">
             	<div id="idLoginBox">
-                	<div align="center" style="background:url(../images/title-login-box-bg.jpg);height:33px;width:240px">
-                	</div>
-                    <div class="right-login">
-                        <form id="frmDangNhap" action="../xulyDangNhap.php" name="frmDangNhap" method="get">
-                            <label for="txtTenDangNhap">Tên đăng nhập</label>
-                            <input type="text" maxlength="30" name="txtTenDangNhap" id="txtTenDangNhap" tabindex="1"><br>
-                            <label for="txtMatKhau">Mật khẩu</label><br>
-                            <input type="password" maxlength="30" name="txtMatKhau" id="txtMatKhau" tabindex="2">
-                            <input type="submit" id="btnDangNhap" name="btnDangNhap" value="Đăng nhập">        
-                        </form> 
-                        <ul>
-                            <li><a>Đăng ký thành viên</a></li>
-                        </ul>  
-                    </div>
-                </div>
-                <div class="right-username">
-                    Thành viên chính thức
-                </div>
-                <div class="right-userinfo">
-                  <div>
-                    <div>
-                        <b>Xin chào:</b><span style="color:#33F;font-size:16px;font-weight:bold;">Taki Squall</span>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="quanlytaikhoan" title="Quản lý tài khoản">Quản lý tài khoản</a>
-                        </li>
-                        <li>
-                            <a href="ngheplaylist" title="Nghe playlist">Nghe Playlist</a>
-                        </li>
-                        <li>
-                            <a href="xulyThoat" title="Thoát">Thoát</a>
-                        </li>
-                    </ul>
-                </div>
-              </div>
+                	
+              	</div>
               <div align="center" style="background:url(../images/title-search-box-bg.jpg);height:33px;width:240px;">
               </div>
               <script type="text/javascript" language="javascript">
@@ -175,7 +148,7 @@
                     </form>
                 </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- TemplateBeginEditable name="RightContent" -->RightContent<!-- TemplateEndEditable -->
+                    <!-- TemplateBeginEditable name="RightContent" -->RightContent<!-- TemplateEndEditable -->   
                 </div>
             </div>  
         </div>     
