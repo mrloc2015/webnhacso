@@ -9,14 +9,15 @@
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="js/jquery.media.js"></script>
 <script type="text/javascript" src="js/jquery.timers.js"></script>
-<script type="text/javascript" src="js/ThemBaiHat.js"></script>
-<script type="text/javascript" src="js/Ajax_DangNhap.js"></script>
+<script type="text/javascript" src="script/ThemBaiHat.js"></script>
+<script type="text/javascript" src="script/Ajax_DangNhap.js"></script>
 <script type="text/javascript" language="javascript">
 		$("document").ready(TaoDangNhap());
 </script>
 </head>
 
 <body>
+
   <div class="banner" id="idBanner" align="center">
     	<img src="images/digital music-banner.jpg" width="1000" height="120">
     </div>
@@ -440,47 +441,12 @@
 ?>
 
 					
-					<!-- InstanceEndEditable -->
-                        </div>
-                  </div>
+					<!-- InstanceEndEditable --></div>
+                  </div> 
             <div class="right-col">
             	<div id="idLoginBox">
-                	<div align="center" style="background:url(images/title-login-box-bg.jpg);height:33px;width:240px">
-                	</div>
-                    <div class="right-login">
-                        <form id="frmDangNhap" action="xulyDangNhap.php" name="frmDangNhap" method="get">
-                            <label for="txtTenDangNhap">Tên đăng nhập</label>
-                            <input type="text" maxlength="30" name="txtTenDangNhap" id="txtTenDangNhap" tabindex="1"><br>
-                            <label for="txtMatKhau">Mật khẩu</label><br>
-                            <input type="password" maxlength="30" name="txtMatKhau" id="txtMatKhau" tabindex="2">
-                            <input type="submit" id="btnDangNhap" name="btnDangNhap" value="Đăng nhập">        
-                        </form> 
-                        <ul>
-                            <li><a>Đăng ký thành viên</a></li>
-                        </ul>  
-                    </div>
-                </div>
-                <div class="right-username">
-                    Thành viên chính thức
-                </div>
-                <div class="right-userinfo">
-                  <div>
-                    <div>
-                        <b>Xin chào:</b><span style="color:#33F;font-size:16px;font-weight:bold;">Taki Squall</span>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="quanlytaikhoan" title="Quản lý tài khoản">Quản lý tài khoản</a>
-                        </li>
-                        <li>
-                            <a href="ngheplaylist" title="Nghe playlist">Nghe Playlist</a>
-                        </li>
-                        <li>
-                            <a href="xulyThoat" title="Thoát">Thoát</a>
-                        </li>
-                    </ul>
-                </div>
-              </div>
+                	
+              	</div>
               <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:240px;">
               </div>
               <script type="text/javascript" language="javascript">
@@ -519,7 +485,7 @@
                     </form>
                 </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->
+                    <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->   
                 </div>
             </div>  
         </div>     
