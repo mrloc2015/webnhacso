@@ -273,65 +273,142 @@
 							return false;
 						}												
 					}
+					
+function ajaxFunction(object,url)
+{
+var xmlHttp;
+try
+  {
+  // Firefox, Opera 8.0+, Safari
+  xmlHttp=new XMLHttpRequest();
+  //alert("Khoi tao thanh cong doi tuong xmlHttp");
+  }
+catch (e)
+  {
+  // Internet Explorer
+  try
+    {
+    xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+    }
+  catch (e)
+    {
+    try
+      {
+      xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    catch (e)
+      {
+      alert("Your browser does not support AJAX!");
+      return false;
+      }
+    }
+  }
+  xmlHttp.onreadystatechange=function()
+    {
+    if(xmlHttp.readyState==4)
+      {
+       object.html(xmlHttp.responseText);
+      }
+    }  
+  xmlHttp.open("GET",url,true);
+  xmlHttp.send(null);
+}
+
+function KtUser()
+{
+	$object=$("#ktuser");
+	$url="KiemTraDangKi.php?username="+$("#txttendangnhap").attr("value");
+	ajaxFunction($object,$url);	
+}
+function KtEmail()
+{
+	$object=$("#ktemail");
+	$url="KiemTraDangKi.php?email="+$("#txtemail").attr("value");
+	ajaxFunction($object,$url);
+}
+function KtMaXacNhan()
+{
+	$object=$("#ktmaxacnhan");
+	$url="KiemTraDangKi.php?maxacnhan="+$("#txtmaxacnhan").attr("value");
+	ajaxFunction($object,$url);
+}
 					</script>                                                       
 				  <div style="width:600px" align="center">
 				    <form id="form1" name="frmdangki"  method="post" action="xulyThemUser.php?DangKi=1">
 				      <h1>&nbsp;</h1>
 				      <h1><strong><font color="#0000FF">Đăng kí thành viên</font></strong></h1>
 				      <p>&nbsp;</p>
-				      <table width="400" border="0">
+				      <table width="482" border="0">
 				        <tr>
-				          <td width="136"><p>Tên đăng nhập:</p>
-				            <p>&nbsp;</p></td>
-				          <td width="259"><p>
-				            <input type="text" name="txttendangnhap" id="txttendangnhap" style="width:250px"  />
-				            </p>
-				            <p>&nbsp; </p></td>
+				          <td width="133"><p>Tên đăng nhập:</p>				            
+				          <td width="339"><p>
+				            <input type="text" name="txttendangnhap" id="txttendangnhap" style="width:250px"  onkeyup="KtUser();" /></p>
+                          </td>
+                          <p>&nbsp;</p
+			            ></tr>
+				        <tr>
+				          <td colspan="2"><span id="ktuser" ><p>&nbsp;</p></span ></td>
 			            </tr>
 				        <tr>
-				          <td><p>Mật khẩu:</p>
-				            <p>&nbsp;</p></td>
+				          <td><p>Mật khẩu:</p></td>				            
 				          <td><p>
 				            <input type="password" name="txtmatkhau" id="txtmatkhau" style="width:250px"  />
 				            </p>
-				            <p>&nbsp; </p></td>
+				            </td>
+			            </tr>
+				        <tr>
+				          <td>&nbsp;</td>
+				          <td>&nbsp;</td>
 			            </tr>
 				        <tr>
 				          <td><p>Nhập lại mật khẩu:</p>
-				            <p>&nbsp;</p></td>
+				           </td>
 				          <td><p>
 				            <input type="password" name="txtlaplaimatkhau"  id="txtlaplaimatkhau" style="width:250px" />
 				            </p>
-				            <p>&nbsp; </p></td>
+				          </td>
+			            </tr>
+				        <tr>
+				          <td>&nbsp;</td>
+				          <td>&nbsp;</td>
 			            </tr>
 				        <tr>
 				          <td><p>Email:</p>
-				            <p>&nbsp;</p></td>
-				          <td><p>
-				            <input type="text" name="txtemail" id="txtemail" style="width:250px" />
+				          </td>
+				          <td><p><input type="text" name="txtemail" id="txtemail" style="width:250px"  onblur="KtEmail();" />
 				            </p>
-				            <p>&nbsp; </p></td>
+				            </td>
+			            </tr>
+				        <tr>
+				          <td colspan="2"><span id="ktemail" ><p>&nbsp;</p></span ></td>
 			            </tr>
 				        <tr>
 				          <td><p>Nhập lại Email:</p>
-				            <p>&nbsp;</p></td>
+				            </td>
 				          <td><p>
 				            <input type="text" name="txtlaplaiemail" id="txtlaplaiemail" style="width:250px"/>
 				            </p>
-				            <p>&nbsp; </p></td>
+				            </td>
+			            </tr>
+				        <tr>
+				          <td colspan="2">&nbsp;</td>
 			            </tr>
 				        <tr>
 				          <td><p>Họ và tên:</p>
-				            <p>&nbsp;</p></td>
+				            </td>
 				          <td><p>
 				            <input type="text" name="txthovaten" id="txthovaten" style="width:250px" />
 				            </p>
-				            <p>&nbsp; </p></td>
+				            </td>
 			            </tr>
 				        <tr>
-				          <td height="16"><p>Ngày sinh:</p>
-				            <p>&nbsp;</p></td>
-				          <td><div>
+				          <td>&nbsp;</td>
+				          <td>&nbsp;</td>
+			            </tr>
+				        <tr>
+				          <td height="7"><p>Ngày sinh:</p>
+				            </td>
+				          <td rowspan="2"><div>
 				            <table width="260" border="0">
 				              <tr>
 				                <td width="74"><select name="cmbngay" id="cmbngaysinh">
@@ -360,11 +437,14 @@
 			                  </tr>
 			                </table>
 				            <p>&nbsp;</p>
-				            </div></td>
+                          </div></td>
 			            </tr>
 				        <tr>
-				          <td height="7"><p>Đến từ:</p>
-				            <p>&nbsp;</p></td>
+				          <td height="7">&nbsp;</td>
+			            </tr>
+				        <tr>
+				          <td height="2"><p>Đến từ:</p>
+				            </td>
 				          <td><p>
 				            <select name="cmblocation" id="cmblocal">
 				              <option value="0">[ Tỉnh-Thành Phố ]</option>
@@ -385,18 +465,29 @@
 				 			  ?>
 			                </select>
 				            </p>
-				            <p>&nbsp; </p></td>
+				            </td>
 			            </tr>
 				        <tr>
-				          <td height="46" colspan="2" align="center">
+				          <td height="3">&nbsp;</td>
+				          <td>&nbsp;</td>
+			            </tr>
+				        <tr>
+				          <td  colspan="2" align="center">
                        	    <p id=><img src="captcha/captcha.php" id="imgmaxacnhan" title="Click để tạo mã xác nhận mới"/></p>
-                       	    <p>
-                       	      <input type="text" name="txtmaxacnhan" id="txtmaxacnhan" style=" width:60px" />                       	  
-                       	      <br/>
+                       	    <p><br/>
                	          </p></td>
 			            </tr>
 				        <tr>
-				          <td height="46" colspan="2"><div align="center" style="width:400px">
+				          <td colspan="2" align="center"><p>
+				            <input type="text" name="txtmaxacnhan" id="txtmaxacnhan" style=" width:60px"  onblur="KtMaXacNhan();"/>
+				          </p>
+			              <p>&nbsp; </p></td>
+			            </tr>
+				        <tr>
+				          <td height="10" colspan="2" align="center"><span id="ktmaxacnhan" ><p>&nbsp;</p></span ></td>
+			            </tr>
+				        <tr>
+				          <td height="46" colspan="2"><div align="center" style="width:100%">
 				            <input type="submit" name="btndangki" id="button" value="Đăng kí" onclick="return CheckInput()"  />
 				            <input type="reset" name="btnlamlai" id="button2" value="Làm lại" />
 			              </div></td>
