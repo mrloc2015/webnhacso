@@ -160,9 +160,28 @@
 			</div><br />
             
              <script type="text/javascript" language="javascript">
+			 	var i = 1;
+				var temp;
+				
+				function Dem(url)
+				{			
+					$("#TaiVe").attr("value",i);
+					
+					if(i == 10)
+					{
+						$("#TaiVe").attr("value",i);
+						i = 1;
+						window.location = url;
+						temp = clearInterval(temp);
+						return;
+					}
+					
+					i++;				
+				}
+
 				function TaiVe(url)
-				{					
-					window.location = url;
+				{		
+					temp = setInterval("Dem('" + url + "')",1000);
 				} 
 			</script>
             <div class="main-content">
