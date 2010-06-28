@@ -2,7 +2,7 @@
 <?php	
 	session_start();		
 	include_once("DataProvider.php");
-	
+	$playListID="";
 	if(isset($_REQUEST["btnDangNhap"])) 					   
 	{		
 		$UserName=$_REQUEST["txtTenDangNhap"];
@@ -19,21 +19,23 @@
 			}
 			else
 			{
-				//$PassWord=md5($_REQUEST["txtMatKhau"]);
+				$PassWord=md5($_REQUEST["txtMatKhau"]);
 				$User=DataProvider::ExecuteQuery("Select * from user where UserName='$UserName' ");
 				$Row = mysql_fetch_array($User);
 				if($Row!=null)
 				{
 					if($PassWord!=$Row["Pass"])
 					{
-						echo("Password không đúng.");
+						echo("<script>alert('Password không đúng.')</script>");
 					}
 					else
 					{
+						$_SESSION['UserID']=$Row["ID"];
 						$_SESSION['UserName']=$Row["UserName"];
 						$_SESSION["Pass"]=$Row["Pass"];
 						$_SESSION["UserType"]=$Row["UserStyleID"];
 						$_SESSION["IsLogin"]=true;
+						$playListID=$Row["PlayListID"];
 						
 					}
 				}				
@@ -45,7 +47,7 @@
 		}				
 	}
 	
-	if($_SESSION["IsLogin"] == false && isset($_SESSION['UserName'])==false)
+	if($_SESSION["IsLogin"] == false && isset($_SESSION['UserName']) == false)
 	{
 		echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:240px'>
 		  </div>
@@ -79,7 +81,7 @@
 								<a href='quanlytaikhoan' title='Quản lý tài khoản'>Quản lý tài khoản</a>
 							</li>
 							<li>
-								<a href='ngheplaylist' title='Nghe playlist'>Nghe Playlist</a>
+								<a href='Nghe.php?PlayList=$playListID' title='Nghe playlist'>Nghe Playlist</a>
 							</li>
 							<li>
 								<a href='javascript:DangXuat()' title='Thoát'>Thoát</a>

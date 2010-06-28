@@ -9,7 +9,11 @@
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="js/jquery.media.js"></script>
 <script type="text/javascript" src="js/jquery.timers.js"></script>
-<script type="text/javascript" src="script/ThemBaiHat.js"></script>
+<script type="text/javascript" src="js/ThemBaiHat.js"></script>
+<script type="text/javascript" src="js/Ajax_DangNhap.js"></script>
+<script type="text/javascript" language="javascript">
+		$("document").ready(TaoDangNhap());
+</script>
 </head>
 
 <body>
@@ -54,7 +58,7 @@
                     </dl>
                  </div>
                 <div class="left-header" id="idClip" align="center">
-                     <span><a href="TrangChu.php?Clip=1">Clip</a></span>
+                     <span><a href="TimKiem.php?TimKiem=true&Clip=1">Clip</a></span>
                 </div>
                 <div class="left-header" id="idPlayList" align="center">
                     <span>Playlist HOT</span>
@@ -63,12 +67,13 @@
                      <dl>                
                         <?php
                             include_once("DataProvider.php");
-                            $sql = "select u.ID, u.UserName from playlist pl, user u where pl.ID = u.PlaylistID and pl.ListenCount >= 0";
+                            $sql = "select u.ID, u.UserName, u.PlayListID from playlist pl, user u where pl.ID = u.PlaylistID order by pl.ListenCount ASC limit 10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
                             {
                                 $userName = $row["UserName"];
-                                $duongDan = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
+								$playListID = $row["PlayListID"];
+                                $duongDan = "Nghe.php?PlayList=$playListID";
                                 echo(" <li><a href='$duongDan'>$userName</a></li>");
                             } 
                         ?>
@@ -81,7 +86,7 @@
                      <dl>                
                         <?php
                             include_once("DataProvider.php");
-                            $sql = "select si.SingerName,si.ID from singer si, song so where so.SingerID = si.ID group by si.ID, si.SingerName having sum(so.ListenCount) >=0 limit 10";
+                            $sql = "select si.SingerName,si.ID from singer si, song so where so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) ASC limit 0,10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
                             {
@@ -99,7 +104,7 @@
                             <!-- InstanceBeginEditable name="mainConten" -->
 <?php
 	//giả dụ user sau_con_89 mã là 2 đã đăng nhập được
-	$user_id = 2; //lấy session
+	//$user_id = $_SESSION["UserID"]; //lấy session
 	$id = "";
 	include_once("DataProvider.php");
 	if(isset($_REQUEST["BaiHat"]) == true)		//Bài hát	
@@ -197,7 +202,7 @@
             <div class="main-content">
             	<?php
 					include_once("DataProvider.php");
-					$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID and so.SingerID in(select si1.ID from singer si1, song so1 where si1.ID = so1.SingerID and so1.ID = " . $_REQUEST["BaiHat"] . ") limit 0,10";
+					$sql = "select so.*,SingerName,UserName,StyleName,BitRate,PlayListID from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID and so.SingerID in(select si1.ID from singer si1, song so1 where si1.ID = so1.SingerID and so1.ID = " . $_REQUEST["BaiHat"] . ") limit 10";
 					$result = DataProvider::ExecuteQuery($sql);
 					while($row = mysql_fetch_array($result))
 					{
@@ -211,9 +216,10 @@
 						$idStyle = $row["StyleID"];
 						$idUser = $row["OwnerID"];
 						$idSinger = $row["SingerID"];
+						$playList = $row["PlayListID"]
 						$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
 						$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
-						$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
+						$duongDanNguoiDung = "Nghe.php?PlayList=$playList";
 						$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
 						
 						echo("<div class='song-info' align='left'>");
@@ -277,7 +283,6 @@
 		if(isset($_REQUEST["PlayList"]) == true)	//ngựơc lại là playlist
 		{
 			$playlist_id = $_REQUEST["PlayList"];
-			$user_name = ""; //lấy session
 			$temp = DataProvider::ExecuteQuery("Select * From user Where PlayListID = $playlist_id");
 			if($temp != false)
 			{

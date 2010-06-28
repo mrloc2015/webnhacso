@@ -1,5 +1,4 @@
 // JavaScript Document
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 function GetXmlHttpObject()
 {
 	//Khởi tạo cho đối tượng XMLHTTP
@@ -15,10 +14,11 @@ function GetXmlHttpObject()
 	return objXmlHttp;
 }
 
-function TaoDangNhap() //gởi bằng phương thức GET
+//gởi bằng phương thức GET
+function TaoDangNhap() 
 {		
 	var xmlHttp = GetXmlHttpObject();
-	var url = "xulyDangNhap.php"
+	var url = "xulyDangNhap.php";
 	xmlHttp.open("GET",url,true);
 	xmlHttp.send(null);
 	xmlHttp.onreadystatechange=function(){
@@ -72,10 +72,11 @@ function Post(oForm)//Gửi bằng phương thức POST
     XmlHttp.send(sBody);     
 }
 
-function DangXuat()//Dùng phương thức GET để gởi thông tin xử lý đăng xuất
+//Dùng phương thức GET để gởi thông tin xử lý đăng xuất
+function DangXuat()
 {
 	var xmlHttp = GetXmlHttpObject();
-	var url = "xulyThoat.php"
+	var url = "xulyThoat.php";
 	xmlHttp.open("GET",url,true);
 	xmlHttp.send(null);
 	xmlHttp.onreadystatechange=function(){
