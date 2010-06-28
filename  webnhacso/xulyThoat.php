@@ -1,9 +1,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php	
 	session_start();
-	$_SESSION['UserName']="";
-	$_SESSION['Pass']="";
-	$_SESSION['UserType']="";
+	unset($_SESSION['UserName']);
+	unset($_SESSION['Pass']);
+	unset($_SESSION['UserType']);
 	$_SESSION["IsLogin"]=false;
 	echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:240px'>
 		  </div>

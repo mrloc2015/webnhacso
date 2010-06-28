@@ -12,8 +12,8 @@
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="js/jquery.media.js"></script>
 <script type="text/javascript" src="js/jquery.timers.js"></script>
-<script type="text/javascript" src="script/ThemBaiHat.js"></script>
-<script type="text/javascript" src="script/Ajax_DangNhap.js"></script>
+<script type="text/javascript" src="js/ThemBaiHat.js"></script>
+<script type="text/javascript" src="js/Ajax_DangNhap.js"></script>
 <script type="text/javascript" language="javascript">
 		$("document").ready(TaoDangNhap());
 </script>
@@ -62,7 +62,7 @@
                     </dl>
                  </div>
                 <div class="left-header" id="idClip" align="center">
-                     <span><a href="TrangChu.php?Clip=1">Clip</a></span>
+                     <span><a href="TimKiem.php?TimKiem=true&Clip=1">Clip</a></span>
                 </div>
                 <div class="left-header" id="idPlayList" align="center">
                     <span>Playlist HOT</span>
@@ -71,12 +71,13 @@
                      <dl>                
                         <?php
                             include_once("DataProvider.php");
-                            $sql = "select u.ID, u.UserName from playlist pl, user u where pl.ID = u.PlaylistID and pl.ListenCount >= 0";
+                            $sql = "select u.ID, u.UserName, u.PlayListID from playlist pl, user u where pl.ID = u.PlaylistID order by pl.ListenCount ASC limit 10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
                             {
                                 $userName = $row["UserName"];
-                                $duongDan = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
+								$playListID = $row["PlayListID"];
+                                $duongDan = "Nghe.php?PlayList=$playListID";
                                 echo(" <li><a href='$duongDan'>$userName</a></li>");
                             } 
                         ?>
@@ -89,7 +90,7 @@
                      <dl>                
                         <?php
                             include_once("DataProvider.php");
-                            $sql = "select si.SingerName,si.ID from singer si, song so where so.SingerID = si.ID group by si.ID, si.SingerName having sum(so.ListenCount) >=0 limit 10";
+                            $sql = "select si.SingerName,si.ID from singer si, song so where so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) ASC limit 0,10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
                             {
@@ -117,7 +118,7 @@
                     <div class="main-content">
                     	<?php
 							include_once("DataProvider.php");
-                        	$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID limit 0,10";
+                        	$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID order by so.DateUp ASC limit 0,10";
 							$result = DataProvider::ExecuteQuery($sql);
 							while($row = mysql_fetch_array($result))
 							{
