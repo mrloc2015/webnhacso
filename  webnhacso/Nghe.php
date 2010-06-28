@@ -105,7 +105,8 @@
                             <!-- InstanceBeginEditable name="mainConten" -->
 <?php
 	//giả dụ user sau_con_89 mã là 2 đã đăng nhập được
-	//$user_id = $_SESSION["UserID"]; //lấy session
+	if(isset($_SESSION["UserID"]))
+		$user_id = $_SESSION["UserID"]; //lấy session
 	$id = "";
 	include_once("DataProvider.php");
 	if(isset($_REQUEST["BaiHat"]) == true)		//Bài hát	
@@ -195,7 +196,7 @@
            		<form name="ThemVaoPlayList" action="xulyThemVaoPlayList.php" method="post">
                 <input name="song_id" type="hidden" value="<?php echo($id); ?>" />
                 <input name="source" type="hidden" value="<?php echo($source); ?>" />
-                <input name="user_id" type="hidden" value="<?php echo($user_id); ?>" />
+                <input name="user_id" type="hidden" value="<?php if(isset($user_id)) echo($user_id); ?>" />
                 <div align="left"><input name="submit" type="submit" value="Thêm Vào Playlist"/></div>               
             	</form>
             </div>
@@ -217,7 +218,7 @@
 						$idStyle = $row["StyleID"];
 						$idUser = $row["OwnerID"];
 						$idSinger = $row["SingerID"];
-						$playList = $row["PlayListID"]
+						$playList = $row["PlayListID"];
 						$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
 						$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
 						$duongDanNguoiDung = "Nghe.php?PlayList=$playList";
