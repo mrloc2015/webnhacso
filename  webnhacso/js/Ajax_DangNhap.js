@@ -1,4 +1,4 @@
-// JavaScript Document
+﻿// JavaScript Document
 function GetXmlHttpObject()
 {
 	//Khởi tạo cho đối tượng XMLHTTP
