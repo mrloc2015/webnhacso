@@ -12,8 +12,8 @@
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="js/jquery.media.js"></script>
 <script type="text/javascript" src="js/jquery.timers.js"></script>
-<script type="text/javascript" src="js/ThemBaiHat.js"></script>
-<script type="text/javascript" src="js/Ajax_DangNhap.js"></script>
+<script type="text/javascript" src="script/ThemBaiHat.js"></script>
+<script type="text/javascript" src="script/Ajax_DangNhap.js"></script>
 <script type="text/javascript" language="javascript">
 		$("document").ready(TaoDangNhap());
 </script>
