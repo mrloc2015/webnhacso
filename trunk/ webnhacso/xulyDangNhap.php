@@ -35,7 +35,7 @@
 						$_SESSION["Pass"]=$Row["Pass"];
 						$_SESSION["UserType"]=$Row["UserStyleID"];
 						$_SESSION["IsLogin"]=true;
-						$playListID=$Row["PlayListID"];
+						$_SESSION["PlayListID"]=$Row["PlayListID"];
 						
 					}
 				}				
@@ -60,12 +60,13 @@
 				<input type='Submit' id='btnDangNhap' name='btnDangNhap' value='Ðăng nhập'>        
 			</form> 
 			<ul>
-				<li><a href='DangKy.php'>Ðăng ký thành viên</a></li>
+				<li><a href='DangKi.php'>Ðăng ký thành viên</a></li>
 			</ul>  
 		  </div>");
 	}
 	else
 	{  	  
+		  $playListID = $_SESSION["PlayListID"];
 		  $userName = $_SESSION['UserName'];
 		  $_SESSION["DaDangNhap"] = true;
 		  echo("<div class='right-username'>

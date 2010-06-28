@@ -4,6 +4,7 @@
 	unset($_SESSION['UserName']);
 	unset($_SESSION['Pass']);
 	unset($_SESSION['UserType']);
+	unset($_SESSION["PlayListID"]);
 	$_SESSION["IsLogin"]=false;
 	echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:240px'>
 		  </div>

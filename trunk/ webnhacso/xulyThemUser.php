@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php 
 session_start();
 $date = getdate();
@@ -46,13 +47,15 @@ if(isset($_REQUEST["DangKi"]))
 			}
 		}				
 //Tiến hành tạo tài khoản
-$sql="INSERT INTO user (UserName,Pass,UserStyleID) value ('$tendangnhap','$matkhau','2')";
+$sql="INSERT INTO user (UserName,Pass,UserStyleID,IsDelete,IsBanner) value ('$tendangnhap','$matkhau','2',0,0)";
 DataProvider::ExecuteQuery($sql);
 
 $temp_user = DataProvider::ExecuteQuery("select * from user where UserName='$tendangnhap'");
 $row_user = mysql_fetch_array($temp_user);
 $userID=$row_user["ID"];
 
+$sql="UPDATE user set PlayListID =  $userID where ID = $userID";
+DataProvider::ExecuteQuery($sql);
 //$temp_Location=DataProvider::ExecuteQuery("select * from Location where Local='$location'");
 //$row_Location = mysql_fetch_array($temp_Location);
 //$localID =$row_Location["ID"];
