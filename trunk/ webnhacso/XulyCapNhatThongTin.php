@@ -35,8 +35,7 @@
 				exit;
 				}
 			}
-		}
-					
+		}					
 		//Tiến hành cập nhật thong tin
 		$sql="update user_info set FullName = '$hovaten', Birthday = '$ngaysinh' , Email='$new_email' ,LocationID ='$location' where user_info.ID='$user_infoID'";
 		DataProvider::ExecuteQuery($sql);
