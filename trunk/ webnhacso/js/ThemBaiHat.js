@@ -1,4 +1,4 @@
-// JavaScript Document
+﻿// JavaScript Document
 
 //Trang ThemBaiHat.php - Xử lý cho điểm - 
 function rate_over(val)
