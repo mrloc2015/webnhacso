@@ -39,10 +39,10 @@
 		//Tiến hành cập nhật thong tin
 		$sql="update user_info set FullName = '$hovaten', Birthday = '$ngaysinh' , Email='$new_email' ,LocationID ='$location' where user_info.ID='$user_infoID'";
 		DataProvider::ExecuteQuery($sql);
-		echo("cập nhật thành công");
+		echo("<blink>Cập nhật thông tin thành công!</blink><br/>Click <a href='TrangChu.php'>vào đây</a> để trở lại trang chủ!");
 	}
 	else
 	{
-		echo"abc";
+		echo"Cập nhật thông tin thất bại!";
 	}
 ?>
