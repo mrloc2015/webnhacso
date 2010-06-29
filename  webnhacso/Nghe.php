@@ -165,39 +165,60 @@
 					pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"></embed> 
 				</object>
 			</div><br />
-            
+            <?php
+				$time = 1;
+				
+				$temp = DataProvider::ExecuteQuery("Select * From myweb");
+				if($temp != false)
+				{
+					while($row = mysql_fetch_array($temp))
+						$time = $row["DownloadWaitTime"];
+				}
+			?>
              <script type="text/javascript" language="javascript">
-			 	var i = 1;
+			 	var i = <?php echo($time); ?>;
+				var w = 1;
 				var temp;
 				
 				function Dem(url)
 				{			
 					$("#TaiVe").attr("value",i);
-					
-					if(i == 10)
+					$("#ngang").attr("width",w*2+"px");
+					if(i < 1)
 					{
 						$("#TaiVe").attr("value",i);
-						i = 1;
+						i = <?php echo($time); ?>;
+						$("#ThongBao").attr("innerHTML","Chỉ có người có IQ cao mới down bài này - Bạn là 1 trong số đó");
 						window.location = url;
 						temp = clearInterval(temp);
 						return;
 					}
 					
-					i++;				
+					w++;
+					i--;				
 				}
 
 				function TaiVe(url)
 				{		
 					temp = setInterval("Dem('" + url + "')",1000);
 				} 
+				
+				function USER_ID()
+				{
+					alert($("#user_id").attr("value"));
+					//if(<?php echo($_SESSION["UserID"]); ?> > 0)
+						//$("#user_id").attr("value",<?php echo($_SESSION["UserID"]); ?>);
+				}
 			</script>
+            
             <div class="main-content">
-            	<div style="float:left;margin-left:30px;margin-right:10px"><input id="TaiVe" onclick="TaiVe('<?php echo("$source"); ?>')" type="button" value="Tải Về" /></div>                
+            	<div style="float:left;margin-left:30px;margin-right:10px"><input id="TaiVe" onclick="TaiVe('<?php echo("$source"); ?>')" type="button" value="Tải Về" /></div>
+				<div id="ThongBao"style="float:left" align="left"><hr id="ngang" width="0px" /></div>                
            		<form name="ThemVaoPlayList" action="xulyThemVaoPlayList.php" method="post">
-                <input name="song_id" type="hidden" value="<?php echo($id); ?>" />
+                <input name="song_id" id="song_id" value="<?php echo($id); ?>" type="hidden"/>
                 <input name="source" type="hidden" value="<?php echo($source); ?>" />
-                <input name="user_id" type="hidden" value="<?php if(isset($user_id)) echo($user_id); ?>" />
-                <div align="left"><input name="submit" type="submit" value="Thêm Vào Playlist"/></div>               
+                <input name="user_id" id="user_id" type="hidden" value="<?php if(isset($user_id)) echo($user_id); ?>" />
+                <div align="left"><input name="submit" type="submit" value="Thêm Vào Playlist" onclick="USER_ID()"/></div>               
             	</form>
             </div>
             
@@ -297,6 +318,7 @@
 			{
 				$path = getcwd ();
 				$source = $path . "/" . $source;
+				//echo($source);
 				$duongDanNguoiDang = "TimKiem.php?Th_NguoiDang='$user_name'";				
 				//echo("Đường dẫn theo từng máy <br>" . $source . "<br />");
 		
@@ -346,9 +368,10 @@
                 <div class="main-content">
 				<?php				
 				//Danh sách bài hát trong playlist
-				$temp = DataProvider::ExecuteQuery("Select * From playlist_detail pd, song s, singer si, song_style ss, user u, bit_rate br Where pd.PlayListID = 1 and pd.SongID = s.ID and s.SingerID = si.ID and s.StyleID = ss.ID and s.OwnerID = u.ID and s.BitRateID = br.ID and pd.PlayListID = $playlist_id");
+				$temp = DataProvider::ExecuteQuery("Select * From playlist_detail pd, song s, singer si, song_style ss, user u, bit_rate br Where pd.SongID = s.ID and s.SingerID = si.ID and s.StyleID = ss.ID and s.OwnerID = u.ID and s.BitRateID = br.ID and pd.PlayListID = $playlist_id");
 				if($temp != false)
 				{
+					//echo($playlist_id);
 					while($row = mysql_fetch_array($temp))
 					{
 						$mang = explode("/",$row["Source"]);
