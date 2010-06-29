@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
 	session_start();	
 	$username=$_SESSION["UserName"];

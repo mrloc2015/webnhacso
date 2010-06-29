@@ -1,20 +1,19 @@
 <?php
 	session_start();
-	$_SESSION["IsLogin"] = false;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/TrangChu.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
-<link href="../css/giaodien.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="../js/jquery-1.4.2.js"></script>
-<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="../js/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="../js/jquery.media.js"></script>
-<script type="text/javascript" src="../js/jquery.timers.js"></script>
-<script type="text/javascript" src="../script/ThemBaiHat.js"></script>
-<script type="text/javascript" src="../script/Ajax_DangNhap.js"></script>
+<link href="css/giaodien.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="js/jquery.media.js"></script>
+<script type="text/javascript" src="js/jquery.timers.js"></script>
+<script type="text/javascript" src="script/ThemBaiHat.js"></script>
+<script type="text/javascript" src="script/Ajax_DangNhap.js"></script>
 <script type="text/javascript" language="javascript">
 		$("document").ready(TaoDangNhap());
 </script>
@@ -23,7 +22,7 @@
 <body>
 
   <div class="banner" id="idBanner" align="center">
-    	<img src="../images/digital music-banner.jpg" width="1000" height="120">
+    	<img src="images/digital music-banner.jpg" width="1000" height="120">
     </div>
   	<div class="main" id="idmain">
             <div class="left-col">
@@ -33,13 +32,13 @@
              	 <div class="left-menu" id="idFirstLeftMenu">
                      <ul class="pointer">
                         <li>
-                          <a href="../TrangChu.php" title="Trang chủ">Trang chủ</a>
+                          <a href="TrangChu.php" title="Trang chủ">Trang chủ</a>
                        </li>
                         <li>
-                          <a href="../ThemBaiHat.php" title="Đăng/upload Bài Hát">Đăng/upload Bài Hát</a>
+                          <a href="ThemBaiHat.php" title="Đăng/upload Bài Hát">Đăng/upload Bài Hát</a>
                         </li>
                         <li class="last">
-                          <a href="../DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản mới</a>
+                          <a href="DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản mới</a>
                         </li>
                      </ul>
            		</div>
@@ -49,7 +48,7 @@
                  <div class="left-DanhMuc">
                     <dl>                
                         <?php
-                            include_once("../DataProvider.php");
+                            include_once("DataProvider.php");
                             $sql = "select * from song_style";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
@@ -63,7 +62,7 @@
                     </dl>
                  </div>
                 <div class="left-header" id="idClip" align="center">
-                     <span><a href="../TimKiem.php?TimKiem=true&Clip=1">Clip</a></span>
+                     <span><a href="TimKiem.php?TimKiem=true&Clip=1">Clip</a></span>
                 </div>
                 <div class="left-header" id="idPlayList" align="center">
                     <span>Playlist HOT</span>
@@ -71,7 +70,7 @@
                  <div class="left-PlayList">
                      <dl>                
                         <?php
-                            include_once("../DataProvider.php");
+                            include_once("DataProvider.php");
                             $sql = "select u.ID, u.UserName, u.PlayListID from playlist pl, user u where pl.ID = u.PlaylistID order by pl.ListenCount DESC limit 10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
@@ -90,7 +89,7 @@
                 <div class="left-CaSi">
                      <dl>                
                         <?php
-                            include_once("../DataProvider.php");
+                            include_once("DataProvider.php");
                             $sql = "select si.SingerName,si.ID from singer si, song so, zone z where z.ID = 1 and si.ZoneID = z.ID and so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) DESC limit 0,10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
@@ -108,7 +107,7 @@
                <div class="left-CaSi">
                      <dl>                
                         <?php
-                            include_once("../DataProvider.php");
+                            include_once("DataProvider.php");
                             $sql = "select si.SingerName,si.ID from singer si, song so, zone z where z.ID = 2 and si.ZoneID = z.ID and so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) DESC limit 0,10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
@@ -126,7 +125,7 @@
                <div class="left-CaSi">
                      <dl>                
                         <?php
-                            include_once("../DataProvider.php");
+                            include_once("DataProvider.php");
                             $sql = "select si.SingerName,si.ID from singer si, song so, zone z where z.ID = 3 and si.ZoneID = z.ID and so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) DESC limit 0,10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
@@ -142,13 +141,44 @@
             <div class="right-mid">
                   <div class="mid-col">
                         <div id="idMainContent" class="main-content" align="center">                   
-                            <!--TemplateBeginEditable name="mainConten"-->mainContent<!--TemplateEndEditable--></div>
+                            <!-- InstanceBeginEditable name="mainConten" -->
+                            <div class="cp-title">
+								Quản lý thành viên
+                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                            </div>
+                            <div id="cpUser" class="main-content">abc</div>
+                            
+                             <div class="cp-title">
+								Quản lý bài hát
+                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                            </div>
+                            <div id="cpUser" class="main-content">abc</div>
+                            
+                             <div class="cp-title">
+								Quản lý Playlist
+                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                            </div>
+                            <div id="cpUser" class="main-content">abc</div>
+                            
+                             <div class="cp-title">
+								Quản lý danh mục
+                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                            </div>
+                            <div id="cpUser" class="main-content">abc</div>
+                            
+                             <div class="cp-title">
+								Quản lý Website
+                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                            </div>
+                            <div id="cpUser" class="main-content">abc</div>
+
+							<!-- InstanceEndEditable --></div>
                   </div> 
             <div class="right-col">
             	<div id="idLoginBox">
                 	
               	</div>
-              <div align="center" style="background:url(../images/title-search-box-bg.jpg);height:33px;width:240px;">
+              <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:240px;">
               </div>
               <script type="text/javascript" language="javascript">
               	function XuLyGoiDi()
@@ -186,10 +216,10 @@
                     </form>
                 </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- TemplateBeginEditable name="RightContent" -->RightContent<!-- TemplateEndEditable -->   
+                    <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->   
                 </div>
             </div>  
         </div>     
    </div>
 </body>
-</html>
+<!-- InstanceEnd --></html>

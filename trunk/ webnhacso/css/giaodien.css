@@ -137,6 +137,32 @@
 	
 }
 
+.right-admininfo
+{
+	background:url("../images/admin-bg.jpg") no-repeat scroll left top transparent;
+	height:auto;
+	padding-left:14px;
+	padding-top:8px;
+}
+
+.right-admininfo li
+{
+	color:#6FF;
+	background:url("../images/bg-pointer-admin.jpg") no-repeat scroll left center transparent;
+	padding:2px 0 2px 18px;
+}
+
+.right-admininfo ul,.right-userinfo ul
+{
+	color:#FF3;
+	padding:2px 0 2px 18px;
+}
+
+.right-admininfo li a
+{
+	color:#FF3;
+}
+
 .right-username
 {
 	background:url(../images/title-box-bg.jpg);
@@ -183,6 +209,38 @@
 	width:100%;
 	position:relative;
 	float:left;
+}
+
+.cp-title
+{
+	background-color:#1685B4;
+	color:#FFF;
+	height:25px;
+	width:100%;
+	font-family:Tahoma;
+	font-size:20px;
+	top:3px;
+	padding-top:10px;
+}
+
+.add-cp
+{
+	float:right;
+	margin-right:15px;
+	margin-top:-7px;
+	width:30px;
+	height:30px;
+	background:url("../images/btnAdd.png") no-repeat scroll left center transparent;
+}
+
+.remove-cp
+{
+	float:right;
+	margin-right:15px;
+	margin-top:-7px;
+	width:30px;
+	height:30px;
+	background:url("../images/btnRemove.png") no-repeat scroll left center transparent;
 }
 
 .header-list
