@@ -12,6 +12,11 @@
 	{		
 		$song_id = $_REQUEST["song_id"];
 		$source = $_REQUEST["source"];
+		if($_REQUEST["user_id"] <= 0)
+		{
+			echo("<h1>Chỉ có user mới dùng được chức năng \"Thêm bài hát vào Playlist\"</h1>");
+			return;
+		}
 		$user_id = $_REQUEST["user_id"];
 		$playlist_id = -1;
 		$user_name = "";
@@ -32,7 +37,7 @@
 		{
 			while($row = mysql_fetch_array($temp))
 			{
-				$noi_dung .= "\t\t\t<media src=\"../../../Du_Lieu/BAI_HAT/".$row["ID"]."/".$row["Source"]."\"/>\n";
+				$noi_dung .= "\t\t\t<media src=\"../../../".$row["Source"]."\"/>\n";
 				//echo("$noi_dung");
 			}
 			//echo("$noi_dung");
@@ -55,7 +60,7 @@
 		$footer .= "</smil>";
 		
 		$file = "Du_Lieu/USER/$user_name/$playlist_id.wpl";
-		//echo($file);
+		echo($file);
 		if(file_exists($file) == true)
 		{
 			$f = fopen($file,"w");

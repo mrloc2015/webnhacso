@@ -47,7 +47,7 @@ if(isset($_REQUEST["DangKi"]))
 			}
 		}				
 //Tiến hành tạo tài khoản
-$sql="INSERT INTO user (UserName,Pass,UserStyleID,IsDelete,IsBanner) value ('$tendangnhap','$matkhau','2',0,0)";
+$sql="INSERT INTO user (UserName,Pass,UserStyleID,IsDelete,IsBaned) values ('$tendangnhap','$matkhau','2',0,0)";
 DataProvider::ExecuteQuery($sql);
 
 $temp_user = DataProvider::ExecuteQuery("select * from user where UserName='$tendangnhap'");
@@ -67,6 +67,8 @@ DataProvider::ExecuteQuery($sql);
 echo("<blink>Chào mừng $tendangnhap đã trở thành thành viên của nhạc số!</blink><br/>Click <a href='TrangChu.php'>vào đây</a> để trở lại trang chủ!");
 
 //*****sau_con_89******
+$sql="Update user Set PlayListID = $userID Where ID = $userID";
+DataProvider::ExecuteQuery($sql);
 //tạo folder + playlist cho mỗi người dùng => tiện việc xử lý nghe nhạc
 mkdir("Du_Lieu/USER/$tendangnhap",1);
 

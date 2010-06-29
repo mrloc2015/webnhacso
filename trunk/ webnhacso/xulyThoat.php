@@ -5,8 +5,13 @@
 	unset($_SESSION['Pass']);
 	unset($_SESSION['UserType']);
 	unset($_SESSION["PlayListID"]);
+	
 	$_SESSION["IsLogin"]=false;
-	echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:240px'>
+	echo("<script language='javascript' type='text/javascript'>
+			$('#user_id').attr('value','');
+		  </script>
+		 
+		  <div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:240px'>
 		  </div>
 		  <div class='right-login'>
 			<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='Post(this); return false'>
