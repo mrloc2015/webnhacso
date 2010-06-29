@@ -80,7 +80,8 @@ function TimeCount()
 	t=setTimeout('TimeCount()',1000);
 	if(c==-1)
 	{
-		window.location='trangchu.php';		
+		window.location='trangchu.php';
+		c=5;
 	}
 }
 
