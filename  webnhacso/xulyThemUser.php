@@ -64,7 +64,36 @@ DataProvider::ExecuteQuery($sql);
 $sql="INSERT INTO user_info (FullName,UserID,BirthDay,JoinDay,Email,LocationID) value ('$hovaten','$userID','$ngaysinh','$today','$email','$location')";
 DataProvider::ExecuteQuery($sql);
 
-echo("<blink>Chào mừng $tendangnhap đã trở thành thành viên của nhạc số!</blink><br/>Click <a href='TrangChu.php'>vào đây</a> để trở lại trang chủ!");
+echo("<html >
+<head>
+
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+<title>Untitled Document</title>
+</head>
+<body onload='TimeCount();'>
+<script language='javascript'>
+var c=5;
+function TimeCount()
+{
+	document.getElementById('txt').value=c;
+	c=c-1;
+	t=setTimeout('TimeCount()',1000);
+	if(c==-1)
+	{
+		window.location='trangchu.php';		
+	}
+}
+
+</script>
+<form id='form1' name='form1' method='post' >
+<div align='center' style='text-align:center'><strong><font color='#0000FF'>Chao mừng $tendangnhap đã trở thành thành viên của nhạc số!</font></strong></div>
+<div align='center' style='text-align:center'><strong><font color='#0000FF'>Bạn sẽ trở lại trang chủ sau 5 giây nữa!</font></strong></div>
+<div align='center' style='text-align:center'><strong><font color='#0000FF'>Click vào <a href='TrangChu.php'>đây</a> nếu trình duyệt không tự chuyển</font></strong></div>
+<div align='center' style='text-align:center'><input type='text' id='txt' style='width:30px'  / ></div>
+<div align='center' style='text-align:center'><label id='txt'></label></div>
+</form>
+</body>
+</html>");
 
 //*****sau_con_89******
 $sql="Update user Set PlayListID = $userID Where ID = $userID";
