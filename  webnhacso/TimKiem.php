@@ -70,7 +70,7 @@
                      <dl>                
                         <?php
                             include_once("DataProvider.php");
-                            $sql = "select u.ID, u.UserName, u.PlayListID from playlist pl, user u where pl.ID = u.PlaylistID order by pl.ListenCount ASC limit 10";
+                            $sql = "select u.ID, u.UserName, u.PlayListID from playlist pl, user u where pl.ID = u.PlaylistID order by pl.ListenCount DESC limit 10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
                             {
@@ -83,13 +83,49 @@
                     </dl>
                   </div>
                 <div class="left-header" id="idLeftMenu" align="center">
-                    <span>Ca sĩ & Ban nhạc</span>
+                    <span>Ca sĩ Việt Nam</span>
                 </div>
                 <div class="left-CaSi">
                      <dl>                
                         <?php
                             include_once("DataProvider.php");
-                            $sql = "select si.SingerName,si.ID from singer si, song so where so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) ASC limit 0,10";
+                            $sql = "select si.SingerName,si.ID from singer si, song so, zone z where z.ID = 1 and si.ZoneID = z.ID and so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) DESC limit 0,10";
+                            $result = DataProvider::ExecuteQuery($sql);
+                            while($row = mysql_fetch_array($result))
+                            {
+                                $singerName = $row["SingerName"];
+                                $duongDan = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
+                                echo(" <li><a href='$duongDan'>$singerName</a></li>");
+                            } 
+                        ?>
+                    </dl>
+              </div>
+               <div class="left-header" id="idLeftMenu" align="center">
+                    <span>Ca sĩ Châu Á</span>
+                </div>
+               <div class="left-CaSi">
+                     <dl>                
+                        <?php
+                            include_once("DataProvider.php");
+                            $sql = "select si.SingerName,si.ID from singer si, song so, zone z where z.ID = 2 and si.ZoneID = z.ID and so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) DESC limit 0,10";
+                            $result = DataProvider::ExecuteQuery($sql);
+                            while($row = mysql_fetch_array($result))
+                            {
+                                $singerName = $row["SingerName"];
+                                $duongDan = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
+                                echo(" <li><a href='$duongDan'>$singerName</a></li>");
+                            } 
+                        ?>
+                    </dl>
+              </div>
+               <div class="left-header" id="idLeftMenu" align="center">
+                    <span>Ca sĩ Âu Mỹ</span>
+                </div>
+               <div class="left-CaSi">
+                     <dl>                
+                        <?php
+                            include_once("DataProvider.php");
+                            $sql = "select si.SingerName,si.ID from singer si, song so, zone z where z.ID = 3 and si.ZoneID = z.ID and so.SingerID = si.ID group by si.ID, si.SingerName order by sum(so.ListenCount) DESC limit 0,10";
                             $result = DataProvider::ExecuteQuery($sql);
                             while($row = mysql_fetch_array($result))
                             {
@@ -162,7 +198,7 @@
 		if($clip != 0)
 			$sql .= " and s.Clip=" . $clip;
 		
-		$sql.=" order by s.ListenCount ASC";
+		$sql.=" order by s.ListenCount DESC";
 		$temp = DataProvider::ExecuteQuery($sql);
 		if($temp != false)
 		{
