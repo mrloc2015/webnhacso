@@ -87,5 +87,22 @@ function DangXuat()
 										};
 }
 
-	
+var add=true;
+function MoRongDieuKhien(btnAdd)
+{
+	if(add==true)
+	{
+		$(btnAdd).attr("class","remove-cp");
+		add=false;
+		$("#cpUser").show("fast");
+	}
+	else
+	{
+		$(btnAdd).attr("class","add-cp");
+		add=true;
+		$("#cpUser").hide("fast");
+	}
+}
+
+
 

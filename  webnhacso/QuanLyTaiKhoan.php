@@ -1,8 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
 	session_start();
-	$_SESSION["IsLogin"] = false;
-	$_SESSION["TenDangNhap"] = "";
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/TrangChu.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
@@ -10,6 +8,7 @@
 <title>Fantasy Music</title>
 <link href="css/giaodien.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="js/jquery.media.js"></script>
 <script type="text/javascript" src="js/jquery.timers.js"></script>

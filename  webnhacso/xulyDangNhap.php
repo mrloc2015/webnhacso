@@ -68,28 +68,66 @@
 	{  	  
 		  $playListID = $_SESSION["PlayListID"];
 		  $userName = $_SESSION['UserName'];
-		  $_SESSION["DaDangNhap"] = true;
-		  echo("<div class='right-username'>
-						Thành viên chính thức
-					</div>
-					<div class='right-userinfo'>
-					  <div>
-						<div>
-							<b>Xin chào:</b><span style='color:#33F;font-size:16px;font-weight:bold;'>$userName</span>
+		  if($_SESSION["UserType"] == 2)
+		  {
+			  echo("<div class='right-username'>
+							Thành viên chính thức
 						</div>
-						<ul>
-							<li>
-								<a href='quanlytaikhoan' title='Quản lý tài khoản'>Quản lý tài khoản</a>
-							</li>
-							<li>
-								<a href='Nghe.php?PlayList=$playListID' title='Nghe playlist'>Nghe Playlist</a>
-							</li>
-							<li>
-								<a href='javascript:DangXuat()' title='Thoát'>Thoát</a>
-							</li>
-						</ul>
-					</div>
-				  </div>");
+						<div class='right-userinfo'>
+						  <div>
+							<div>
+								<b>Xin chào:</b><span style='color:#33F;font-size:16px;font-weight:bold;'>$userName</span>
+							</div>
+							<ul>
+								<li>
+									<a href='QuanLyTaiKhoan.php' title='Quản lý tài khoản'>Quản lý tài khoản</a>
+								</li>
+								<li>
+									<a href='Nghe.php?PlayList=$playListID' title='Nghe playlist'>Nghe Playlist</a>
+								</li>
+								<li>
+									<a href='javascript:DangXuat()' title='Thoát'>Thoát</a>
+								</li>
+							</ul>
+						</div>
+					  </div>");
+		  }
+		  else if($_SESSION["UserType"] == 1)
+		  {
+			    echo("<div class='right-username'>
+							Thành viên quản trị
+						</div>
+						<div class='right-admininfo'>
+						  <div>
+							<div>
+								<b style='color:#F00;'>Xin chào Admin:</b><span style='color:#0C0;font-size:16px;font-weight:bold;'>$userName</span>
+							</div>
+							<ul>
+								<li>
+									<a href='QuanLyTaiKhoan.php' title='Quản lý tài khoản'>Quản lý tài khoản</a>
+								</li>
+								<li>
+									<a href='QuanLyThanhVien.php' title='Quản lý thành viên'>Quản lý thành viên</a>
+								</li>
+								<li>
+									<a href='QuanLyBaiHat.php' title='Quản lý bài hát'>Quản lý bài hát</a>
+								</li>
+								<li>
+									<a href='QuanLyPlaylist.php' title='Quản lý Playlist'>Quản lý Playlist</a>
+								</li>
+								<li>
+									<a href='QuanLyWeb.php' title='Quản lý Website'>Quản lý Website</a>
+								</li>
+								<li>
+									<a href='QuanLyDanhMuc.php' title='Quản lý danh mục'>Quản lý danh mục</a>
+								</li>
+								<li>
+									<a href='javascript:DangXuat()' title='Thoát'>Thoát</a>
+								</li>
+							</ul>
+						</div>
+					  </div>");
+		  }
 	}
 					
 ?>

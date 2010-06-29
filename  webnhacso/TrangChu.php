@@ -9,6 +9,7 @@
 <title>Fantasy Music</title>
 <link href="css/giaodien.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="js/jquery.media.js"></script>
 <script type="text/javascript" src="js/jquery.timers.js"></script>
@@ -154,7 +155,101 @@
                     <div class="main-content">
                     	<?php
 							include_once("DataProvider.php");
-                        	$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID order by so.DateUp DESC,so.Rate DESC limit 0,50";
+                        	$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID order by so.DateUp DESC limit 0,10";
+							$result = DataProvider::ExecuteQuery($sql);
+							while($row = mysql_fetch_array($result))
+							{
+								$songName = $row["SongName"];
+								$singerName = $row["SingerName"];
+								$userName = $row["UserName"];
+								$nameStyle = $row["StyleName"];
+								$listenCount = $row["ListenCount"];
+								$bitRate = $row["BitRate"];
+								$idSong = $row["ID"];
+								$idStyle = $row["StyleID"];
+								$idUser = $row["OwnerID"];
+								$idSinger = $row["SingerID"];
+								$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
+								$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
+								$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
+								$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
+								
+								echo("<div class='song-info' align='left'>");
+								echo("<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>");
+								echo("<h2><a href='$duongDanBaiHat'>$songName</a></h2>");
+								echo(
+									 "<p>
+										<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+									</p>"); 
+								echo(
+									 "<p>
+										<label>Đăng bởi</label>: 
+										<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
+										<span>"); 
+								echo( "|"); 
+								echo ("$bitRate kb/s"); 
+								echo( "|"); 
+								echo("<label>Lượt nghe</label>: $listenCount"); 
+								echo( "|"); 
+								echo("</span>");
+								echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
+								echo("</div>");
+								
+							} 
+                        ?>
+                    </div>
+                    <div class="header-list">Top Nhạc HOT !!</div>
+                    <div class="main-content">
+                    	<?php
+							include_once("DataProvider.php");
+                        	$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID order by so.Rate DESC limit 0,10";
+							$result = DataProvider::ExecuteQuery($sql);
+							while($row = mysql_fetch_array($result))
+							{
+								$songName = $row["SongName"];
+								$singerName = $row["SingerName"];
+								$userName = $row["UserName"];
+								$nameStyle = $row["StyleName"];
+								$listenCount = $row["ListenCount"];
+								$bitRate = $row["BitRate"];
+								$idSong = $row["ID"];
+								$idStyle = $row["StyleID"];
+								$idUser = $row["OwnerID"];
+								$idSinger = $row["SingerID"];
+								$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
+								$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
+								$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
+								$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
+								
+								echo("<div class='song-info' align='left'>");
+								echo("<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>");
+								echo("<h2><a href='$duongDanBaiHat'>$songName</a></h2>");
+								echo(
+									 "<p>
+										<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+									</p>"); 
+								echo(
+									 "<p>
+										<label>Đăng bởi</label>: 
+										<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
+										<span>"); 
+								echo( "|"); 
+								echo ("$bitRate kb/s"); 
+								echo( "|"); 
+								echo("<label>Lượt nghe</label>: $listenCount"); 
+								echo( "|"); 
+								echo("</span>");
+								echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
+								echo("</div>");
+								
+							} 
+                        ?>
+                    </div>
+                    <div class="header-list">HOT!!</div>
+                    <div class="main-content">
+                    	<?php
+							include_once("DataProvider.php");
+                        	$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID order by so.ListenCount DESC limit 0,28";
 							$result = DataProvider::ExecuteQuery($sql);
 							while($row = mysql_fetch_array($result))
 							{
