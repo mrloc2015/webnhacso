@@ -5,10 +5,10 @@
 .banner
 {
 	background:url("../images/head-page-bg.jpg");
-	height:120px;
-	margin:-125px auto;
+	height:auto;
+	margin:0 auto;
 	width:100%;
-	position:absolute;
+	position:relative;
 }
 
 .header
@@ -32,6 +32,17 @@
 	width:480px;
 }
 
+.footer
+{
+	background-color:#FFFFFF;
+	/*background:url("../images/footer-bg.jpg") repeat-x scroll left bottom #FFFFFF;*/
+	height:auto;
+	margin:0 auto;
+	overflow:hidden;
+	padding:10px 5px 5px;
+	width:990px;
+}
+
 .main-info
 {
 	padding:0 20px;
@@ -41,7 +52,7 @@
 {
 	background-color:#FFF;
 	height:auto;
-	margin:125px auto;
+	margin:0 auto;
 	padding:5px 5px 5px 5px;
 	width:1000px;
 	overflow:hidden;
@@ -121,13 +132,13 @@
 
 .mid-col
 {
-	width:65%;
+	width:66%;
 	float:left;
 }
 
 .right-col
 {
-	width:34%;
+	width:33%;
 	float:right;
 	margin-right:3px;
 }
@@ -255,6 +266,7 @@
 	font-weight:bold;
 	padding-top:10px;
 	color:#09F;
+	
 }
 
 .main-content
