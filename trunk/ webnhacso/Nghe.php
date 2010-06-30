@@ -147,6 +147,7 @@
 	if(isset($_SESSION["UserID"]))
 		$user_id = $_SESSION["UserID"]; //lấy session
 	$id = "";
+	$rate = 0;
 	include_once("DataProvider.php");
 	if(isset($_REQUEST["BaiHat"]) == true)		//Bài hát	
 	{		
@@ -167,6 +168,8 @@
 			$singerName = $row["SingerName"];
 			$listenCount = $row["ListenCount"];
 			$listenCount = $listenCount + 1;
+			$rate = $row["Rate"];
+			$rate = floor($rate); // làm tròn xuống, lên dùng ceil()			
 			//echo ($listenCount);
 			$duongDanCaSi = "TimKiem.php?Th_CaSi=" . $row["SingerID"];
 			$duongDanTheLoai = "TimKiem.php?Th_TheLoai=" . $row["StyleID"];
@@ -222,7 +225,7 @@
 				function Dem(url)
 				{			
 					$("#TaiVe").attr("value",i);
-					$("#ngang").attr("width",w*2+"px");
+					$("#ngang").attr("width",w+"px");
 					if(i < 1)
 					{
 						$("#TaiVe").attr("value",i);
@@ -323,7 +326,19 @@
                 <input name="song_id" id="song_id" value="<?php echo($id); ?>" type="hidden"/>
                 <input name="source" id="source" type="hidden" value="<?php echo($source); ?>" />
                 <input name="user_id" id="user_id" type="hidden" value="<?php if(isset($user_id)) echo($user_id); ?>" />
-                <div align="left"><input name="submit" type="button" value="Thêm Vào Playlist" onclick="Them()"/></div>               
+                <div style="float:left" align="left"><input name="submit" type="button" value="Thêm Vào Playlist" onclick="Them()"/></div>            
+                <div align="right" style="margin-right:100px">
+                <input name="Th_Rate" id="Th_Rate" type="hidden" style="width:145px" value="<?php echo($rate); ?>"/>               
+                <img onmouseover="rate_over(1)" onmouseout="rate_out(1)" onclick="rate_click(1)" id="1" style="border:none;outline:none;text-decoration:none;" src="images/sao1.png" width="25" height="25"/>
+                <img onmouseover="rate_over(2)" onmouseout="rate_out(2)" onclick="rate_click(2)" id="2" style="border:none;outline:none;text-decoration:none;" src="images/sao1.png" width="25" height="25"/>
+                <img onmouseover="rate_over(3)" onmouseout="rate_out(3)" onclick="rate_click(3)" id="3" style="border:none;outline:none;text-decoration:none;" src="images/sao1.png" width="25" height="25"/>
+                <img onmouseover="rate_over(4)" onmouseout="rate_out(4)" onclick="rate_click(4)" id="4" style="border:none;outline:none;text-decoration:none;" src="images/sao1.png" width="25" height="25"/>
+                <img onmouseover="rate_over(5)" onmouseout="rate_out(5)" onclick="rate_click(5)" id="5" style="border:none;outline:none;text-decoration:none;" src="images/sao1.png" width="25" height="25"/>
+                <script type="text/javascript" language="javascript">
+                    document.getElementById("Th_Rate").value = <?php echo($rate); ?>;
+					rate_over(<?php echo($rate); ?>);
+                </script> 
+                </div> 
             	</form>
             </div>
             
@@ -461,11 +476,24 @@
 				$duongDanNguoiDang = "TimKiem.php?Th_NguoiDang='$user_name'";				
 				//echo("Đường dẫn theo từng máy <br>" . $source . "<br />");
 		
+				$ngaytao = "";
 				$listenCount = 0;
+				$downCount = 0;				
+				$sobai = 0;
+				$temp = DataProvider::ExecuteQuery("Select Count(ID) From playlist_detail Where PlayListID = $playlist_id");
+				if($temp != false)
+				{
+					$row = mysql_fetch_array($temp);
+					$sobai = $row["Count(ID)"];
+				}
 				$temp = DataProvider::ExecuteQuery("Select * From playlist Where ID = $playlist_id");
 				if($temp != false)
 				{
 					$row = mysql_fetch_array($temp);
+					$ngaytao = $row["CreateDate"];
+					$mang = explode("-", $ngaytao);
+					$ngaytao = "$mang[2]-$mang[1]-$mang[0]";
+					$downCount = $row["DownLoadCount"];	
 					$listenCount = $row["ListenCount"] + 1;
 					//echo($listenCount);
 				}
@@ -480,6 +508,9 @@
             	</div>
                 <div class="song-info">
                 	<?php echo("Người đăng:<a href='$duongDanNguoiDang'>$user_name</a>"); ?>
+		           	<?php echo(" | Ngày tạo: $ngaytao <br>"); ?>
+		           	<?php echo("Lượt download: $downCount"); ?>
+                	<?php echo(" | Tổng số bài: $sobai"); ?>                    
                     <?php echo(" | Lượt nghe: $listenCount"); ?>
                 </div>
             </div>
@@ -580,7 +611,7 @@
             <script type="text/javascript" language="javascript">
 			 	function BinhLuan2()
 				{
-					alert("Đã vào Ajax");
+					//alert("Đã vào Ajax");
 					//alert($("#PlayListID").attr("value"));
 					
 					var para = "";				
@@ -588,7 +619,7 @@
 					para += "&SongID=" + $("#SongID2").attr("value");
 					para += "&PlayListID=" + $("#PlayListID2").attr("value");
 					para += "&NoiDung='" + $("#NoiDung2").attr("value") + "'";
-					alert(para);
+					//alert(para);
 					
 					var t = $.ajax({url:"xulyBinhLuan.php",
 							data:""+para,
