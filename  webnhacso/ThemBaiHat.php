@@ -60,12 +60,12 @@
                             } 
                         ?>
                     </dl>
-                    <script language="javascript" type="text/javascript">TaoHieuUng()</script>
+                    
                  </div>
                 <div class="left-header" id="idClip" align="center">
                      <span><a href="TimKiem.php?TimKiem=true&Clip=1">Clip</a></span>
                 </div>
-                <div class="left-header" align="center">
+                <div class="left-header" align="center" onclick="HienRa('idPlayList')">
                     <span>Playlist HOT</span>
                 </div>
                  <div class="left-PlayList" id="idPlayList">
@@ -84,7 +84,7 @@
                         ?>
                     </dl>
                   </div>
-                <div class="left-header" id="idLeftMenu" align="center">
+                <div class="left-header" id="idLeftMenu" align="center" onclick="HienRa('idCaSiVN')">
                     <span>Ca sĩ Việt Nam</span>
                 </div>
                 <div class="left-CaSi" id="idCaSiVN">
@@ -102,7 +102,7 @@
                         ?>
                     </dl>
               </div>
-               <div class="left-header" id="idLeftMenu" align="center">
+               <div class="left-header" id="idLeftMenu" align="center" onclick="HienRa('idCaSiA')">
                     <span>Ca sĩ Châu Á</span>
                 </div>
                <div class="left-CaSi" id="idCaSiA">
@@ -120,7 +120,7 @@
                         ?>
                     </dl>
               </div>
-               <div class="left-header" id="idLeftMenu" align="center">
+               <div class="left-header" id="idLeftMenu" align="center" onclick="HienRa('idCaSiAM')">
                     <span>Ca sĩ Âu Mỹ</span>
                 </div>
                <div class="left-CaSi" id="idCaSiAM">
@@ -272,6 +272,7 @@
 					
 					return true;	
 				}
+				TaoHieuUng();
               </script>
               <div class="right-search">
                     <form id="frmTimKiem" name="TimKiem" method="post" action="TimKiem.php" onsubmit="XuLyGoiDi()">

@@ -90,18 +90,24 @@ function DangXuat()
 //Tạo hiệu ứng
 function TaoHieuUng()
 {
-	$("#idDanhMuc").css("display","none");
+	//$("#idDanhMuc").css("display","none");
+	//$("#idPlayList").css("display","none");
+	//$("#idCaSiVN").css("display","none");
+	//$("#idCaSiA").css("display","none");
+	//$("#idCaSiAM").css("display","none");
+	$("#idNhacHot").css("display","none");
+	$("#idTheLoaiHot").css("display","none");
 }
 
 function HienRa(id)
 {
 	if($("#"+id).css("display")=="none")
 	{
-		$("#"+id).show("normal");
+		$("#"+id).slideDown("normal");
 	}
 	else
 	{
-		$("#"+id).hide("normal");
+		$("#"+id).slideUp("normal");
 	}
 
 }
