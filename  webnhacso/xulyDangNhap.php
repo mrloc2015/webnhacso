@@ -50,18 +50,16 @@
 	{
 		if($_SESSION["IsLogin"] == false && isset($_SESSION['UserName']) == false)
 		{
-			echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:264px;'>
+			echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:275px;'>
 			  </div>
 			  <div class='right-login'>
-				<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='Post(this); return false'>
-					<div>
+				<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='Post(this); return false'>		
 						<label for='txtTenDangNhap'>Tên đăng nhập</label>
 						<p><input type='text' maxlength='30' name='txtTenDangNhap' id='txtTenDangNhap' tabindex='1'></p>
 						<label for='txtMatKhau'>Mật khẩu</label>
 						<p><input type='password' maxlength='30' name='txtMatKhau' id='txtMatKhau' tabindex='2'></p>
 						<label><input type='Submit' id='btnDangNhap' name='btnDangNhap' value='Ðăng nhập'></label><br>
-						<label for='chkLuuTaiKhoan'><input type='checkbox' name='chkLuuTaiKhoan'> Nhớ tài khoản </label>
-					</div>
+						<label for='chkLuuTaiKhoan'><input type='checkbox' name='chkLuuTaiKhoan'> Nhớ tài khoản </label>			
 				</form> 	  
 			  </div>");
 		}
@@ -76,13 +74,13 @@
 							$('#UserID1').attr('value',\"".$_SESSION["UserID"]."\");
 							$('#UserID2').attr('value',\"".$_SESSION["UserID"]."\");
 						</script>
-						<div class='right-username'>
+							<div class='right-username'>
 								Thành viên chính thức
 							</div>
 							<div class='right-userinfo'>
 							  <div>
 								<div>
-									<b>Xin chào:</b><span style='color:#33F;font-size:16px;font-weight:bold;'>$userName</span>
+									<b>Xin chào: </b><span style='color:#33F;font-size:16px;font-weight:bold;'>$userName</span>
 								</div>
 								<ul>
 									<li>
@@ -108,8 +106,7 @@
 						  <div class='right-username'>
 								Thành viên quản trị
 							</div>
-							<div class='right-admininfo'>
-							  <div>
+							<div class='right-admininfo'> 
 								<div>
 									<b style='color:#F00;'>Xin chào Admin:</b><span style='color:#0C0;font-size:16px;font-weight:bold;'>$userName</span>
 								</div>
@@ -136,9 +133,25 @@
 										<a href='javascript:DangXuat()' title='Thoát'>Thoát</a>
 									</li>
 								</ul>
-							</div>
 						  </div>");
 			  }
 		}
-	}					
+	}
+	else
+	{
+		echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:275px;'>
+			  </div>
+			  <div class='right-login'>
+				<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='Post(this); return false'>
+					
+						<label for='txtTenDangNhap'>Tên đăng nhập</label>
+						<p><input type='text' maxlength='30' name='txtTenDangNhap' id='txtTenDangNhap' tabindex='1'></p>
+						<label for='txtMatKhau'>Mật khẩu</label>
+						<p><input type='password' maxlength='30' name='txtMatKhau' id='txtMatKhau' tabindex='2'></p>
+						<label><input type='Submit' id='btnDangNhap' name='btnDangNhap' value='Ðăng nhập'></label><br>
+						<label for='chkLuuTaiKhoan'><input type='checkbox' name='chkLuuTaiKhoan'> Nhớ tài khoản </label>
+					
+				</form> 	  
+			  </div>");
+	}
 ?>

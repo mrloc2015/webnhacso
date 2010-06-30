@@ -251,7 +251,7 @@
             	<div id="idLoginBox">
                 	
               	</div>
-              <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:264px;">
+              <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:275px;">
               </div>
               <script type="text/javascript" language="javascript">
               	function XuLyGoiDi()
