@@ -43,10 +43,10 @@
                         </li>
                      </ul>
            		</div>
-                <div class="left-header" id="idDanhMucBaiHat" align="center">
+                <div class="left-header" id="idDanhMucBaiHat" align="center" onclick="HienRa('idDanhMuc')">
                      <span>Danh mục bài hát</span>
                 </div>  
-                 <div class="left-DanhMuc">
+                 <div class="left-DanhMuc" id="idDanhMuc">
                     <dl>                
                         <?php
                             include_once("../DataProvider.php");
@@ -61,14 +61,15 @@
                             } 
                         ?>
                     </dl>
+                    <script language="javascript" type="text/javascript">TaoHieuUng()</script>
                  </div>
                 <div class="left-header" id="idClip" align="center">
                      <span><a href="../TimKiem.php?TimKiem=true&Clip=1">Clip</a></span>
                 </div>
-                <div class="left-header" id="idPlayList" align="center">
+                <div class="left-header" align="center">
                     <span>Playlist HOT</span>
                 </div>
-                 <div class="left-PlayList">
+                 <div class="left-PlayList" id="idPlayList">
                      <dl>                
                         <?php
                             include_once("../DataProvider.php");
@@ -87,7 +88,7 @@
                 <div class="left-header" id="idLeftMenu" align="center">
                     <span>Ca sĩ Việt Nam</span>
                 </div>
-                <div class="left-CaSi">
+                <div class="left-CaSi" id="idCaSiVN">
                      <dl>                
                         <?php
                             include_once("../DataProvider.php");
@@ -105,7 +106,7 @@
                <div class="left-header" id="idLeftMenu" align="center">
                     <span>Ca sĩ Châu Á</span>
                 </div>
-               <div class="left-CaSi">
+               <div class="left-CaSi" id="idCaSiA">
                      <dl>                
                         <?php
                             include_once("../DataProvider.php");
@@ -123,7 +124,7 @@
                <div class="left-header" id="idLeftMenu" align="center">
                     <span>Ca sĩ Âu Mỹ</span>
                 </div>
-               <div class="left-CaSi">
+               <div class="left-CaSi" id="idCaSiAM">
                      <dl>                
                         <?php
                             include_once("../DataProvider.php");

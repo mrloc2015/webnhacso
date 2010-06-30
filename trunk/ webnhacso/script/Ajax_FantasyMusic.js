@@ -87,6 +87,26 @@ function DangXuat()
 										};
 }
 
+//Tạo hiệu ứng
+function TaoHieuUng()
+{
+	$("#idDanhMuc").css("display","none");
+}
+
+function HienRa(id)
+{
+	if($("#"+id).css("display")=="none")
+	{
+		$("#"+id).show("normal");
+	}
+	else
+	{
+		$("#"+id).hide("normal");
+	}
+
+}
+
+
 var add=true;
 function MoRongDieuKhien(btnAdd)
 {
