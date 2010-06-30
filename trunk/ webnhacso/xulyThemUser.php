@@ -90,7 +90,7 @@ function TimeCount()
 <div align='center' style='text-align:center'><strong><font color='#0000FF'>Chao mừng $tendangnhap đã trở thành thành viên của nhạc số!</font></strong></div>
 <div align='center' style='text-align:center'><strong><font color='#0000FF'>Bạn sẽ trở lại trang chủ sau 5 giây nữa!</font></strong></div>
 <div align='center' style='text-align:center'><strong><font color='#0000FF'>Click vào <a href='TrangChu.php'>đây</a> nếu trình duyệt không tự chuyển</font></strong></div>
-<div align='center' style='text-align:center'><input type='text' id='txt' style='width:30px'  / ></div>
+<div align='center' style='text-align:center'><input type='text' id='txt' style='width:30px;border:hidden'  / ></div>
 <div align='center' style='text-align:center'><label id='txt'></label></div>
 </form>
 </body>
