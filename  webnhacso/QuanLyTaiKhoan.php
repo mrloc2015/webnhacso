@@ -25,7 +25,7 @@
     	<img src="images/digital music-banner.jpg" width="1000" height="120">
     </div>
   	<div class="main" id="idmain">
-            <div class="left-col">
+         <div class="left-col">
             	 <div class="left-header" id="idLeftMenu" align="center">
                     <span>Menu</span>
             	 </div>
@@ -400,13 +400,18 @@
                           <p style="margin-top:10px;">
                                 <input type="submit" name="btnTimKiem" id="btnTimKiem" value="Tìm Nhạc"/>
                           </p>
-                        </form>
+                </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
                     <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->   
                 </div>
-            </div>  
-        </div>     
+            </div>
+        </div>
+        <div class="footer">
+        	<div>
+            	Footer
+            </div>
+        </div>
    </div>
 </body>
 <!-- InstanceEnd --></html>

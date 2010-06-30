@@ -26,7 +26,7 @@
     	<img src="images/digital music-banner.jpg" width="1000" height="120">
     </div>
   	<div class="main" id="idmain">
-            <div class="left-col">
+         <div class="left-col">
             	 <div class="left-header" id="idLeftMenu" align="center">
                     <span>Menu</span>
             	 </div>
@@ -152,8 +152,8 @@
                         	Để dễ dàng hơn cho việc theo dõi các sự kiện mới và các chương trình của Fantasy Music Mời các bạn hãy trở 			thành Fan của Fantasy Music trên Facebook. Từ này về sau, các sự kiện, thông báo, chương trình khuyến mãi tặng quà…. của Fantasy Music sẽ được chính thức thông báo trên blog và Facebook. Trân trọng.
                         </div>
                     </div>
-                    <div class="header-list">Top Nhạc MỚI !!</div>
-                    <div class="main-content">
+                    <div class="header-list" onclick="HienRa('idNhacMoi')">Top Nhạc MỚI !!</div>
+                    <div class="main-content" id="idNhacMoi">
                     	<?php
 							include_once("DataProvider.php");
                         	$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID order by so.DateUp DESC limit 0,10";
@@ -335,13 +335,18 @@
                           <p style="margin-top:10px;">
                                 <input type="submit" name="btnTimKiem" id="btnTimKiem" value="Tìm Nhạc"/>
                           </p>
-                        </form>
+                </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
                     <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->   
                 </div>
-            </div>  
-        </div>     
+            </div>
+        </div>
+        <div class="footer">
+        	<div>
+            	Footer
+            </div>
+        </div>
    </div>
 </body>
 <!-- InstanceEnd --></html>

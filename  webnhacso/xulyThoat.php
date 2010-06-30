@@ -19,9 +19,9 @@
 				<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='Post(this); return false'>
 					
 						<label for='txtTenDangNhap'>Tên đăng nhập</label>
-						<p><input type='text' maxlength='30' name='txtTenDangNhap' id='txtTenDangNhap' tabindex='1'></p>
+						<p><input type='text' maxlength='30' name='txtTenDangNhap' id='txtTenDangNhap' tabindex='1' style='width:200px;'></p>
 						<label for='txtMatKhau'>Mật khẩu</label>
-						<p><input type='password' maxlength='30' name='txtMatKhau' id='txtMatKhau' tabindex='2'></p>
+						<p><input type='password' maxlength='30' name='txtMatKhau' id='txtMatKhau' tabindex='2' style='width:200px;'></p>
 						<label><input type='Submit' id='btnDangNhap' name='btnDangNhap' value='Ðăng nhập'></label><br>
 						<label for='chkLuuTaiKhoan'><input type='checkbox' name='chkLuuTaiKhoan'> Nhớ tài khoản </label>
 					
