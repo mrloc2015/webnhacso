@@ -179,7 +179,7 @@
             	<div id="idLoginBox">
                 	
               	</div>
-              <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:240px;">
+              <div align="center" style="background:url(images/title-search-box-bg.jpg);height:33px;width:264px;">
               </div>
               <script type="text/javascript" language="javascript">
               	function XuLyGoiDi()
@@ -202,21 +202,21 @@
 				}
 				TaoHieuUng();
               </script>
-              <div class="right-search">
-                    <form id="frmTimKiem" name="TimKiem" method="post" action="TimKiem.php" onsubmit="XuLyGoiDi()">
-                        <label for="txtTuKhoa">Từ khóa</label><br>
-                      <input type="text" name="txtTuKhoa" id="txtTuKhoa" style="width:200px;"/><br>
-                        <label for="cmbTheo">Theo</label><br>
-                      <select name="cmbTheo" id="cmbTheo" style="width:200px">                       	
-                       	<option selected="selected" value="0">Tên bài hát / Chủ đề</option>
-                        <option value="1">Ca sĩ</option>
-                        <option value="2">Người đăng</option>
-                      </select>
-                      <p style="margin-top:10px;">
-                        	<input type="submit" name="btnTimKiem" id="btnTimKiem" value="Tìm Nhạc"/>
-                      </p>
-                    </form>
-                </div>
+              <div class="right-search" align="left">
+                   <form id="frmTimKiem" name="TimKiem" method="post" action="TimKiem.php" onsubmit="XuLyGoiDi()">
+                            <label for="txtTuKhoa">Từ khóa</label><br>
+                          <input type="text" name="txtTuKhoa" id="txtTuKhoa" style="width:200px;"/><br>
+                            <label for="cmbTheo">Theo</label><br>
+                          <select name="cmbTheo" id="cmbTheo" style="width:200px">                       	
+                            <option selected="selected" value="0">Tên bài hát / Chủ đề</option>
+                            <option value="1">Ca sĩ</option>
+                            <option value="2">Người đăng</option>
+                          </select>
+                          <p style="margin-top:10px;">
+                                <input type="submit" name="btnTimKiem" id="btnTimKiem" value="Tìm Nhạc"/>
+                          </p>
+                        </form>
+              </div>
                 <div class="right-content" id="idRightContent" align="center">
                     <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->   
                 </div>

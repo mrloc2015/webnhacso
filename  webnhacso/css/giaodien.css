@@ -29,7 +29,7 @@
 
 .header-content
 {
-	width:500px;
+	width:480px;
 }
 
 .main-info
@@ -109,7 +109,7 @@
 
 .left-col
 {
-	width:18%;
+	width:19%;
 	float:left;
 }
 
@@ -121,13 +121,13 @@
 
 .mid-col
 {
-	width:70%;
+	width:65%;
 	float:left;
 }
 
 .right-col
 {
-	width:29%;
+	width:34%;
 	float:right;
 	margin-right:3px;
 }
@@ -167,7 +167,7 @@
 {
 	background:url(../images/title-box-bg.jpg);
 	height:25px;
-	width:220px;
+	width:auto;
 	color:#FFF;
 	font-size:16px;
 	padding-top:10px;
@@ -184,10 +184,10 @@
 
 .right-login,.right-search
 {
-	height:120px;
-	padding:5px 0 0 5px;
-	width:234px;
-	background-color:#6F9;
+	background:url("../images/loginbox-bg.png") no-repeat scroll;
+	height:140px;
+	padding:20px 0 0 40px;
+	width:100%;
 }
 
 .right-userinfo
