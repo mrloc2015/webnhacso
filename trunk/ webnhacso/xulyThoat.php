@@ -5,12 +5,14 @@
 	unset($_SESSION['Pass']);
 	unset($_SESSION['UserType']);
 	unset($_SESSION["PlayListID"]);
+	unset($_SESSION["UserID"]);
 	
 	$_SESSION["IsLogin"]=false;
 	echo("<script language='javascript' type='text/javascript'>
-			$('#user_id').attr('value','');
-		  </script>
-		 
+			$('#user_id').attr('value',\"\");
+			$('#UserID1').attr('value',\"\");
+			$('#UserID2').attr('value',\"\");
+		  </script>		  
 		  <div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:240px'>
 		  </div>
 		  <div class='right-login'>

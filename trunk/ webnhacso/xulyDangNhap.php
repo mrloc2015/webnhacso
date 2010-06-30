@@ -70,7 +70,12 @@
 		  $userName = $_SESSION['UserName'];
 		  if($_SESSION["UserType"] == 2)
 		  {
-			  echo("<div class='right-username'>
+			  echo("<script language='javascript' type='text/javascript'>
+						$('#user_id').attr('value',\"".$_SESSION["UserID"]."\");
+						$('#UserID1').attr('value',\"".$_SESSION["UserID"]."\");
+						$('#UserID2').attr('value',\"".$_SESSION["UserID"]."\");
+					</script>
+				    <div class='right-username'>
 							Thành viên chính thức
 						</div>
 						<div class='right-userinfo'>
@@ -94,7 +99,12 @@
 		  }
 		  else if($_SESSION["UserType"] == 1)
 		  {
-			    echo("<div class='right-username'>
+			    echo("<script language='javascript' type='text/javascript'>
+						$('#user_id').attr('value',\"".$_SESSION["UserID"]."\");
+						$('#UserID1').attr('value',\"".$_SESSION["UserID"]."\");
+						$('#UserID2').attr('value',\"".$_SESSION["UserID"]."\");
+					  </script>	
+					  <div class='right-username'>
 							Thành viên quản trị
 						</div>
 						<div class='right-admininfo'>

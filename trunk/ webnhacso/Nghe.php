@@ -142,6 +142,7 @@
                             <!-- InstanceBeginEditable name="mainConten" -->
 <?php
 	//giả dụ user sau_con_89 mã là 2 đã đăng nhập được
+	$user_id = -1;
 	if(isset($_SESSION["UserID"]))
 		$user_id = $_SESSION["UserID"]; //lấy session
 	$id = "";
@@ -227,7 +228,27 @@
 						i = <?php echo($time); ?>;
 						$("#ThongBao").attr("innerHTML","Chỉ có người có IQ cao mới down bài này - Bạn là 1 trong số đó");
 						window.location = url;
-						temp = clearInterval(temp);
+						temp = clearInterval(temp);									
+							
+						<?php
+							$sodown = 0;
+							
+							$sql = "Select * From song Where ID = $id";
+							$temp = DataProvider::ExecuteQuery($sql);
+							if($temp != false)
+							{
+								$row = mysql_fetch_array($temp);
+								$sodown = $row["DownloadCount"];
+								$sodown = $sodown + 1;								
+							}
+
+							$sql = "Update song Set DownloadCount = $sodown Where ID = $id";
+							$temp = DataProvider::ExecuteQuery($sql);
+						?>
+
+						//alert(<?php echo($sodown); ?>);
+						//alert(<?php echo($id); ?>);
+								
 						return;
 					}
 					
@@ -236,26 +257,72 @@
 				}
 
 				function TaiVe(url)
-				{		
-					temp = setInterval("Dem('" + url + "')",1000);
+				{	
+					//alert($("#user_id").attr("value"));
+					if($("#TaiVe").attr("value") != "Tải Về")
+					{
+						return;
+					}
+					
+					if($("#user_id").attr("value") <= 0)
+					{
+						alert("Hãy đăng nhập để tải bài hát");
+						return;
+					}
+					
+					$("#ThongBao").attr("innerHTML","<hr id='ngang' width='0px' />");
+					
+					if($("#user_id").attr("value") == "")
+					   $("#ThongBao").attr("innerHTML","Vui lòng đăng nhập để tải về");
+					else
+					{	
+						temp = setInterval("Dem('" + url + "')",1000);							
+					}
 				} 
-				
-				function USER_ID()
+	
+				function Them()
 				{
-					alert($("#user_id").attr("value"));
-					//if(<?php echo($_SESSION["UserID"]); ?> > 0)
-						//$("#user_id").attr("value",<?php echo($_SESSION["UserID"]); ?>);
+					//alert("Đã vào Ajax");
+					//alert($("#user_id").attr("value"));
+					
+					var para = "";
+					para += "submit=true";
+					para += "&song_id=" + $("#song_id").attr("value");
+					para += "&source='" + $("#source").attr("value") + "'";
+					para += "&user_id=" + $("#user_id").attr("value");
+					
+					//alert(para);
+					
+					var t = $.ajax({url:"xulyThemVaoPlayList.php",
+							data:""+para,
+							//async: false
+							success:BaoCao
+							});//.responseText;
+					
+					//alert(t);
+				}
+				function BaoCao(kq)
+				{
+					//alert("Thêm vào Playlist thành Công");
+					vt1 = kq.search("<body>") + 6;
+					vt2 = kq.search("</body>");
+					kq = kq.substring(vt1, vt2);
+					//alert(kq);
+					//if(kq != "")
+						alert(kq);
+					//else
+						//alert("Thêm vào Playlist thành Công");
 				}
 			</script>
             
             <div class="main-content">
             	<div style="float:left;margin-left:30px;margin-right:10px"><input id="TaiVe" onclick="TaiVe('<?php echo("$source"); ?>')" type="button" value="Tải Về" /></div>
-				<div id="ThongBao"style="float:left" align="left"><hr id="ngang" width="0px" /></div>                
+                <div id="ThongBao" style="float:left" align="left"><hr id="ngang" width="0px" /></div>                
            		<form name="ThemVaoPlayList" action="xulyThemVaoPlayList.php" method="post">
                 <input name="song_id" id="song_id" value="<?php echo($id); ?>" type="hidden"/>
-                <input name="source" type="hidden" value="<?php echo($source); ?>" />
+                <input name="source" id="source" type="hidden" value="<?php echo($source); ?>" />
                 <input name="user_id" id="user_id" type="hidden" value="<?php if(isset($user_id)) echo($user_id); ?>" />
-                <div align="left"><input name="submit" type="submit" value="Thêm Vào Playlist" onclick="USER_ID()"/></div>               
+                <div align="left"><input name="submit" type="button" value="Thêm Vào Playlist" onclick="Them()"/></div>               
             	</form>
             </div>
             
@@ -325,14 +392,48 @@
                 }
             }
 			?>
+            <script type="text/javascript" language="javascript">
+			 	function BinhLuan1()
+				{
+					//alert("Đã vào Ajax");
+					//alert($("#UserID1").attr("value"));
+					
+					var para = "";				
+					para += "UserID=" + $("#UserID1").attr("value");
+					para += "&SongID=" + $("#SongID1").attr("value");
+					para += "&NoiDung='" + $("#NoiDung1").attr("value") + "'";
+					//alert(para);
+					
+					var t = $.ajax({url:"xulyBinhLuan.php",
+							data:""+para,
+							//async: false
+							success:BaoCao1
+							});//.responseText;
+					
+					//alert(t);
+				}
+				function BaoCao1(kq)
+				{
+					//alert("Thêm vào Playlist thành Công");
+					vt1 = kq.search("<body>") + 6;
+					vt2 = kq.search("</body>");
+					kq = kq.substring(vt1, vt2);
+					
+					//if(kq != "")
+						alert(kq);
+					//else
+						//alert("Đã bình luận cho bài này");						
+				}
+			</script>
+            
             <div class="main-content">
                 <!--<?php echo($user_id); ?> <?php echo($id); ?> -->
                 <form id="form1" name="form1" method="post" action="xulyBinhLuan.php">
-                    <input name="UserID" id="UserID" type="hidden" value="<?php echo($user_id); ?>" />
-                    <input name="SongID" id="SongID" type="hidden" value="<?php echo($id); ?>" />
+                    <input name="UserID1" id="UserID1" type="hidden" value="<?php echo($user_id); ?>" />
+                    <input name="SongID1" id="SongID1" type="hidden" value="<?php echo($id); ?>" />
                     Xin vui lòng viết bình luận cho bài hát	<br /><br />
-                    <textarea name="NoiDung" id="NoiDung" style="display:block" cols="30" rows="3"></textarea> 
-                    <input type="submit" value="IQ Cao" title="Bạn có chỉ số IQ cao không?" /><br /><br />
+                    <textarea name="NoiDung1" id="NoiDung1" style="display:block" cols="30" rows="3"></textarea> 
+                    <input type="button" onclick="BinhLuan1()" value="IQ Cao" title="Bạn có chỉ số IQ cao không?" /><br /><br />
                     p/s: chỉ có người có chỉ số IQ cao mới để lại bình luận
                 </form>
             </div>
@@ -474,17 +575,52 @@
                 }
             }
 			?>
+            
+            <script type="text/javascript" language="javascript">
+			 	function BinhLuan2()
+				{
+					alert("Đã vào Ajax");
+					//alert($("#PlayListID").attr("value"));
+					
+					var para = "";				
+					para += "&UserID=" + $("#UserID2").attr("value");
+					para += "&SongID=" + $("#SongID2").attr("value");
+					para += "&PlayListID=" + $("#PlayListID2").attr("value");
+					para += "&NoiDung='" + $("#NoiDung2").attr("value") + "'";
+					alert(para);
+					
+					var t = $.ajax({url:"xulyBinhLuan.php",
+							data:""+para,
+							//async: false
+							success:BaoCao2
+							});//.responseText;
+					
+					//alert(t);
+				}
+				function BaoCao2(kq)
+				{
+					//alert("Thêm vào Playlist thành Công");
+					vt1 = kq.search("<body>") + 6;
+					vt2 = kq.search("</body>");
+					kq = kq.substring(vt1, vt2);
+					
+					//if(kq != "")
+						alert(kq);
+					//else
+						//alert("Đã bình luận cho playlist này");						
+				}
+			</script>
+            
             <div class="main-content">
                 <!--<?php echo($user_id); ?> <?php echo($id); ?> -->
-                <form id="form1" name="form1" method="post" action="xulyBinhLuan.php">
-                    <input name="UserID" id="UserID" type="hidden" value="<?php echo($user_id); ?>" />
-                    <input name="SongID" id="SongID" type="hidden" value="<?php echo($id); ?>" />
-                    <input name="PlayListID" id="PlayListID" type="hidden" value="<?php echo($_REQUEST["PlayList"]); ?>" />
+                
+                    <input name="UserID" id="UserID2" type="hidden" value="<?php echo($user_id); ?>" />
+                    <input name="PlayListID" id="PlayListID2" type="hidden" value="<?php echo($_REQUEST["PlayList"]); ?>" />
                     Xin vui lòng viết bình luận cho bài hát	<br /><br />
-                    <textarea name="NoiDung" id="NoiDung" style="display:block" cols="30" rows="3"></textarea> 
-                    <input type="submit" value="IQ Cao" title="Bạn có chỉ số IQ cao không?" /><br /><br />
+                    <textarea name="NoiDung" id="NoiDung2" style="display:block" cols="30" rows="3"></textarea> 
+                    <input type="button" onclick="BinhLuan2()" value="IQ Cao" title="Bạn có chỉ số IQ cao không?" /><br /><br />
                     p/s: chỉ có người có chỉ số IQ cao mới để lại bình luận
-                </form>
+
             </div>
             <?php
 			}
