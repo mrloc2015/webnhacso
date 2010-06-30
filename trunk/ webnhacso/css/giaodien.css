@@ -142,7 +142,8 @@
 	background:url("../images/admin-bg.jpg") no-repeat scroll left top transparent;
 	height:auto;
 	padding-left:14px;
-	padding-top:8px;
+	padding-top:5px;
+	margin-top:-16px;
 }
 
 .right-admininfo li
@@ -165,12 +166,12 @@
 
 .right-username
 {
-	background:url(../images/title-box-bg.jpg);
-	height:25px;
-	width:auto;
+	background:url("../images/title-box-bg.jpg") no-repeat scroll;
+	height:33px;
+	width:255px;
 	color:#FFF;
 	font-size:16px;
-	padding-top:10px;
+	padding-top:5px;
 	padding-left:18px;
 	margin-bottom:5px;
 }
@@ -192,10 +193,13 @@
 
 .right-userinfo
 {
-	background:url("../images/login-body-box-bg.jpg") no-repeat scroll left top transparent;
+	background:url("../images/login-body-box-bg.jpg") no-repeat scroll;
 	height:auto;
 	padding-left:14px;
 	padding-top:8px;
+	margin-top:-15px;
+	margin-left:15px;
+	width:275px;
 }
 
 .right-userinfo li
