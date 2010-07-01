@@ -425,3 +425,17 @@ a
 	width:150px;
 }
 /*-------------------------*/
+.left_div {
+	text-align: left;
+	float: left;
+	height: 30px;
+	width:30%;
+}
+
+.right_div {
+	text-align: left;
+	float: right;
+	height: 30px;
+	width:70%;
+}
+

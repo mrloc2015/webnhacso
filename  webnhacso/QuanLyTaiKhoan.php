@@ -143,111 +143,7 @@
                   <div class="mid-col">
                         <div id="idMainContent" class="main-content" align="center">                   
                             <!-- InstanceBeginEditable name="mainConten" -->
-<script language="javascript" type="text/javascript">
-	function cleartextfield()
-	{
-		var nam =$("#txtnam").attr("value","")	;																	
-	}
-	function remove_space( str)
-	{												
-		var tem="";
-		var arrchar = str.split(" ");
-		for(i=0; i < str.length; i ++)
-		{
-			tem = tem + arrchar[i];
-		}
-		return tem;
-	}
-	
-	//Tạo mới mã xác nhận
-	$(document).ready(function()
-	{
-		$('#imgmaxacnhan').click(function()
-		{
-			var maxacnhan = $('#imgmaxacnhan');
-			var maxacnhan_new_src = maxacnhan.attr('src') + '?' + Math.floor(Math.random()*11);
-			maxacnhan.attr('src', maxacnhan_new_src );
-			return false;
-		}	);
-	}	);
-	function CheckInput()
-	{		
-		//Kiểm tra họ và tên
-		var hovaten=$("#txthovaten");
-		var input = hovaten.attr("value");
-		if(remove_space(input)=="")
-		{
-			alert("Xin vui lòng nhập họ tên dầy đủ của bạn!");
-			hovaten.focus();
-			return false;
-		}								
-		//Kiểm tra email
-		var email=$("#txtemail");
-		var input = email.attr("value");
-		var OnEmail = /^([a-zA-Z0-9_\.\-])+@(([\yahoo\gmail\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-		if(remove_space(input)!="")
-		{
-			if(OnEmail.test(input) == false)
-			{
-				alert("Địa chỉ Email không hợp lệ. Chỉ cho phép Yahoo mail hoặc Google mail.");
-				email.focus();
-				return false;
-			}
-		}
-		else
-		{
-			alert("Vui lòng nhập địa chỉ email!");
-			email.focus();
-			return false;
-		}																		
-		//Kiểm tra ngay sinh
-		var ngaysinh=$("#cmbngaysinh");
-		var input=ngaysinh.attr("value");
-		if(input==0)
-		{
-			alert("Vui lòng nhập ngày sinh!");
-			ngaysinh.focus();
-			return false;
-		}						
-		var thangsinh=$("#cmbthang")
-		var input =thangsinh.attr("value");
-		if(input==0)
-		{
-			alert("Vui lòng nhập đầy đủ ngày sinh!");
-			thangsinh.focus();
-			return false;
-		}
-		
-		var OnYear = /^([0-9]+)$/;
-		var date = new Date();
-		var year = date.getFullYear();
-		var namsinh=$("#txtnam");
-		var input = namsinh.attr("value");
-		if(input=="[Năm]" || remove_space(input)=="")
-		{
-			alert("Vui lòng nhập năm sinh!");
-			cleartextfield();
-			namsinh.focus();
-			return false;
-		}
-		if(OnYear.test(input) == false||year-input >100 || year-input < 6)
-		{
-			alert("Năm sinh không hợp lệ!")							
-			cleartextfield();
-			namsinh.focus();
-			return false;
-		}			
-		//Kiểm tra mã xác nhận
-		var maxacnhan=$("#txtmaxacnhan");
-		var input = maxacnhan.attr("value");
-		if(remove_space(input)=="")
-		{
-			alert("Xin vui lòng nhập mã xác nhận!");
-			maxacnhan.focus();
-			return false;
-		}												
-	}
-	</script>
+<script src="script/vuongtoan.js"></script>
 <?php
 	$username=$_SESSION["UserName"];
 	include_once("DataProvider.php");
@@ -274,48 +170,47 @@
 		$userID=$row["ID"];
 	}
  ?>
- <form id="form1" name="form1" method="post" action="XulyCapNhatThongTin.php?CapNhat=1" >
- <div style="height:50px"><h1><strong><font color="#0000FF">Thông tin cá nhân</font></strong></h1></div>
-<div class="worms_field">
-<div class="worms_left"><label>Họ tên:</label></div>       
-<input name="txthovaten" id="txthovaten" type="text" style="width:300px" value="<?php echo $tendaydu?>" />
+ <div style="margin-bottom:30px"><h1><strong><font color="#0000FF">Quản Lý Tài Khoản</font></strong></h1></div>
+ <!--thong tin tài khoản--> 
+<div>
+	<div style="text-align:left;margin-bottom:10px"><b><h3><font color="#0000FF" >Thông tin tài khoản:</font></h3></b></div>
+    <div class="left_div">Tên đăng nhập:</div>
+    <div class="right_div"><label><?php echo($username)?></label></div>
+    <div class="left_div">Ngày tham gia:</div>
+    <div class="right_div"><label><?php echo($joinday)?></label></div>	 	
 </div>
-
-<div class="worms_field">
-<div class="worms_left"><label>Ngày sinh:</label></div>       
-<select name="cmbngay" id="cmbngaysinh">
-      <option value="<?php echo $ngay?>"><?php echo $ngay?></option>
-      <option>
+<div>&nbsp;</div>
+ 
+ <!-- Thông tin cá nhân-->
+ <div > 
+ <div style="text-align:left;margin-bottom:10px"><b><h3><font color="#0000FF">Thông tin cá nhân:</font></h3></b></div>
+ 
+   <div class="left_div">Họ Tên:</div>
+   <div class="right_div">
+   <input name="txthovaten" id="txthovaten" type="text" value="<?php echo $tendaydu?>" style="width:200px" />
+   </div>
+   <div class="left_div">Ngày Sinh:</div>
+   <div class="right_div">
+   <select name="cmbngay" id="cmbngay" style="width:65px">
+      <option value="<?php echo $ngay?>"><?php echo $ngay?></option>      
         <?php 
         for($i=1;$i<=31;$i++)
-        { 												                      
-            echo("<option value='$i'>$i</option>");
-      
-        }
-        ?>
- </select>
- 
- <select name="cmbthang" id="cmbthang">
-      <option value="<?php echo $thang?>"><?php echo $thang?></option>				                  				  <option>              
-        <?php 
-            for($i=1;$i<=12;$i++)
-            {
-                echo("<option value='$i'>$i</option>");
-            }
-        ?>
-      </select >
-      
-<input name="txtnam" type="text" id="txtnam" style="width:60px" value="<?php echo $nam?>" onfocus="cleartextfield()" />
-</div>
-
-<div class="worms_field">
-<div class="worms_left">Ngày tham gia:</div>       
-<?php echo $joinday?>
-</div>                                                        
-
-<div class="worms_field">
-<div class="worms_left"><label>Đến từ::</label></div>       
-<select name="cmblocation" id="cmblocal">
+        {echo("<option value='$i'>$i</option>");}											         ?>                                               
+	</select>
+    
+    <select name="cmbthang" id="cmbthang" style="width:65px">
+  		<option value="<?php echo $thang?>"><?php echo $thang?></option>	                     
+   		<?php 
+			for($i=1;$i<=12;$i++)
+			{echo("<option value='$i'>$i</option>");}                            
+   		?>
+ 	</select >
+            
+    <input name="txtnam" type="text" id="txtnam" style="width:60px" value="<?php echo $nam?>" onfocus="cleartextfield()"/>
+   </div>
+   <div class="left_div">Đến Từ:</div>
+   <div class="right_div">
+   <select name="cmblocation" id="cmbdentu" style="width:205px" >
   <option value="<?php echo $localID?>"><?php echo $dentu?></option>
   <?php
   $i=1;
@@ -326,37 +221,51 @@
      while($row=mysql_fetch_array($location))
      {									
   ?>
-         <option value="<?php echo($i)?>"> <?php echo $row["Local"] ?></option>
+         <option value=<?php echo($i)?>> <?php echo $row["Local"] ?></option>
  <?php	
          $i++;
      }
   }					
   ?>
-</select>                            
-</div>
+</select>  
+   </div>
+   
+   <div class="left_div">Email:</div>
+   <div class="right_div">
+   <input name="txtemail" type="text" id="txtemail" style="width:200px" value="<?php echo $email?>" />
+   </div>
+   
 
-<div class="worms_field">
-<div class="worms_left"><label>Email:</label></div>       
-<p>
-  <input name="txtemail" type="text" id="txtemail" style="width:300px" value="<?php echo $email?>" />
-</p>                            
+<div style="width:20%;height:40px;float:left">
+	<input type="button" id="btncapnhat" value="Cập Nhật Thông Tin" onclick="CapNhatThongTinCaNhan();"  style="height:40px" />
 </div>
+<!--Thể hiện 1-->
+<div style="width:80%;height:40px;float:right"><span id="kq1"><img id="img"  /></span></div>
+   
+ </div>
+
+
+
+<!--Thay đổi mật khẩu-->
 <div>
-<p id=><img src="captcha/captcha.php" id="imgmaxacnhan" title="Click để tạo mã xác nhận mới"/></p>
-<p>
-  <input type="text" name="txtmaxacnhan" id="txtmaxacnhan" style=" width:60px" />                       	  
-  <br/>
-</p>
+	<div style="text-align:left;margin-bottom:10px"><b><h3><font color="#0000FF">Thay đổi mật khẩu:</font></h1></b></div>
+	<div class="left_div">Mật khẩu cũ:</div>
+    <div class="right_div"><input type="password" id="txtmatkhaucu" style="width:200px" /></div>
+    <div class="left_div">Mật khẩu mới:</div>
+    <div class="right_div"><input type="password" id="txtmatkhaumoi"style="width:200px" /></div>
+    <div class="left_div">Nhập lại mật khẩu mới:</div>
+    <div class="right_div"><input type="password" id="txtlaplaimatkhaumoi" style="width:200px" /></div>
+    
+    
+    <div style="width:20%;height:40px;float:left;margin-top:10px"><input type="button" id="btnthaydoimatkhau" value="Thay Đổi Mật Khẩu" style="height:40px" onclick="ThayDoiMatKhau();  " />
+<!--Thể hiện 2-->    
 </div>
-<div align="left">
-<input name="btncapnhat" type="submit" id="btncapnhat" value="Cập Nhật" onclick="return CheckInput()" />                            
-</div>
-<div style="text-align:left;text-decoration:underline;">
-<a href="">Thay đổi mật khẩu</a>
+    <div style="width:80%;height:40px;float:right"><span id="kq2"><img id="img"  /></span></div>
 </div>
 
-                             
-</form>
+
+
+
                             
                             <!-- InstanceEndEditable --></div>
                   </div> 
