@@ -145,34 +145,34 @@
                             <!-- InstanceBeginEditable name="mainConten" -->
                             <div class="cp-title">
 								Quản lý thành viên
-                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpUser')"></div>
                             </div>
                             <div id="cpUser" class="main-content">abc</div>
                             
                              <div class="cp-title">
 								Quản lý bài hát
-                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpSong')"></div>
                             </div>
-                            <div id="cpUser" class="main-content">abc</div>
+                            <div id="cpSong" class="main-content">abc</div>
                             
                              <div class="cp-title">
 								Quản lý Playlist
-                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpPlaylist')"></div>
                             </div>
-                            <div id="cpUser" class="main-content">abc</div>
+                            <div id="cpPlaylist" class="main-content">abc</div>
                             
                              <div class="cp-title">
 								Quản lý danh mục
-                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpStyle')"></div>
                             </div>
-                            <div id="cpUser" class="main-content">abc</div>
+                            <div id="cpStyle" class="main-content">abc</div>
                             
                              <div class="cp-title">
 								Quản lý Website
-                                <div class="add-cp" onclick="MoRongDieuKhien(this)"></div>
+                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpWeb')"></div>
                             </div>
-                            <div id="cpUser" class="main-content">abc</div>
-
+                            <div id="cpWeb" class="main-content">abc</div>
+							<script language="javascript" type="text/javascript">TaoHieuUng();</script>
 							<!-- InstanceEndEditable --></div>
                   </div> 
             <div class="right-col">

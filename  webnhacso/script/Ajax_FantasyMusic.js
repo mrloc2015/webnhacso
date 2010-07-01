@@ -97,6 +97,11 @@ function TaoHieuUng()
 	//$("#idCaSiAM").css("display","none");
 	$("#idNhacHot").css("display","none");
 	$("#idTheLoaiHot").css("display","none");
+	$("#cpUser").css("display","none");
+	$("#cpSong").css("display","none");
+	$("#cpPlaylist").css("display","none");
+	$("#cpStyle").css("display","none");
+	$("#cpWeb").css("display","none");
 }
 
 function HienRa(id)
@@ -113,20 +118,18 @@ function HienRa(id)
 }
 
 
-var add=true;
-function MoRongDieuKhien(btnAdd)
+
+function MoRongDieuKhien(btnAdd,idContent)
 {
-	if(add==true)
+	if($("#"+idContent).css("display")=="none")
 	{
 		$(btnAdd).attr("class","remove-cp");
-		add=false;
-		$("#cpUser").show("fast");
+		$("#"+idContent).slideDown("normal");
 	}
 	else
 	{
 		$(btnAdd).attr("class","add-cp");
-		add=true;
-		$("#cpUser").hide("fast");
+		$("#"+idContent).slideUp("normal");
 	}
 }
 
