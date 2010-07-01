@@ -168,14 +168,14 @@ function GuiThongTinCaNhan()
 }
 
 
-
-
-
 function CapNhatThongTinCaNhan()
 {
+	var a =document.getElementById("kq1");
 	if(KiemTraThongTinCaNhan()==true)
-	{
-		GuiThongTinCaNhan();	
+	{		
+		a.innerHTML='<img id="img1" src="images/load.gif" />';
+		$("#img1").attr("src","images/load.gif");
+		setTimeout("GuiThongTinCaNhan()",3000);			
 	}		
 }
 //Kiem tra mật khẩu
@@ -221,11 +221,13 @@ function GuiThongTinMatKhau()
 	ajaxFunction($object,$url);	
 }
 function ThayDoiMatKhau()
-{	
-		
+{		
+	var a =document.getElementById("kq2");
 	if(KiemTraMatKhau()==true)
-	{		
-		GuiThongTinMatKhau();		
+	{	
+		a.innerHTML='<img id="img1" src="images/load.gif" />';
+		$("#img2").attr("src","images/load.gif");
+		setTimeout("GuiThongTinMatKhau()",3000);	
 	}		
 }
 

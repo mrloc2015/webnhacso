@@ -144,6 +144,7 @@
                         <div id="idMainContent" class="main-content" align="center">                   
                             <!-- InstanceBeginEditable name="mainConten" -->
 <script src="script/vuongtoan.js"></script>
+</script>
 <?php
 	$username=$_SESSION["UserName"];
 	include_once("DataProvider.php");
@@ -240,11 +241,9 @@
 	<input type="button" id="btncapnhat" value="Cập Nhật Thông Tin" onclick="CapNhatThongTinCaNhan();"  style="height:40px" />
 </div>
 <!--Thể hiện 1-->
-<div style="width:80%;height:40px;float:right"><span id="kq1"><img id="img"  /></span></div>
+<div style="width:80%;height:40px;float:right"><span id="kq1"><img id="img1" src="" /></span></div>
    
  </div>
-
-
 
 <!--Thay đổi mật khẩu-->
 <div>
@@ -260,7 +259,7 @@
     <div style="width:20%;height:40px;float:left;margin-top:10px"><input type="button" id="btnthaydoimatkhau" value="Thay Đổi Mật Khẩu" style="height:40px" onclick="ThayDoiMatKhau();  " />
 <!--Thể hiện 2-->    
 </div>
-    <div style="width:80%;height:40px;float:right"><span id="kq2"><img id="img"  /></span></div>
+    <div style="width:80%;height:40px;float:right"><span id="kq2"><img id="img2" src=""  /></span></div>
 </div>
 
 
