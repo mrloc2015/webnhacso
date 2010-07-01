@@ -1,7 +1,47 @@
 @charset "utf-8";
 /* CSS Document */
 
-/*Tự định dạng*/
+/*Định dạng cho các thẻ HTML*/
+
+/*Phần này tham khảo từ trang nhaccuatui.com*/
+body
+{
+	background:url("../images/main-body-bg.jpg") no-repeat scroll center 120px #DCDCDC;
+	font-family:Verdana,Arial,Helvetica,Sans-Serif;
+	font-size:12px;
+	line-height:18px;
+	height:100%;
+}
+
+ul, li, ol, dl, dt, dd 
+{
+	list-style:none outside none;
+}
+
+img
+{
+	border:0 none;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td 
+{
+	margin:0;
+	padding:0;
+}
+
+a
+{
+	text-decoration:none;
+	font-weight:bold;
+	color:#1888B6;
+}
+
+/*--------------------------*/
+
+
+/*Class tự định dạng*/
+/*TakiNT*/
+
 .banner
 {
 	background:url("../images/head-page-bg.jpg");
@@ -32,17 +72,6 @@
 	width:480px;
 }
 
-.footer
-{
-	background-color:#FFFFFF;
-	/*background:url("../images/footer-bg.jpg") repeat-x scroll left bottom #FFFFFF;*/
-	height:auto;
-	margin:0 auto;
-	overflow:hidden;
-	padding:10px 5px 5px;
-	width:990px;
-}
-
 .main-info
 {
 	padding:0 20px;
@@ -57,6 +86,45 @@
 	width:1000px;
 	overflow:hidden;
 }
+
+.footer
+{
+	background-color:#FFFFFF;
+	/*background:url("../images/footer-bg.jpg") repeat-x scroll left bottom #FFFFFF;*/
+	height:auto;
+	margin:0 auto;
+	overflow:hidden;
+	padding:10px 5px 5px;
+	width:990px;
+}
+
+.left-col
+{
+	width:19%;
+	float:left;
+}
+
+.right-mid
+{
+	width:81%;
+	float:right;
+}
+
+.mid-col
+{
+	width:66%;
+	float:left;
+}
+
+.right-col
+{
+	width:33%;
+	float:right;
+	margin-right:3px;
+}
+/*---------------------------------------*/
+
+/*Left Col*/
 
 .left-header
 {
@@ -118,34 +186,53 @@
 	color:#360;
 }
 
-.left-col
+.pointer
 {
-	width:19%;
-	float:left;
+	height:28px;
+	width:180px;
+	
 }
 
-.right-mid
-{
-	width:81%;
-	float:right;
+.pointer li
+{	
+	background:url("../images/menu-box-bg-pointer-last.jpg")  no-repeat scroll left center transparent;
+	height:25px;
+	width:180px;
+	display:block;
+	overflow:hidden;
+	padding-top:5px;
 }
 
-.mid-col
-{
-	width:66%;
-	float:left;
+.pointer li:hover
+{	
+	background:url("../images/pointer.jpg")  no-repeat scroll left center transparent;
+	height:25px;
+	width:180px;
+	display:block;
+	overflow:hidden;
+	padding-top:5px;
 }
 
-.right-col
+.pointer li a, .pointer li a:hover
 {
-	width:33%;
-	float:right;
-	margin-right:3px;
+	margin-left:20px;
+	color:#360;
+	font-weight:bold;
 }
 
+.last
+{
+	height:25px;
+	width:180px;
+}
+/*--------------------------------------*/
+
+/*Right Col*/
 #idLoginBox
 {
-	
+	position:relative;
+	height:auto;
+	margin-bottom:5px;
 }
 
 .right-admininfo
@@ -187,12 +274,7 @@
 	margin-bottom:5px;
 }
 
-#idLoginBox
-{
-	position:relative;
-	height:auto;
-	margin-bottom:5px;
-}
+
 
 .right-login,.right-search
 {
@@ -226,6 +308,20 @@
 	float:left;
 }
 
+.right-login a
+{
+	font-weight:normal;
+	color:#06F;
+}
+
+.right-login a:hover
+{
+	font-weight:normal;
+	color:#F90;
+}
+/*---------------------------------------*/
+
+/*Mid Col*/
 .cp-title
 {
 	background-color:#1685B4;
@@ -314,6 +410,7 @@
 {
 	font-weight:normal;
 }
+/*--------------------------*/
 
 /*Thêm bài hát - sau_con_89*/
 .worms_field
@@ -328,88 +425,3 @@
 	width:150px;
 }
 /*-------------------------*/
-
-/*Tham khảo của trang nhaccuatui.com*/
-body
-{
-	background:url("../images/main-body-bg.jpg") no-repeat scroll center 120px #DCDCDC;
-	font-family:Verdana,Arial,Helvetica,Sans-Serif;
-	font-size:12px;
-	line-height:18px;
-	height:100%;
-}
-
-ul, li, ol, dl, dt, dd 
-{
-	list-style:none outside none;
-}
-
-fieldset, img, iframe 
-{
-	border:0 none;
-}
-
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td 
-{
-	margin:0;
-	padding:0;
-}
-
-a
-{
-	text-decoration:none;
-	font-weight:bold;
-	color:#1888B6;
-}
-
-.pointer
-{
-	height:28px;
-	width:180px;
-	
-}
-
-.pointer li
-{	
-	background:url("../images/menu-box-bg-pointer-last.jpg")  no-repeat scroll left center transparent;
-	height:25px;
-	width:180px;
-	display:block;
-	overflow:hidden;
-	padding-top:5px;
-}
-
-.pointer li:hover
-{	
-	background:url("../images/pointer.jpg")  no-repeat scroll left center transparent;
-	height:25px;
-	width:180px;
-	display:block;
-	overflow:hidden;
-	padding-top:5px;
-}
-
-.pointer li a, .pointer li a:hover
-{
-	margin-left:20px;
-	color:#360;
-	font-weight:bold;
-}
-
-.right-login a
-{
-	font-weight:normal;
-	color:#06F;
-}
-
-.right-login a:hover
-{
-	font-weight:normal;
-	color:#F90;
-}
-
-.last
-{
-	height:25px;
-	width:180px;
-}
