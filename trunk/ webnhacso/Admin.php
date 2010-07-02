@@ -147,7 +147,18 @@
 								Quản lý thành viên
                                 <div class="add-cp" onclick="MoRongDieuKhien(this,'cpUser')"></div>
                             </div>
-                            <div id="cpUser" class="main-content">abc</div>
+                            <div id="cpUser" class="main-content">
+                           		
+                                <form action="xulyTimKiem.php" method="post" id="frmTimUser" onsubmit="Post(this);return false">
+                                	<label for="txtKeyWord">Tìm User:</label>
+                                    <input type="text" alt="Nhập tên đăng nhập hoặc tên người dùng" name="txtKeyWord">
+                                    <input type="submit" value="Tìm" name="btnTimKiem">
+                                </form>
+                                <div id="idUserList" class="user-list">
+                                
+                                </div>
+                                
+                            </div>
                             
                              <div class="cp-title">
 								Quản lý bài hát
