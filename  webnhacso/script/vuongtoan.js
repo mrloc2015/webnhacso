@@ -231,3 +231,143 @@ function ThayDoiMatKhau()
 	}		
 }
 
+
+function CheckInput()
+{
+	//Kiểm tra tên đăng nhập
+	if(IsEmpty($("#txttendangnhap").attr("value"))==true)
+	{
+		alert("Xin vui lòng nhập tên đăng nhập của bạn!");
+		$("#txttendangnhap").focus();
+		return false;
+	}
+	
+	//Kiểm tra mật khẩu
+	if(IsEmpty($("#txtmatkhau").attr("value"))==true)
+	{
+		alert("Xin vui lòng nhập mật khẩu của bạn!");
+		$("#txtmatkhau").focus();
+		return false;
+	}		
+	//Kiểm tra sự trùng khớp của 2 mật khẩu
+	if($("#txtmatkhau").attr("value")!=$("#txtlaplaimatkhau").attr("value"))
+	{
+		alert("Mật khẩu không trùng khớp!");
+		$("#txtmatkhau").attr("value","");
+		$("#txtlaplaimatkhau").attr("value","");
+		$("#txtmatkhau").focus();
+		return false;
+	}	
+	//Kiểm tra email
+	if(IsEmpty($("#txtemail").attr("value"))!=true)
+	{
+		var OnEmail = /^([a-zA-Z0-9_\.\-])+@(([\yahoo\gmail\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if(OnEmail.test($("#txtemail").attr("value")) == false)
+		{
+			alert("Địa chỉ Email không hợp lệ. Chỉ cho phép Yahoo mail hoặc Google mail.");
+			$("#txtemail").focus();
+			return false;
+		}
+	}
+	else
+	{
+		alert("Vui lòng nhập địa chỉ email!");
+		$("#txtemail").focus();
+		return false;
+	}
+	//Kiểm tra lặp lại email
+	if(remove_space($("#txtemail").attr("value"))!=remove_space($("#txtlaplaiemail").attr("value")))
+	{
+		alert("Email không trùng khớp!");
+		$("#txtemail").attr("value","");
+		$("#txtlaplaiemail").attr("value","");
+		$("#txtemail").focus();
+		return false;
+	}
+	//Kiểm tra họ và tên
+	if(IsEmpty($("#txthovaten").attr("value"))==true)
+	{
+		alert("Xin vui lòng nhập họ tên của bạn!");
+		$("#txthovaten").focus();
+		return false;
+	}
+	//Kiểm tra ngày,tháng,năm sinh
+	if($("#cmbngay").attr("value")==0)
+	{							
+		alert("Vui lòng nhập ngày sinh!");
+		$("#cmbngay").focus();
+		return false;
+	}
+	if($("#cmbthang").attr("value")==0)
+	{							
+		alert("Vui lòng nhập đầy đủ ngày sinh!");
+		$("#cmbthang").focus();
+		return false;
+	}  
+	var OnYear = /^([0-9]+)$/;
+	var date = new Date();
+	var namhientai = date.getFullYear();
+	var namsinh=$("#txtnam").attr("value");
+	if(namsinh!="[Năm]" && IsEmpty(namsinh)!=true)
+	{		
+		if(OnYear.test(namsinh) == false||namhientai-namsinh >100 || namhientai-namsinh < 6)
+		{
+			alert("Năm sinh không hợp lệ!")							
+			$("#txtnam").attr("value","");
+			$("#txtnam").focus();
+			return false;
+		}					
+	}
+	else
+	{				
+		alert("Vui lòng nhập năm sinh!");
+		$("#txtnam").attr("value","");
+		$("#txtnam").focus();
+		return false;				
+	}	
+	//Kiểm tra nơi ở
+	if($("#cmblocal").attr("value")==0)						
+	{
+		alert("Vui lòng nhập nơi ở của bạn!");
+		$("#cmblocal").focus();
+		return false;
+	}	
+	//Kiểm tra mã xác nhận	
+	if(IsEmpty($("#txtmaxacnhan").attr("value"))==true)
+	{
+		alert("Xin vui lòng nhập mã xác nhận!");
+		$("#txtmaxacnhan").focus();
+		return false;
+	}				
+}
+function KtUser()
+{
+	$object=$("#ktuser");
+	$url="KiemTraDangKi.php?username="+$("#txttendangnhap").attr("value");
+	ajaxFunction($object,$url);	
+}
+function KtEmail()
+{
+	$object=$("#ktemail");
+	$url="KiemTraDangKi.php?email="+$("#txtemail").attr("value");
+	ajaxFunction($object,$url);
+}
+function KtMaXacNhan()
+{
+	$object=$("#ktmaxacnhan");
+	$url="KiemTraDangKi.php?maxacnhan="+$("#txtmaxacnhan").attr("value");
+	ajaxFunction($object,$url);
+}
+
+
+$(document).ready(function()
+{
+	$('#imgmaxacnhan').click(function()
+	{							
+		var maxacnhan = $('#imgmaxacnhan');
+		var maxacnhan_new_src = maxacnhan.attr('src') + '?' + Math.floor(Math.random()*11);
+		maxacnhan.attr('src', maxacnhan_new_src );
+		return false;
+	}	);
+}	);
+
