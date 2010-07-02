@@ -149,39 +149,95 @@
                             </div>
                             <div id="cpUser" class="main-content">
                            		
-                                <form action="xulyTimKiem.php" method="post" id="frmTimUser" onsubmit="Post(this);return false">
+                                <form action="xulyTimKiem.php" method="post" id="frmTimUser" onsubmit="TimKiem(this);return false">
                                 	<label for="txtKeyWord">Tìm User:</label>
                                     <input type="text" alt="Nhập tên đăng nhập hoặc tên người dùng" name="txtKeyWord">
                                     <input type="submit" value="Tìm" name="btnTimKiem">
                                 </form>
                                 <div id="idUserList" class="user-list">
-                                
+                                	Kết Quả Tìm Kiếm
+                                	<div class="user-list">
+                                    	<div style="float:left;width:40%" align="left">
+                                            <p>Tên đăng nhập:</p>
+                                            <p>Họ Tên :</p> 
+                                    	</div>
+                                    	<div style="float:right;width:60%" align="left">
+                                             <p>TakiNT</p>
+                                             <p>Lê Ngọc Tín</p>
+                                    	</div>
+                                        <div class="user-list">
+                                    		<div style="text-align:left;margin-bottom:10px"><b><h3><font color="#0000FF" >Thông tin tài khoản:</font></h3></b></div>
+                                            <div class="left_div">Tên đăng nhập:</div>
+                                            <div class="right_div"><label>TakiNT</label></div>
+                                            <div class="left_div">Ngày tham gia:</div>
+                                            <div class="right_div"><label>02-07-2010</label></div>
+                                            <div class="left_div">Họ Tên:</div>
+                                           <div class="right_div">
+                                           <input name="txthovaten" id="txthovaten" type="text" value="Lê Ngọc Tín" style="width:200px "/>
+                                           </div>
+                                           <div class="left_div">Ngày Sinh:</div>
+                                           <div class="right_div">
+                                           <select name="cmbngay" id="cmbngay" style="width:65px">
+                                              <option value="<?php echo $ngay?>"><?php echo $ngay?></option>      
+                                                <?php 
+                                                for($i=1;$i<=31;$i++)
+                                                {echo("<option value='$i'>$i</option>");}											         ?>                                               
+                                            </select>
+                                            
+                                            <select name="cmbthang" id="cmbthang" style="width:65px">
+                                                <option value="<?php echo $thang?>"><?php echo $thang?></option>	                     
+                                                <?php 
+                                                    for($i=1;$i<=12;$i++)
+                                                    {echo("<option value='$i'>$i</option>");}                            
+                                                ?>
+                                            </select >
+                                                    
+                                            <input name="txtnam" type="text" id="txtnam" style="width:60px" value="<?php echo $nam?>" onfocus="cleartextfield()"/>
+                                           </div>
+                                           <div class="left_div">Đến Từ:</div>
+                                           <div class="right_div">
+                                           <select name="cmblocation" id="cmbdentu" style="width:205px" >
+                                          <option value="<?php echo $localID?>"><?php echo $dentu?></option>
+                                          <?php
+                                          $i=1;
+                                          include_once("DataProvider.php");
+                                          $location = DataProvider::ExecuteQuery("SELECT location.Local FROM location");
+                                          if(location !=false)
+                                          {
+                                             while($row=mysql_fetch_array($location))
+                                             {									
+                                          ?>
+                                                 <option value=<?php echo($i)?>> <?php echo $row["Local"] ?></option>
+                                         <?php	
+                                                 $i++;
+                                             }
+                                          }					
+                                          ?>
+                                        </select>  
+                                           </div>
+                                           
+                                           <div class="left_div">Email:</div>
+                                           <div class="right_div">
+                                           <input name="txtemail" type="text" id="txtemail" style="width:200px" value="<?php echo $email?>" />
+                                           </div> 	
+                                    	</div>
+                                    </div>
+                                    </div>
+                                    <div class="user-list">
+                                    	<div style="float:left;width:40%" align="left">
+                                            <p>Tên đăng nhập:</p>
+                                            <p>Họ Tên :</p> 
+                                    	</div>
+                                    	<div style="float:right;width:60%" align="left">
+                                             <p>TakiNT</p>
+                                             <p>Lê Ngọc Tín</p>
+                                    	</div>
+                                    </div>
                                 </div>
+                               
                                 
                             </div>
                             
-                             <div class="cp-title">
-								Quản lý bài hát
-                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpSong')"></div>
-                            </div>
-                            <div id="cpSong" class="main-content">abc</div>
-                            
-                             <div class="cp-title">
-								Quản lý Playlist
-                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpPlaylist')"></div>
-                            </div>
-                            <div id="cpPlaylist" class="main-content">abc</div>
-                            
-                             <div class="cp-title">
-								Quản lý danh mục
-                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpStyle')"></div>
-                            </div>
-                            <div id="cpStyle" class="main-content">abc</div>
-                            
-                             <div class="cp-title">
-								Quản lý Website
-                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpWeb')"></div>
-                            </div>
                             <div id="cpWeb" class="main-content">abc</div>
 							<script language="javascript" type="text/javascript">TaoHieuUng();</script>
 							<!-- InstanceEndEditable --></div>

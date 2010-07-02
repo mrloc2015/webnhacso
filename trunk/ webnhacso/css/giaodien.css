@@ -410,6 +410,14 @@ a
 {
 	font-weight:normal;
 }
+
+.user-list
+{
+	border:1px solid #AEAEAE;
+	margin-bottom:5px;
+	overflow:hidden;
+	padding:5px;
+}
 /*--------------------------*/
 
 /*Thêm bài hát - sau_con_89*/
