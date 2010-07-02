@@ -44,12 +44,12 @@
 			
 			DataProvider::ExecuteQuery($sql);
 			
-			//$temp = DataProvider::ExecuteQuery("Select MAX(ID) From song");
-			//$ma_user = -1;
-			//while($row = mysql_fetch_array($temp))
-			//	$song_id = $row["MAX(ID)"];			
+			$temp = DataProvider::ExecuteQuery("Select MAX(ID) From song");
+			$ma_user = -1;
+			while($row = mysql_fetch_array($temp))
+				$song_id = $row["MAX(ID)"];			
 	
-			//mkdir("Du_Lieu/$song_id",1);
+			mkdir("Du_Lieu/$song_id",1);
 			move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/BAI_HAT/Waiting_Song/". $_FILES["Th_Source"]["name"]);		
 			?>
 			<script type="text/javascript" language="javascript">
