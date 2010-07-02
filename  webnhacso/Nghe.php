@@ -168,6 +168,7 @@
 			$singerName = $row["SingerName"];
 			$listenCount = $row["ListenCount"];
 			$listenCount = $listenCount + 1;
+			$downCount = $row["DownloadCount"];
 			$rate = $row["Rate"];
 			$rate = floor($rate); // làm tròn xuống, lên dùng ceil()			
 			//echo ($listenCount);
@@ -192,7 +193,7 @@
                 	<?php echo("Trình bày:<a href='$duongDanCaSi'>$singerName</a>");?>
                 </div>
                 <div class="song-info">
-                	<?php echo("Người đăng:<a href='$duongDanNguoiDang'>$userName</a> | Lượt nghe:$listenCount | Bit rate:$bitRate kb/s | <a href='$duongDanTheLoai'>$style</a>");?>
+                	<?php echo("Người đăng:<a href='$duongDanNguoiDang'>$userName</a> | Bit rate:$bitRate kb/s | <a href='$duongDanTheLoai'>$style</a><br>Lượt nghe:$listenCount | Lượt download:$downCount");?>
                 </div>
             </div>
 			<div align="center" style="margin-top:50px"> 
@@ -218,46 +219,35 @@
 				}
 			?>
              <script type="text/javascript" language="javascript">
-			 	var i = <?php echo($time); ?>;
+			 	var k = <?php echo($time); ?>;
 				var w = 1;
 				var temp;
 				
 				function Dem(url)
 				{			
-					$("#TaiVe").attr("value",i);
+					//alert(k);
+					$("#TaiVe").attr("value",k);
 					$("#ngang").attr("width",w+"px");
-					if(i < 1)
+					if(k < 87)
 					{
-						$("#TaiVe").attr("value",i);
-						i = <?php echo($time); ?>;
+						//$("#TaiVe").attr("value",k);
+						//k = <?php echo($time); ?>;
+
 						$("#ThongBao").attr("innerHTML","Chỉ có người có IQ cao mới down bài này - Bạn là 1 trong số đó");
 						window.location = url;
-						temp = clearInterval(temp);									
-							
-						<?php
-							$sodown = 0;
-							
-							$sql = "Select * From song Where ID = $id";
-							$temp = DataProvider::ExecuteQuery($sql);
-							if($temp != false)
-							{
-								$row = mysql_fetch_array($temp);
-								$sodown = $row["DownloadCount"];
-								$sodown = $sodown + 1;								
-							}
-
-							$sql = "Update song Set DownloadCount = $sodown Where ID = $id";
-							$temp = DataProvider::ExecuteQuery($sql);
-						?>
-
-						//alert(<?php echo($sodown); ?>);
-						//alert(<?php echo($id); ?>);
+						temp = clearInterval(temp);																					
 								
+						var para = "TangDown=true&ID=<?php echo($id); ?>";
+						var t = $.ajax({url:"xulyDanhGia.php",
+							data:""+para,
+							success:function(kq){alert(kq);}
+							});
+												
 						return;
 					}
-					
+
 					w++;
-					i--;				
+					k--;					
 				}
 
 				function TaiVe(url)
@@ -272,16 +262,10 @@
 					{
 						alert("Hãy đăng nhập để tải bài hát");
 						return;
-					}
-					
+					}					
+						
 					$("#ThongBao").attr("innerHTML","<hr id='ngang' width='0px' />");
-					
-					if($("#user_id").attr("value") == "")
-					   $("#ThongBao").attr("innerHTML","Vui lòng đăng nhập để tải về");
-					else
-					{	
-						temp = setInterval("Dem('" + url + "')",1000);							
-					}
+					temp = setInterval("Dem('" + url + "')",1000);							
 				} 
 	
 				function Them()
