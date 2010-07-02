@@ -53,7 +53,7 @@
 			echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:275px;'>
 			  </div>
 			  <div class='right-login'>
-				<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='Post(this); return false'>		
+				<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='DangNhap(this); return false'>		
 						<label for='txtTenDangNhap'>Tên đăng nhập</label>
 						<p><input type='text' maxlength='30' name='txtTenDangNhap' id='txtTenDangNhap' tabindex='1' style='width:200px;'></p>
 						<label for='txtMatKhau'>Mật khẩu</label>
@@ -142,7 +142,7 @@
 		echo("<div align='center' style='background:url(images/title-login-box-bg.jpg);height:33px;width:275px;'>
 			  </div>
 			  <div class='right-login'>
-				<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='Post(this); return false'>
+				<form id='frmDangNhap' name='frmDangNhap' method='post' action='xulyDangNhap.php' onsubmit='DangNhap(this); return false'>
 					
 						<label for='txtTenDangNhap'>Tên đăng nhập</label>
 						<p><input type='text' maxlength='30' name='txtTenDangNhap' id='txtTenDangNhap' tabindex='1' style='width:200px;'></p>

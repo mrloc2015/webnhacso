@@ -46,7 +46,7 @@ function LayThanhPhanCuaForm(form)//Lấy các thành phần của form (các in
 }
 
 	
-function Post(oForm)//Gửi bằng phương thức POST 
+function DangNhap(oForm)//Gửi bằng phương thức POST 
 {
     var sBody = LayThanhPhanCuaForm(oForm);
     var XmlHttp = GetXmlHttpObject();
@@ -97,7 +97,7 @@ function TaoHieuUng()
 	//$("#idCaSiAM").css("display","none");
 	$("#idNhacHot").css("display","none");
 	$("#idTheLoaiHot").css("display","none");
-	$("#cpUser").css("display","none");
+	//$("#cpUser").css("display","none");
 	$("#cpSong").css("display","none");
 	$("#cpPlaylist").css("display","none");
 	$("#cpStyle").css("display","none");
