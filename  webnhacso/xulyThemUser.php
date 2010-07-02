@@ -117,7 +117,7 @@ $noi_dung .= "</smil>\n";
 
 $playlist_id = "";
 
-$sql = "Insert Into playlist (CreateDate, ListenCount, DownLoadCount) values($today,0,0)";
+$sql = "Insert Into playlist (CreateDate, ListenCount, DownLoadCount) values('$today',0,0)";
 DataProvider::ExecuteQuery($sql);
 $temp = DataProvider::ExecuteQuery("Select MAX(ID) From playlist");
 if($temp != false)
