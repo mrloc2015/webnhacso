@@ -2,6 +2,11 @@
 <?php
 session_start();
 include_once("DataProvider.php");
+if(isset($_SESSION["UserName"]) == false)
+{
+	echo("Có lỗi, xin vui lòng thử lại");
+	return;	
+}
 $username=$_SESSION["UserName"];
 
 if(isset($_REQUEST["thongtincanhan"]))
