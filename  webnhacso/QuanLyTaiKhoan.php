@@ -241,13 +241,13 @@
 	<input type="button" id="btncapnhat" value="Cập Nhật Thông Tin" onclick="CapNhatThongTinCaNhan();"  style="height:40px" />
 </div>
 <!--Thể hiện 1-->
-<div style="width:80%;height:40px;float:right"><span id="kq1"><img id="img1" src="" /></span></div>
+<div style="width:80%;height:40px;float:right"><span id="kq1"></span></div>
    
  </div>
 
 <!--Thay đổi mật khẩu-->
 <div>
-	<div style="text-align:left;margin-bottom:10px"><b><h3><font color="#0000FF">Thay đổi mật khẩu:</font></h1></b></div>
+	<div style="text-align:left;margin-bottom:10px"><b><h3><font color="#0000FF">Thay đổi mật khẩu:</font></h3></b></div>
 	<div class="left_div">Mật khẩu cũ:</div>
     <div class="right_div"><input type="password" id="txtmatkhaucu" style="width:200px" /></div>
     <div class="left_div">Mật khẩu mới:</div>
@@ -259,7 +259,7 @@
     <div style="width:20%;height:40px;float:left;margin-top:10px"><input type="button" id="btnthaydoimatkhau" value="Thay Đổi Mật Khẩu" style="height:40px" onclick="ThayDoiMatKhau();  " />
 <!--Thể hiện 2-->    
 </div>
-    <div style="width:80%;height:40px;float:right"><span id="kq2"><img id="img2" src=""  /></span></div>
+    <div style="width:80%;height:40px;float:right"><span id="kq2"></span></div>
 </div>
 
 
