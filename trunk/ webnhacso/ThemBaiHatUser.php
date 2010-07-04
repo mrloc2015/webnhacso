@@ -14,9 +14,69 @@
 <script type="text/javascript" src="js/jquery.timers.js"></script>
 <script type="text/javascript" src="script/ThemBaiHat.js"></script>
 <script type="text/javascript" src="script/Ajax_FantasyMusic.js"></script>
+<script type="text/javascript" src="js/ajaxupload.js"></script>
 <script type="text/javascript" language="javascript">
-		$("document").ready(TaoDangNhap());
+		//$("document").ready(TaoDangNhap());
+		var t;
+		$("document").ready(function(){
+								TaoDangNhap();		
+								t = new AjaxUpload('#upload', {
+													action: 'xulyThemBaiHatUser.php',
+													name: 'Th_Source',
+													autoSubmit: false,
+													onChange: function(file, extension){														
+														$("#a").attr("value",file);
+												   // Sau khi file được lựa chọn
+												   // Nếu có sự thay đổi lựa chọn file thì viết tiếp code
+												   //ở đây. điều kiện autoSubmit = false.
+												   // @param file basename: Tên file upload
+												   // @param extension: Phần mở rộng của file upload
+													},
+
+													onComplete : function(file, response){
+																						//alert(file);
+																						alert(response);																						
+																					}	
+													});	
+							});		
+		function Them()
+		{
+			//alert("SDF");	//upload.setData({'example_key': 'value'});
+			
+			para = 'Source=' + $("#a").attr("value");;
+			para += '&Th_SongName=' + $("#Th_SongName").attr("value");
+			para += '&Th_Style=' + $("#Th_Style").attr("value");
+			para += '&Th_Singer=' + $("#Th_Singer").attr("value");
+			para += '&Th_Writter=' + $("#Th_Writter").attr("value");	
+			para += '&Th_BitRate=' + $("#Th_BitRate").attr("value");
+			para += '&Th_Rate=' + $("#Th_Rate").attr("value");
+			//alert(para);
+			$.ajax({url: 'xulyThemBaiHatUser.php',
+				   data:""+para,
+				   success:function(kq){
+					   					vt1 = kq.search("<body>") + 6;
+										vt2 = kq.search("</body>");
+										kq = kq.substring(vt1, vt2);
+										kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
+										kq1 = kq + (-1);
+										if(isNaN(kq1) == false) // => là số
+										{
+						   					t.submit();
+											$("#Th_SongName").attr("value","");
+											$("#Th_Style").attr("value","Không biết");
+											$("#Th_Singer").attr("value","Không biết");
+											$("#Th_Writter").attr("value","Không biết");
+											$("#Th_BitRate").attr("value","32");
+											$("#Th_Rate").attr("value","0");
+											$("#a").attr("value","");
+				   						}				
+										else
+											alert(kq);
+										}
+				   });			
+		}
 </script>
+
 </head>
 
 <body>
@@ -35,7 +95,7 @@
                           <a href="TrangChu.php" title="Trang chủ">Trang chủ</a>
                        </li>
                         <li>
-                          <a href="ThemBaiHat.php" title="Đăng/upload Bài Hát">Đăng/upload Bài Hát</a>
+                          <a href="ThemBaiHatUser.php" title="Đăng/upload Bài Hát">Đăng/upload Bài Hát</a>
                         </li>
                         <li class="last">
                           <a href="DangKi.php" title="Đăng ký tài khoản mới">Đăng ký tài khoản mới</a>
@@ -145,17 +205,17 @@
                             <!-- InstanceBeginEditable name="mainConten" -->
                     
             <?php
-	include_once("DataProvider.php");	
+	include_once("DataProvider.php");
 ?>
-<form action="xulyThemBaiHat.php" method="post" enctype="multipart/form-data">
+<form action="xulyThemBaiHatUser.php" method="post" enctype="multipart/form-data">
 <div style="margin-left:100px; margin-top:50px">
 	<div class="worms_field">
 		<div class="worms_left"><label>Song Name:</label></div>       
-       	<input name="Th_SongName" type="text" style="width:145px" />
+       	<input id="Th_SongName" name="Th_SongName" type="text" style="width:145px" />
     </div>
     <div class="worms_field">
     	<div class="worms_left"><label>Style ID:</label></div> 
-        <select name="Th_Style" style="width:145px">
+        <select id="Th_Style" name="Th_Style" style="width:145px">
 			<option value="15">Không Biết</option>
 			<?php
                 $bang_Style = DataProvider::ExecuteQuery("Select * From song_style");            
@@ -171,44 +231,16 @@
         </select>
     </div>
     <div class="worms_field">
-		<div class="worms_left"><label>Owner ID:</label></div>    	
-        <select name="Th_Owner" style="width:145px">
-			<?php
-                $bang_Owner = DataProvider::ExecuteQuery("Select * From user, user_info Where user.ID = user_info.UserID");            
-                if($bang_Owner != false)
-                {
-                    while($row = mysql_fetch_array($bang_Owner))
-                    {
-                        $full_name = $row["UserName"]; 
-                        echo("<option value=".$row["ID"].">$full_name</option>");
-                    }                
-                }
-            ?>
-        </select>
-    </div>
-    <div class="worms_field">
 		<div class="worms_left"><label>Singer:</label></div>
-        <input type="text" name="Th_Singer" style="width:145px" value="Không Biết"/>
+        <input type="text" id="Th_Singer" name="Th_Singer" style="width:145px" value="Không Biết"/>
     </div>
     <div class="worms_field">
         <div class="worms_left"><label>Writter:</label></div>
         <input name="Th_Writter" id="Th_Writter" type="text" style="width:145px" value="Không Biết"/>
     </div>
-<!--<div class="worms_field">
-        <div class="worms_left"><label>Date Up:</label></div>
-        <input name="Th_DateUp" type="text" width="150px" />
-    </div>-->
-<!--<div class="worms_field">
-       	<div class="worms_left"><label>Listen Count:</label></div>
-        <input name="Th_ListenCount" type="text" width="150px"/>
-	</div>
-	<div class="worms_field">
-        <div class="worms_left"><label>Download Count:</label></div>
-        <input name="Th_DownloadCount" type="text" width="150px"/>
-    </div>	-->
     <div class="worms_field">
         <div class="worms_left"><label>Bit Rate ID:</label></div>
-        <select name="Th_BitRate" style="width:145px">
+        <select id="Th_BitRate" name="Th_BitRate" style="width:145px">
             <?php
                 $bang_BitRate = DataProvider::ExecuteQuery("Select * From bit_rate"); 
                 if($bang_BitRate != false)
@@ -224,7 +256,6 @@
 	</div> 
     <div class="worms_field">
         <div class="worms_left" style="margin-top:5px"><label>Rate:</label></div>		
-         
 
         	<input name="Th_Rate" id="Th_Rate" type="hidden" style="width:145px" value="0"/>               
             <img onmouseover="rate_over(1)" onmouseout="rate_out(1)" onclick="rate_click(1)" id="1" style="border:none;outline:none;text-decoration:none;" src="images/sao1.png" width="25" height="25"/>
@@ -239,10 +270,11 @@
     <div class="worms_field">
 		<div class="worms_left" style="margin-top:12px"><label>Source:</label></div>
         <!-- <input name="Th_Source" type="text" width="150px"/> -->
-		<input style="margin-top:10px" type="file" name="Th_Source"/>
+		<input type="text" id="a" value="" />
+        <input style="margin-top:10px" type="button" value="Chọn đường dẫn" onclick="Show()" id="upload" name="Th_Source"/>           
     </div>
-    
-	<div style="margin-top:30px; margin-right:100px"><input type="submit" value="Thêm" /></div>
+
+	<div style="margin-top:30px; margin-right:100px"><input type="button" onclick="Them()" value="Thêm" /></div>
 </div>    
 </form>
 			<!-- InstanceEndEditable --></div>
