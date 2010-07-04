@@ -14,6 +14,7 @@
 <script type="text/javascript" src="js/jquery.timers.js"></script>
 <script type="text/javascript" src="script/ThemBaiHat.js"></script>
 <script type="text/javascript" src="script/Ajax_FantasyMusic.js"></script>
+<script language="javascript" type="text/javascript" src="script/vuongtoan.js"></script> 
 <script type="text/javascript" src="js/ajaxupload.js"></script>
 <script type="text/javascript" language="javascript">
 		//$("document").ready(TaoDangNhap());
@@ -203,12 +204,7 @@
                   <div class="mid-col">
                         <div id="idMainContent" class="main-content" align="center">                   
                             <!-- InstanceBeginEditable name="mainConten" -->
-<script language="javascript" type="text/javascript" src="script/vuongtoan.js"></script> 
-<script language="javascript" type="text/javascript">
-
-
-
-</script>                                             
+                                            
                                                        
 <div style="width:600px" align="center">
 <form id="form1" method="post" action="xulyThemUser.php?DangKi=1">
@@ -218,7 +214,7 @@
   <table width="482" border="0">
     <tr>
       <td width="133"><p>Tên đăng nhập:</p></td>			            
-      <td width="339"><p><input type="text" name="txttendangnhap" id="txttendangnhap" style="width:250px"  onkeyup="KtUser();" /></p>
+      <td width="339"><p><input type="text" name="txttendangnhap" id="txttendangnhap" style="width:250px"  onkeyup="KtUser('txttendangnhap','ktuser');" /></p>
       </td>
       <p>&nbsp;</p>
     </tr>
@@ -243,8 +239,7 @@
     </tr>
     <tr>
       <td><p>Email:</p></td>      
-      <td><p><input type="text" name="txtemail" id="txtemail" style="width:250px"  onblur="KtEmail();" /></p></td>                
-    </tr>
+      <td><p><input type="text" name="txtemail" id="txtemail" style="width:250px"  onblur="KtEmail();" /></p></td>    </tr>
     <tr>
       <td colspan="2"><span id="ktemail" ><p>&nbsp;</p></span ></td>
     </tr>
@@ -411,9 +406,9 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
+        <div class="footer" align="center">
         	<div>
-            	Footer
+            	Bản quyền thuộc về Camellia Team
             </div>
         </div>
    </div>

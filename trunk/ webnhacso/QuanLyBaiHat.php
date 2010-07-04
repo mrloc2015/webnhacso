@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	$_SESSION["IsLogin"] = false;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/TrangChu.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -15,6 +14,7 @@
 <script type="text/javascript" src="js/jquery.timers.js"></script>
 <script type="text/javascript" src="script/ThemBaiHat.js"></script>
 <script type="text/javascript" src="script/Ajax_FantasyMusic.js"></script>
+<script language="javascript" type="text/javascript" src="script/vuongtoan.js"></script> 
 <script type="text/javascript" src="js/ajaxupload.js"></script>
 <script type="text/javascript" language="javascript">
 		//$("document").ready(TaoDangNhap());
@@ -206,11 +206,10 @@
                             <!-- InstanceBeginEditable name="mainConten" -->
                             <div class="cp-title">
 								Quản lý bài hát
-                                <div class="add-cp" onclick="MoRongDieuKhien(this,'cpUser')"></div>
+                                <div class="remove-cp" onclick="MoRongDieuKhien(this,'cpUser')"></div>
                             </div>
                             <div id="cpUser" class="main-content">
 <?php
-	session_start();
 	include_once("DataProvider.php");
 	
 	$ten_bai_hat = "";
@@ -292,9 +291,9 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
+        <div class="footer" align="center">
         	<div>
-            	Footer
+            	Bản quyền thuộc về Camellia Team
             </div>
         </div>
    </div>

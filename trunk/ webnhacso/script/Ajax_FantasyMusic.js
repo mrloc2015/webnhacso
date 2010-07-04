@@ -143,10 +143,10 @@ function TaoHieuUng()
 	$("#idNhacHot").css("display","none");
 	$("#idTheLoaiHot").css("display","none");
 	//$("#cpUser").css("display","none");
-	$("#cpSong").css("display","none");
-	$("#cpPlaylist").css("display","none");
-	$("#cpStyle").css("display","none");
-	$("#cpWeb").css("display","none");
+	//$("#cpSong").css("display","none");
+	//$("#cpPlaylist").css("display","none");
+	//$("#cpStyle").css("display","none");
+	//$("#cpWeb").css("display","none");
 }
 
 function HienRa(id)
