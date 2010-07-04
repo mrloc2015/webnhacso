@@ -68,8 +68,7 @@
 		$date_up = ", \"".date("Y")."-".date("m")."-".date("d")."\"";
 		$bit_rate_id = ", " . $_REQUEST["Th_BitRate"];
 		$rate = ", " . $_REQUEST["Th_Rate"];				
-		$source = ", \"Du_Lieu/BAI_HAT/$song_id/".$_REQUEST['Source']."\"";
-			
+	
 		$sql = "Insert into song (SongName) values ('')";				
 		//echo($sql);			
 		DataProvider::ExecuteQuery($sql);
@@ -77,6 +76,8 @@
 		$temp = DataProvider::ExecuteQuery("Select MAX(ID) From song");
 		while($row = mysql_fetch_array($temp))
 			$song_id = $row["MAX(ID)"];
+			
+		$source = ", \"Du_Lieu/BAI_HAT/$song_id/".$_REQUEST['Source']."\"";
 
 		$sql = "Insert into waiting_song (SongName, StyleID, OwnerID, SingerID, Writter, DateUp, BitRateID, Source) values ($song_name $style_id $owner_id $singer_id $writter $date_up $bit_rate_id $source)";				
 		//echo($sql);			
