@@ -99,7 +99,7 @@
                 	</div>
                     <div class="user-list" id="<?php echo($idContent);?>" style="display:none">
                     	<div style="text-align:left;margin-bottom:10px"><b><h3><font color="#0000FF" >Thông tin tài khoản:</font></h3></b></div>
-                        <form name="frmThongTinUser" method="post" action="xulyCapNhatUser.php" onsubmit="Post(this); return false">
+                        <form name="frmThongTinUser" method="post" action="xulyCapNhatUser.php" onsubmit="Post(this,'idTemp'); return false">
                             <div class="left_div">Tên đăng nhập:</div>
                             <div class="right_div"><label><?php echo($userName);?></label></div>
                             <div class="left_div">Ngày tham gia:</div>
@@ -160,16 +160,23 @@
                                  </select>  
                             </div>
                             <div class="left_div">Email:</div>
+                            <?php
+								$ktusername = "ktuser_$index";
+								$ktmail = "ktemail_$index";
+								$tendangnhap = "txttendangnhap_$index";
+                            ?>
                             <div class="right_div">
-                                <input name="txtemail" type="text" id="txtEmail" value="<?php echo($email);?>" />
+                                <input name="txtemail" type="text" id="txtemail" value="<?php echo($email);?>"/>
                             </div>
                             <div style="text-align:left;margin-bottom:10px"><b><h3><font color="#0000FF">Thay đổi tên đăng nhập và mật khẩu:</font></h3></b></div>
                              <div class="left_div">Tên đăng nhập mới:</div>
-                             <div class="right_div"><input type="text" value="<?php echo($userName);?>" id="txtTenDangNhapMoi" style="width:200px" /></div>
-                             <div class="left_div">Mật khẩu mới:</div>
-                             <div class="right_div"><input type="password" id="txtMatKhauMoi"style="width:200px" /></div>
+                             <div class="right_div"><input type="text" value="<?php echo($userName);?>" id="<?php echo($tendangnhap);?>" style="width:200px" onkeyup="KtUser('txttendangnhap','<?php echo($ktusername);?>');" name="txttendangnhap" /></div>
+                             <span id="<?php echo($ktusername);?>" ><p>&nbsp;</p></span >
+                             <br><div class="left_div">Mật khẩu mới:</div>
+                             <div class="right_div"><input type="password" name="txtMatKhauMoi" id="txtMatKhauMoi"style="width:200px" /></div>
+                             <input type="hidden" value="<?php echo($userID)?>" name="txtUserID">
                              <div style="width:20%;height:40px;float:left;margin-top:10px">
-                                <input type="submit" id="btnCapNhatThongTin" name="btnCapNhatThongTin" value="Cập nhất thông tin" style="height:40px" /> 
+                                <input type="submit" id="btnCapNhatThongTin" name="btnCapNhatThongTin" value="Cập nhất thông tin" style="height:40px" onclick="return CheckInput();" /> 
                              </div>
                         </form>
                     </div>               	

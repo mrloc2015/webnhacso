@@ -340,10 +340,10 @@ function CheckInput()
 		return false;
 	}				
 }
-function KtUser()
+function KtUser(idTenDn,idKetQua)
 {
-	$object=$("#ktuser");
-	$url="KiemTraDangKi.php?username="+$("#txttendangnhap").attr("value");
+	$object=$("#"+idKetQua);
+	$url="KiemTraDangKi.php?username="+$("#"+idTenDn).attr("value");
 	ajaxFunction($object,$url);	
 }
 function KtEmail()
