@@ -209,8 +209,22 @@
                                 <div class="add-cp" onclick="MoRongDieuKhien(this,'cpUser')"></div>
                             </div>
                             <div id="cpUser" class="main-content">
-                           		
-                                
+<?php
+	session_start();
+	include_once("DataProvider.php");
+	
+	$sql = "Select *";
+	$sql .= " From waiting_song";
+	
+	$temp = DataProvider::ExecuteQuery($sql);
+	if($temp != false)
+	{
+		while($row = mysql_fetch_array($temp))
+		{
+			//$row[	
+		}
+	}
+?>
                             </div>
 							<!-- InstanceEndEditable --></div>
                   </div> 

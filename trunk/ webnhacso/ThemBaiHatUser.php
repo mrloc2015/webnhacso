@@ -210,11 +210,11 @@
 <form action="xulyThemBaiHatUser.php" method="post" enctype="multipart/form-data">
 <div style="margin-left:100px; margin-top:50px">
 	<div class="worms_field">
-		<div class="worms_left"><label>Song Name:</label></div>       
+		<div class="worms_left"><label>Tên bài hát:</label></div>       
        	<input id="Th_SongName" name="Th_SongName" type="text" style="width:145px" />
     </div>
     <div class="worms_field">
-    	<div class="worms_left"><label>Style ID:</label></div> 
+    	<div class="worms_left"><label>Thể loại:</label></div> 
         <select id="Th_Style" name="Th_Style" style="width:145px">
 			<option value="15">Không Biết</option>
 			<?php
@@ -231,15 +231,15 @@
         </select>
     </div>
     <div class="worms_field">
-		<div class="worms_left"><label>Singer:</label></div>
+		<div class="worms_left"><label>Ca sĩ:</label></div>
         <input type="text" id="Th_Singer" name="Th_Singer" style="width:145px" value="Không Biết"/>
     </div>
     <div class="worms_field">
-        <div class="worms_left"><label>Writter:</label></div>
+        <div class="worms_left"><label>Tác giả:</label></div>
         <input name="Th_Writter" id="Th_Writter" type="text" style="width:145px" value="Không Biết"/>
     </div>
     <div class="worms_field">
-        <div class="worms_left"><label>Bit Rate ID:</label></div>
+        <div class="worms_left"><label>Chất lượng:</label></div>
         <select id="Th_BitRate" name="Th_BitRate" style="width:145px">
             <?php
                 $bang_BitRate = DataProvider::ExecuteQuery("Select * From bit_rate"); 
@@ -255,7 +255,7 @@
         </select> 
 	</div> 
     <div class="worms_field">
-        <div class="worms_left" style="margin-top:5px"><label>Rate:</label></div>		
+        <div class="worms_left" style="margin-top:5px"><label>Điểm:</label></div>		
 
         	<input name="Th_Rate" id="Th_Rate" type="hidden" style="width:145px" value="0"/>               
             <img onmouseover="rate_over(1)" onmouseout="rate_out(1)" onclick="rate_click(1)" id="1" style="border:none;outline:none;text-decoration:none;" src="images/sao1.png" width="25" height="25"/>
@@ -268,7 +268,7 @@
 			</script>
 	</div>
     <div class="worms_field">
-		<div class="worms_left" style="margin-top:12px"><label>Source:</label></div>
+		<div class="worms_left" style="margin-top:12px"><label>Nguồn:</label></div>
         <!-- <input name="Th_Source" type="text" width="150px"/> -->
 		<input type="text" id="a" value="" />
         <input style="margin-top:10px" type="button" value="Chọn đường dẫn" onclick="Show()" id="upload" name="Th_Source"/>           

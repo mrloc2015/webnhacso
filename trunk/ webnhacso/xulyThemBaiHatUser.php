@@ -15,15 +15,17 @@
 		echo("Chỉ có user mới upload nhạc được</body>");
 		return;
 	}
+	
 	$song_id = 0;
-	$temp = DataProvider::ExecuteQuery("Select MAX(ID) From song");
-		while($row = mysql_fetch_array($temp))
-			$song_id = $row["MAX(ID)"] + 1;
 	//----------------
 	if(isset($_FILES['Th_Source']) == true)
-	{				
+	{	
+		$temp = DataProvider::ExecuteQuery("Select MAX(ID) From song");
+		while($row = mysql_fetch_array($temp))
+			$song_id = $row["MAX(ID)"];			
+			
 		mkdir("Du_Lieu/BAI_HAT/Waiting_Song/$song_id",1);
-		move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/BAI_HAT/Waiting_Song/$song_id/". $_FILES["Th_Source"]["name"]);
+		move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/BAI_HAT/Waiting_Song/$song_id/". $_FILES["Th_Source"]["name"]);		
 		
 		echo("Upload thành công, bài hát của bạn sẽ sớm được duyệt");
 		return;
@@ -67,11 +69,19 @@
 		$bit_rate_id = ", " . $_REQUEST["Th_BitRate"];
 		$rate = ", " . $_REQUEST["Th_Rate"];				
 		$source = ", \"Du_Lieu/BAI_HAT/$song_id/".$_REQUEST['Source']."\"";
+			
+		$sql = "Insert into song (SongName) values ('')";				
+		//echo($sql);			
+		DataProvider::ExecuteQuery($sql);
+		
+		$temp = DataProvider::ExecuteQuery("Select MAX(ID) From song");
+		while($row = mysql_fetch_array($temp))
+			$song_id = $row["MAX(ID)"];
 
 		$sql = "Insert into waiting_song (SongName, StyleID, OwnerID, SingerID, Writter, DateUp, BitRateID, Source) values ($song_name $style_id $owner_id $singer_id $writter $date_up $bit_rate_id $source)";				
 		//echo($sql);			
-		DataProvider::ExecuteQuery($sql);
-
+		DataProvider::ExecuteQuery($sql);		
+		
 		//echo("Thành công");
 	}
 ?>
