@@ -36,6 +36,10 @@
 						$_SESSION["UserType"]=$Row["UserStyleID"];
 						$_SESSION["IsLogin"]=true;
 						$_SESSION["PlayListID"]=$Row["PlayListID"];
+						if($Row["UserStyleID"] == 1)
+						{
+							$_SESSION["IsAdmin"] = true;
+						}
 						
 					}
 				}				
@@ -115,7 +119,7 @@
 										<a href='QuanLyTaiKhoan.php' title='Quản lý tài khoản'>Quản lý tài khoản</a>
 									</li>
 									<li>
-										<a href='QuanLyThanhVien.php' title='Quản lý thành viên'>Quản lý thành viên</a>
+										<a href='QuanLyUser.php' title='Quản lý thành viên'>Quản lý thành viên</a>
 									</li>
 									<li>
 										<a href='QuanLyBaiHat.php' title='Quản lý bài hát'>Quản lý bài hát</a>
