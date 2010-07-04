@@ -213,15 +213,30 @@
 	session_start();
 	include_once("DataProvider.php");
 	
+	$ten_bai_hat = "";
+	$the_loai = "";
+	$ca_si = "";
+	$tac_gia = "";
+	$ngay_up = "";
+	$chat_luong = "";	
+	
 	$sql = "Select *";
-	$sql .= " From waiting_song";
+	$sql .= " From waiting_song ws, song_style ss, user u, singer s, bit_rate br";
+	$sql .= " Where ws.StyleID = ss.ID and ws.OwnerID = u.ID and ws.SingerID = s.ID and ws.BitRateID = br.ID";
 	
 	$temp = DataProvider::ExecuteQuery($sql);
 	if($temp != false)
 	{
 		while($row = mysql_fetch_array($temp))
 		{
-			//$row[	
+			$ten_bai_hat = $row["SongName"];
+			$the_loai = $row["StyleName"];
+			$ca_si = $row["SingerName"];
+			$tac_gia = $row["Writter"];
+			$ngay_up = $row["DateUp"];
+			$chat_luong = $row["BitRate"];
+			
+			
 		}
 	}
 ?>
