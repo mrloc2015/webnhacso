@@ -248,7 +248,9 @@
                 </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- TemplateBeginEditable name="RightContent" -->RightContent<!-- TemplateEndEditable -->   
+                    <!-- TemplateBeginEditable name="Quảng Cáo" -->Quảng Cáo<!-- TemplateEndEditable -->
+                    <div class="adv">
+                    </div>  
                 </div>
             </div>
         </div>

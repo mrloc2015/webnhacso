@@ -31,12 +31,12 @@
 		echo($sql);
 		DataProvider::ExecuteQuery($sql);
 		
-		$sql = "Select Max(ID) From comment";
+		$sql = "Select max(ID) From comment";
 		$temp =	DataProvider::ExecuteQuery($sql);
 		if($temp != false)
 		{
 			$row = mysql_fetch_array($temp);
-			$comment_id = $row["Max(ID)"];
+			$comment_id = $row["max(ID)"];
 		}
 		
 		$sql = "Insert into comment_detail(CommentID, Content) values($comment_id, $noi_dung)";

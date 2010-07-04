@@ -29,6 +29,23 @@ function TaoDangNhap()
 										};
 }
 
+function XoaUser(url,idContent)
+{
+	var choice = confirm("Bạn có đồng ý không ?");
+	if(choice == true)
+	{
+		var xmlHttp = GetXmlHttpObject();
+		xmlHttp.open("GET",url,true);
+		xmlHttp.send(null);
+		xmlHttp.onreadystatechange=function(){
+												if(xmlHttp.readyState == 4 || xmlHttp.readyState == "complete")
+												{
+													$("#"+idContent).html(xmlHttp.responseText);
+												}
+											 };
+	}
+}
+
 
 function LayThanhPhanCuaForm(form)//Lấy các thành phần của form (các input).
 {
@@ -44,6 +61,34 @@ function LayThanhPhanCuaForm(form)//Lấy các thành phần của form (các in
     
     return mangThamSo.join("&");
 }
+
+
+function Post(oForm,idContent)//Gửi bằng phương thức POST 
+{
+    var sBody = LayThanhPhanCuaForm(oForm);
+    var XmlHttp = GetXmlHttpObject();
+    XmlHttp.open("post", oForm.action, true);
+    XmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	
+    XmlHttp.onreadystatechange = function () 
+	{
+        if (XmlHttp.readyState == 4) 
+		{
+			
+            if (XmlHttp.status == 200) 
+			{
+			   
+               $("#"+idContent).html(XmlHttp.responseText);//saveResult(XmlHttp.responseText);
+            } 
+			else 
+			{
+                saveResult("An error occurred: " + XmlHttp.statusText);
+            }
+        }            
+    };
+    XmlHttp.send(sBody);     
+}
+
 
 	
 function DangNhap(oForm)//Gửi bằng phương thức POST 

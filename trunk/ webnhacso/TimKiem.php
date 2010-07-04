@@ -442,7 +442,9 @@
                 </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- InstanceBeginEditable name="RightContent" -->RightContent<!-- InstanceEndEditable -->   
+                    <!-- InstanceBeginEditable name="Quảng Cáo" -->RightContent<!-- InstanceEndEditable -->
+                    <div class="adv">
+                    </div>  
                 </div>
             </div>
         </div>

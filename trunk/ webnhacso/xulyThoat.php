@@ -7,6 +7,7 @@
 	unset($_SESSION["PlayListID"]);
 	unset($_SESSION["UserID"]);
 	
+	$_SESSION["IsAdmin"]=false;
 	$_SESSION["IsLogin"]=false;
 	echo("<script language='javascript' type='text/javascript'>
 			$('#user_id').attr('value',\"\");
