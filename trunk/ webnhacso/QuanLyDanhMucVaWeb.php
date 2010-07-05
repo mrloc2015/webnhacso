@@ -1,10 +1,10 @@
 <?php
 	session_start();
-	$_SESSION["IsLogin"] = false;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/TrangChu.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
+<link rel="icon" href="images/icon.jpg" type="image/x-icon" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
 <link href="css/giaodien.css" rel="stylesheet" type="text/css">
@@ -84,7 +84,7 @@
 <body>
 
   <div class="banner" id="idBanner" align="center">
-    	<img src="images/digital music-banner.jpg" width="1000" height="120">
+  		<img src="images/digital music-banner.jpg" height="150" width="990">
     </div>
   	<div class="main" id="idmain">
          <div class="left-col">
@@ -205,13 +205,106 @@
                   <div class="mid-col">
                         <div id="idMainContent" class="main-content" align="center">                   
                             <!-- InstanceBeginEditable name="mainConten" -->
+                            	<?php if($_SESSION["IsAdmin"] == true)
+									  {
+								?>
 								 <div class="cp-title">
-                                    Quản lý Danh Mục
+                                    Quản lý Danh Mục Thể Loại
                                     <div class="remove-cp" onclick="MoRongDieuKhien(this,'cpStyle')"></div>
                                  </div>
                             	 <div id="cpStyle" class="main-content">
-
+										
+                                        <?php
+											include_once("DataProvider.php");
+									  		$style = DataProvider::ExecuteQuery("SELECT * FROM song_style");
+											while($row=mysql_fetch_array($style))
+											{
+												$styleID = $row["ID"];
+												$styleName = $row["StyleName"];
+                                        ?>
+                                        	<div class="main-content">
+                                               <form action="xulyCapNhatDanhMuc.php" name="frmCapNhatTheLoai" method="post" onsubmit="Post(this,'idTemp'); return false">
+                                        		<label for="txtTheLoai"> Tên Thể Loại: <input type="text" value="<?php echo($styleName);?>" name="txtTheloai"></label>
+                                                <input type="hidden" name="txtStyleID" value="<?php echo($styleID);?>">
+                                            	<input type="submit" value="Cập nhật" name="btnCapNhatDm">
+                                               </form>
+                                                <input type="button" value="Xóa Thể Loại" name="btnXoaDm" onclick="Xoa('xulyCapNhatDanhMuc.php?deleteID=<?php echo($styleID)?>','idTemp')">
+                                            </div>
+                                        <?php
+											}
+                                        ?>
+                                        <div class="main-content">
+                                          <form action="xulyCapNhatDanhMuc.php" method="post" name="frmThemMoiTheLoai" onsubmit="Post(this,'idTemp'); return false">
+                                        	<label for="txtTheLoai"> Tên Thể Loại: <input type="text" value="Thể loại mới" name="txtTheloai"></label>
+                                            <input type="Submit" value="Thêm mới" name="btnThemMoiDm">
+                                          </form>
+                                        </div>                        
                            	 	</div>
+                                
+                                <div class="cp-title">
+                                    Quản lý Danh Mục Ca Sĩ
+                                    <div class="remove-cp" onclick="MoRongDieuKhien(this,'cpSinger')"></div>
+                                 </div>
+                            	 <div id="cpSinger" class="main-content">
+										
+                                        <?php
+											include_once("DataProvider.php");
+									  		$style = DataProvider::ExecuteQuery("SELECT singer.*,zone.ZoneName FROM singer,zone where singer.ZoneID = zone.ID");
+											while($row=mysql_fetch_array($style))
+											{
+												$singerID = $row["ID"];
+												$singerName = $row["SingerName"];
+												$zoneID = $row["ZoneID"];
+												$zoneName = $row["ZoneName"]
+                                        ?>
+                                        	<div class="main-content">
+                                             <form name="frmCaSi" method="post" action="xulyCapNhatDanhMuc.php" onsubmit="Post(this,'idTemp'); return false">
+                                        		<label for="txtCaSi"> Tên Ca Sĩ: <input type="text" value="<?php echo($singerName);?>" name="txtCaSi"></label>
+                                                <label for="cmbZone"> Khu Vực:
+                                                	<select name="cmbZone" id="cmbZone">
+                                                    	<?php
+															echo("<option value='$zoneID'>$zoneName</option>");
+															include_once("DataProvider.php");
+															$zone = DataProvider::ExecuteQuery("SELECT * FROM zone");
+															while($rowz=mysql_fetch_array($zone))
+															{
+																$zoneName = $rowz["ZoneName"];
+																$idZone =$row["ID"];
+																echo("<option value='$idZone'>$zoneName</option>");
+															}
+														?>
+                                                        
+                                                    </select>
+                                                </label>
+                                                <input type="hidden" name="txtSingerID" value="<?php echo($singerID);?>">
+                                            	<input type="Submit" value="Cập nhật" name="btnCapNhatCs">
+                                             </form>
+                                            </div>
+                                        <?php
+											}
+                                        ?>
+                                        <div class="main-content">
+                                          <form name="frmCaSi" method="post" action="xulyCapNhatDanhMuc.php" onsubmit="Post(this,'idTemp'); return false">
+                                        	<label for="txtCaSi"> Tên Ca Sĩ: <input type="text" value="Ca sĩ mới" name="txtCaSi"></label>
+                                            <label for="cmbZone"> Khu Vực:
+                                                	<select name="cmbZone" id="cmbZone">
+                                                    	<?php
+															include_once("DataProvider.php");
+															$zone = DataProvider::ExecuteQuery("SELECT * FROM zone");
+															while($rowz=mysql_fetch_array($zone))
+															{
+																$zoneName = $rowz["ZoneName"];
+																$idZone =$rowz["ID"];
+																echo("<option value='$idZone'>$zoneName</option>");
+															}
+														?>
+                                                    </select>
+                                                </label>
+                                            <input type="submit" value="Thêm mới" name="btnThemMoiCs">
+                                          </form>
+                                        </div>                        
+                           	 	</div>
+                                
                                  <div class="cp-title">
                                     Quản lý Website
                                     <div class="remove-cp" onclick="MoRongDieuKhien(this,'cpWeb')"></div>
@@ -219,7 +312,15 @@
                             	 <div id="cpWeb" class="main-content">
 
                            	 	</div>
+                                <div id="idTemp"></div>
 							<script language="javascript" type="text/javascript">TaoHieuUng();</script>
+                            <?php
+								}
+								else
+								{
+									echo("Hãy đăng nhập với quyền Admin.");
+								}
+                            ?>
 							<!-- InstanceEndEditable --></div>
                   </div> 
             <div class="right-col">

@@ -30,15 +30,37 @@
 					}
 					else
 					{
+						$IsBanned = $Row["IsBanned"];
+						$IsDelete = $Row["IsDelete"];
 						$_SESSION['UserID']=$Row["ID"];
-						$_SESSION['UserName']=$Row["UserName"];
-						$_SESSION["Pass"]=$Row["Pass"];
-						$_SESSION["UserType"]=$Row["UserStyleID"];
-						$_SESSION["IsLogin"]=true;
-						$_SESSION["PlayListID"]=$Row["PlayListID"];
-						if($Row["UserStyleID"] == 1)
+						if($IsDelete == true)
 						{
-							$_SESSION["IsAdmin"] = true;
+							echo("<script>alert('User này đã bị xóa.')</script>");
+						}
+						else
+						{
+							if($IsBanned == true)
+							{
+								$bannedID = $_SESSION['UserID'];
+								$banned=DataProvider::ExecuteQuery("Select * from banned where UserID='$bannedID'");
+								$daybanned = mysql_fetch_array($banned);
+								$unbanned = $daybanned["DateUnbanned"];
+								echo("<script>alert('User này bị banned đến $unbanned.')</script>");
+							}
+							else
+							{
+								$_SESSION['UserID']=$Row["ID"];
+								$_SESSION['UserName']=$Row["UserName"];
+								$_SESSION["Pass"]=$Row["Pass"];
+								$_SESSION["UserType"]=$Row["UserStyleID"];
+								$_SESSION["IsLogin"]=true;
+								$_SESSION["PlayListID"]=$Row["PlayListID"];
+								
+								if($Row["UserStyleID"] == 1)
+								{
+									$_SESSION["IsAdmin"] = true;
+								}
+							}
 						}
 						
 					}
@@ -128,10 +150,10 @@
 										<a href='QuanLyPlaylist.php' title='Quản lý Playlist'>Quản lý Playlist</a>
 									</li>
 									<li>
-										<a href='QuanLyWeb.php' title='Quản lý Website'>Quản lý Website</a>
+										<a href='QuanLyDanhMucVaWeb.php' title='Quản lý Website'>Quản lý Website</a>
 									</li>
 									<li>
-										<a href='QuanLyDanhMuc.php' title='Quản lý danh mục'>Quản lý danh mục</a>
+										<a href='QuanLyDanhMucVaWeb.php' title='Quản lý danh mục'>Quản lý danh mục</a>
 									</li>
 									<li>
 										<a href='javascript:DangXuat()' title='Thoát'>Thoát</a>
