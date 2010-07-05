@@ -205,7 +205,7 @@
                   <div class="mid-col">
                         <div id="idMainContent" class="main-content" align="center">                   
                             <!-- InstanceBeginEditable name="mainConten" -->
-                            	<?php if($_SESSION["IsAdmin"] == true)
+                            	<?php if(isset($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"] == true)
 									  {
 								?>
 								 <div class="cp-title">
@@ -310,9 +310,18 @@
                                     <div class="remove-cp" onclick="MoRongDieuKhien(this,'cpWeb')"></div>
                                  </div>
                             	 <div id="cpWeb" class="main-content">
-
-                           	 	</div>
-                                <div id="idTemp"></div>
+                                 	<?php
+										include_once("DataProvider.php");
+										$myweb = DataProvider::ExecuteQuery("SELECT * FROM myweb");
+										$row = mysql_fetch_array($myweb);
+										$intro = $row["Intro"];
+                                   	?>
+									<form name="frmIntro">
+                                    	<label for="txtIntro"> Nội dung giới thiệu :<input type="text" value="<?php echo($intro)?>" style="width:100%"></label>
+                                        <input type="submit" name="btnGioiThieu" value="Đồng Ý">
+                                    </form>
+                           	 	 </div>
+                                 <div id="idTemp"></div>
 							<script language="javascript" type="text/javascript">TaoHieuUng();</script>
                             <?php
 								}
@@ -366,8 +375,25 @@
                 </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- InstanceBeginEditable name="Quảng Cáo" -->Quảng Cáo<!-- InstanceEndEditable -->
-                    <div class="adv">
+                    <div id="idAdv1" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 1" -->
+                        	
+						<!-- InstanceEndEditable -->	
+                    </div>
+                  	<div id="idAdv2" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 2" -->
+                        	
+						<!-- InstanceEndEditable -->
+                    </div> 
+                  	<div id="idAdv3" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 3" -->
+                        	
+						<!-- InstanceEndEditable -->
+                    </div> 
+               	  	<div id="idAdv4" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 4" -->
+                        	
+						<!-- InstanceEndEditable -->
                     </div>  
                 </div>
             </div>

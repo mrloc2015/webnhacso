@@ -322,7 +322,10 @@ a
 
 .adv
 {
-	
+	width:100%;
+	height:275px;
+	position:relative;
+	margin-top:5px;
 }
 /*---------------------------------------*/
 

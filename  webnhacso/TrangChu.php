@@ -211,7 +211,14 @@
                         	<span>Thông tin</span>
                         </div>
                         <div class="header-content" align="justify">
-                        	Để dễ dàng hơn cho việc theo dõi các sự kiện mới và các chương trình của Fantasy Music Mời các bạn hãy trở 			thành Fan của Fantasy Music trên Facebook. Từ này về sau, các sự kiện, thông báo, chương trình khuyến mãi tặng quà…. của Fantasy Music sẽ được chính thức thông báo trên blog và Facebook. Trân trọng.
+                        	<?php
+								include_once("DataProvider.php");
+                        		$sql = "select * from myweb";
+								$result = DataProvider::ExecuteQuery($sql);
+								$row = mysql_fetch_array($result);
+								$intro = $row["Intro"];
+								echo($intro);
+                            ?>
                         </div>
                     </div>
                     <div class="header-list" onclick="HienRa('idNhacMoi')">Top Nhạc MỚI !!</div>
@@ -224,6 +231,7 @@
 							{
 								$songName = $row["SongName"];
 								$singerName = $row["SingerName"];
+								$dayUp = $row["DateUp"];
 								$userName = $row["UserName"];
 								$nameStyle = $row["StyleName"];
 								$listenCount = $row["ListenCount"];
@@ -243,17 +251,18 @@
 								echo(
 									 "<p>
 										<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+										| <label>Ngày đăng</label>: $dayUp
 									</p>"); 
 								echo(
 									 "<p>
 										<label>Đăng bởi</label>: 
 										<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
 										<span>"); 
-								echo( "|"); 
+								echo( " | "); 
 								echo ("$bitRate kb/s"); 
-								echo( "|"); 
+								echo( " | "); 
 								echo("<label>Lượt nghe</label>: $listenCount"); 
-								echo( "|"); 
+								echo( " | "); 
 								echo("</span>");
 								echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
 								echo("</div>");
@@ -261,7 +270,7 @@
 							} 
                         ?>
                     </div>
-                    <div class="header-list" onclick="HienRa('idNhacHot')">Top Nhạc HOT !!</div>
+                    <div class="header-list" onclick="HienRa('idNhacHot')">Top Nhạc Hay !!</div>
                     <div class="main-content" id="idNhacHot">
                     	<?php
 							include_once("DataProvider.php");
@@ -271,6 +280,7 @@
 							{
 								$songName = $row["SongName"];
 								$singerName = $row["SingerName"];
+								$dayUp = $row["DateUp"];
 								$userName = $row["UserName"];
 								$nameStyle = $row["StyleName"];
 								$listenCount = $row["ListenCount"];
@@ -290,17 +300,18 @@
 								echo(
 									 "<p>
 										<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+										| <label>Ngày đăng</label>: $dayUp
 									</p>"); 
 								echo(
 									 "<p>
 										<label>Đăng bởi</label>: 
 										<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
 										<span>"); 
-								echo( "|"); 
+								echo( " | "); 
 								echo ("$bitRate kb/s"); 
-								echo( "|"); 
+								echo( " | "); 
 								echo("<label>Lượt nghe</label>: $listenCount"); 
-								echo( "|"); 
+								echo( " | "); 
 								echo("</span>");
 								echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
 								echo("</div>");
@@ -308,51 +319,59 @@
 							} 
                         ?>
                     </div>
-                    <div class="header-list" onclick="HienRa('idTheLoaiHot')">HOT!!</div>
+                    <div class="header-list" onclick="HienRa('idTheLoaiHot')">TOP Nhạc HOT!!</div>
                     <div class="main-content" id="idTheLoaiHot">
                     	<?php
 							include_once("DataProvider.php");
-                        	$sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID order by so.ListenCount DESC limit 0,28";
-							$result = DataProvider::ExecuteQuery($sql);
-							while($row = mysql_fetch_array($result))
+							$sql = "select * from song_style";
+							$style = DataProvider::ExecuteQuery($sql);
+							while($rows = mysql_fetch_array($style))
 							{
-								$songName = $row["SongName"];
-								$singerName = $row["SingerName"];
-								$userName = $row["UserName"];
-								$nameStyle = $row["StyleName"];
-								$listenCount = $row["ListenCount"];
-								$bitRate = $row["BitRate"];
-								$idSong = $row["ID"];
-								$idStyle = $row["StyleID"];
-								$idUser = $row["OwnerID"];
-								$idSinger = $row["SingerID"];
-								$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
-								$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
-								$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
-								$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
-								
-								echo("<div class='song-info' align='left'>");
-								echo("<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>");
-								echo("<h2><a href='$duongDanBaiHat'>$songName</a></h2>");
-								echo(
-									 "<p>
-										<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
-									</p>"); 
-								echo(
-									 "<p>
-										<label>Đăng bởi</label>: 
-										<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
-										<span>"); 
-								echo( "|"); 
-								echo ("$bitRate kb/s"); 
-								echo( "|"); 
-								echo("<label>Lượt nghe</label>: $listenCount"); 
-								echo( "|"); 
-								echo("</span>");
-								echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
-								echo("</div>");
-								
-							} 
+								 $styleID = $rows["ID"];
+								 $sql = "select so.*,SingerName,UserName,StyleName,BitRate from song so,singer si,user u,song_style st,bit_rate br where so.SingerID = si.ID and so.OwnerID = u.ID and so.StyleID = st.ID and br.ID = so.BitRateID and st.ID = $styleID order by so.ListenCount DESC limit 0,2";
+								 $result = DataProvider::ExecuteQuery($sql);
+								 while($row = mysql_fetch_array($result))
+								 {
+								 	 $songName = $row["SongName"];
+									 $singerName = $row["SingerName"];
+									 $dayUp = $row["DateUp"];
+									 $userName = $row["UserName"];
+									 $nameStyle = $row["StyleName"];
+									 $listenCount = $row["ListenCount"];
+									 $bitRate = $row["BitRate"];
+									 $idSong = $row["ID"];
+									 $idStyle = $row["StyleID"];
+									 $idUser = $row["OwnerID"];
+									 $idSinger = $row["SingerID"];
+									 $duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
+									 $duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
+									 $duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
+									 $duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
+									
+									 echo("<div class='song-info' align='left'>");
+									 echo("<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>");
+									 echo("<h2><a href='$duongDanBaiHat'>$songName</a></h2>");
+									 echo(
+										 "<p>
+											<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+											| <label>Ngày đăng</label>: $dayUp
+										</p>"); 
+									 echo(
+										 "<p>
+											<label>Đăng bởi</label>: 
+											<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
+											<span>"); 
+									 echo( " | "); 
+									 echo ("$bitRate kb/s"); 
+									 echo( " | "); 
+									 echo("<label>Lượt nghe</label>: $listenCount"); 
+									 echo( " | "); 
+									 echo("</span>");
+									 echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
+									 echo("</div>");
+									
+								 } 
+							}					
                         ?>
                     </div>
 				  <!-- InstanceEndEditable --></div>
@@ -400,8 +419,25 @@
                 </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- InstanceBeginEditable name="Quảng Cáo" -->RightContent<!-- InstanceEndEditable -->
-                    <div class="adv">
+                    <div id="idAdv1" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 1" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->	
+                    </div>
+                  	<div id="idAdv2" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 2" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
+                    </div> 
+                  	<div id="idAdv3" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 3" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
+                    </div> 
+               	  	<div id="idAdv4" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 4" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
                     </div>  
                 </div>
             </div>

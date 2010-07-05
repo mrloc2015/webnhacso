@@ -218,8 +218,7 @@
 	}
 	if(isset($_REQUEST["Trang"]) == true)
 		$tu_bai = ($so_bai * $_REQUEST["Trang"]) - $so_bai;
-	//echo($so_bai);
-	//echo($tu_bai);
+
 	$noi_dung = "";
 	
 	$ten_bai_hat = "";
@@ -262,7 +261,7 @@
 		if($clip != 0)
 			$sql .= " and s.Clip=" . $clip;
 		
-		$sql.=" order by s.ListenCount DESC";
+		$sql.=" order by s.DateUp DESC";
 		$temp = DataProvider::ExecuteQuery($sql);
 		if($temp != false)
 		{
@@ -271,13 +270,11 @@
 				$tong_so_trang = (int)($row["count(s.ID)"] / $so_bai) + 1;
 			else
 				$tong_so_trang = (int)($row["count(s.ID)"] / $so_bai);
-			//echo($tong_so_trang);
 		}
 		
 		$sql = str_replace("count(s.ID)","s.*, ss.StyleName, u.UserName, sin.SingerName, br.BitRate",$sql);
 		//Phân trang
 		$sql .= " LIMIT $tu_bai , $so_bai";
-		//echo($sql);
 		$temp = DataProvider::ExecuteQuery($sql);
 		if($temp != false)
 		{			
@@ -294,22 +291,24 @@
 				$nameStyle = $row["StyleName"];
 				$listenCount = $row["ListenCount"];
 				$bitRate = $row["BitRate"];
+				$dayUp = $row["DateUp"];
 
 				$noi_dung .= "<div class='song-info' align='left'>";
 				$noi_dung .= "<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>";
 				$noi_dung .= "<h2><a href='$duongDanBaiHat'>$songName</a></h2>";
 				$noi_dung .= "<p>
 								<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+								| <label>Ngày đăng</label>: $dayUp
 							  </p>";
 				$noi_dung .= "<p>
 								<label>Đăng bởi</label>: 
 								<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
 								<span>";
-				$noi_dung .= "|";
+				$noi_dung .= " | ";
 				$noi_dung .= "$bitRate kb/s";
-				$noi_dung .= "|";
+				$noi_dung .= " | ";
 				$noi_dung .= "<label>Lượt nghe</label>: $listenCount";
-				$noi_dung .= "|";
+				$noi_dung .= " | ";
 				$noi_dung .= "</span>";
 				$noi_dung .= "<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>";
 				$noi_dung .= "</div>";
@@ -444,8 +443,25 @@
                 </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- InstanceBeginEditable name="Quảng Cáo" -->RightContent<!-- InstanceEndEditable -->
-                    <div class="adv">
+                    <div id="idAdv1" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 1" -->
+                       		<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->	
+                    </div>
+                  	<div id="idAdv2" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 2" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
+                    </div> 
+                  	<div id="idAdv3" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 3" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
+                    </div> 
+               	  	<div id="idAdv4" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 4" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
                     </div>  
                 </div>
             </div>

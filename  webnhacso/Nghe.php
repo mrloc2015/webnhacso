@@ -223,6 +223,8 @@
 			$id = $_REQUEST["BaiHat"];// $row["song.ID"];
 			//echo($id);
 			$source = $row["Source"];
+			$dayUp = $row["DateUp"];
+			$writter = $row["Writter"];
 			$songName = $row["SongName"];
 			$style = $row["StyleName"];
 			$userName = $row["UserName"];
@@ -252,10 +254,10 @@
             		<?php echo("$songName");?>
             	</div>
                 <div class="song-info">
-                	<?php echo("Trình bày:<a href='$duongDanCaSi'>$singerName</a>");?>
+                	<?php echo("Trình bày:<a href='$duongDanCaSi'>$singerName</a> | <label>Tác giả</label>: $writter");?>
                 </div>
                 <div class="song-info">
-                	<?php echo("Người đăng:<a href='$duongDanNguoiDang'>$userName</a> | Bit rate:$bitRate kb/s | <a href='$duongDanTheLoai'>$style</a><br>Lượt nghe:$listenCount | Lượt download:$downCount");?>
+                	<?php echo("Người đăng:<a href='$duongDanNguoiDang'>$userName</a> | <label>Ngày đăng</label>: $dayUp | Bit rate:$bitRate kb/s | <a href='$duongDanTheLoai'>$style</a><br>Lượt nghe:$listenCount | Lượt download:$downCount");?>
                 </div>
             </div>
 			<div align="center" style="margin-top:50px"> 
@@ -398,6 +400,8 @@
 						$songName = $row["SongName"];
 						$singerName = $row["SingerName"];
 						$userName = $row["UserName"];
+						$dayUp = $row["DateUp"];
+						$writter = $row["Writter"];
 						$nameStyle = $row["StyleName"];
 						$listenCount = $row["ListenCount"];
 						$bitRate = $row["BitRate"];
@@ -417,17 +421,18 @@
 						echo(
 							 "<p>
 								<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+								| <label>Ngày đăng</label>: $dayUp | <label>Tác giả</label>: $writter
 							</p>"); 
 						echo(
 							 "<p>
 								<label>Đăng bởi</label>: 
 								<span><a title='Nghe list bài hát của bạn $userName' href='$duongDanNguoiDung'>$userName</a></span>
 								<span>"); 
-						echo( "|"); 
+						echo( " | "); 
 						echo ("$bitRate kb/s"); 
-						echo( "|"); 
+						echo( " | "); 
 						echo("<label>Lượt nghe</label>: $listenCount"); 
-						echo( "|"); 
+						echo( " | "); 
 						echo("</span>");
 						echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
 						echo("</div>");
@@ -575,9 +580,6 @@
                 <script type="text/javascript" language="javascript">
 					function playMedia(song_id, source)
 					{						
-						//alert("Du_Lieu/BAI_HAT/" + song_id + "/" + source);
-						//var s = "Du_Lieu/BAI_HAT/" + song_id + "/" + source;
-						//document.getElementById('playerEm').URL = s;
 						$("#playerEm").attr("URL",source);
 					} 
 	            </script>
@@ -595,7 +597,9 @@
 						
 						$songName = $row["SongName"];
 						$singerName = $row["SingerName"];
+						$writter = $row["Writter"];
 						$userName = $row["UserName"];
+						$dayUp = $row["DateUp"];
 						$nameStyle = $row["StyleName"];
 						$listenCount = $row["ListenCount"];
 						$bitRate = $row["BitRate"];
@@ -616,6 +620,7 @@
 						echo(
 							 "<p>
 								<label>Trình bày</label>: <a title='Tìm các bài hát do $singerName' href='$duongDanCaSi'>$singerName</a>
+								| <label>Ngày đăng</label>: $dayUp | <label>Tác giả</label>: $writter
 							</p>"); 
 						echo(
 							 "<p>
@@ -761,8 +766,25 @@
                 </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- InstanceBeginEditable name="Quảng Cáo" -->RightContent<!-- InstanceEndEditable -->
-                    <div class="adv">
+                    <div id="idAdv1" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 1" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->	
+                    </div>
+                  	<div id="idAdv2" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 2" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
+                    </div> 
+                  	<div id="idAdv3" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 3" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
+                    </div> 
+               	  	<div id="idAdv4" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 4" -->
+                        	<object data="images/adv.swf" width="100%" height="100%"></object>
+						<!-- InstanceEndEditable -->
                     </div>  
                 </div>
             </div>

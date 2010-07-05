@@ -250,8 +250,25 @@
                 </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- TemplateBeginEditable name="Quảng Cáo" -->Quảng Cáo<!-- TemplateEndEditable -->
-                    <div class="adv">
+                    <div id="idAdv1" class="adv">
+						<!-- TemplateBeginEditable name="Quảng Cáo 1" -->
+                        	<object data="../images/adv.swf" width="100%" height="100%"></object>
+						<!-- TemplateEndEditable -->	
+                    </div>
+                  	<div id="idAdv2" class="adv">
+						<!-- TemplateBeginEditable name="Quảng Cáo 2" -->
+                        	<object data="../images/adv.swf" width="100%" height="100%"></object>
+						<!-- TemplateEndEditable -->
+                    </div> 
+                  	<div id="idAdv3" class="adv">
+						<!-- TemplateBeginEditable name="Quảng Cáo 3" -->
+                        	<object data="../images/adv.swf" width="100%" height="100%"></object>
+						<!-- TemplateEndEditable -->
+                    </div> 
+               	  	<div id="idAdv4" class="adv">
+						<!-- TemplateBeginEditable name="Quảng Cáo 4" -->
+                        	<object data="../images/adv.swf" width="100%" height="100%"></object>
+						<!-- TemplateEndEditable -->
                     </div>  
                 </div>
             </div>
