@@ -486,8 +486,25 @@
                 </form>
               </div>
                 <div class="right-content" id="idRightContent" align="center">
-                    <!-- InstanceBeginEditable name="Quảng Cáo" -->RightContent<!-- InstanceEndEditable -->
-                    <div class="adv">
+                    <div id="idAdv1" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 1" -->
+                        	Quảng Cáo 1
+						<!-- InstanceEndEditable -->	
+                    </div>
+                  	<div id="idAdv2" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 2" -->
+                        	Quảng Cáo 2
+						<!-- InstanceEndEditable -->
+                    </div> 
+                  	<div id="idAdv3" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 3" -->
+                        	Quảng Cáo 3
+						<!-- InstanceEndEditable -->
+                    </div> 
+               	  	<div id="idAdv4" class="adv">
+						<!-- InstanceBeginEditable name="Quảng Cáo 4" -->
+                        	Quảng Cáo 4
+						<!-- InstanceEndEditable -->
                     </div>  
                 </div>
             </div>
