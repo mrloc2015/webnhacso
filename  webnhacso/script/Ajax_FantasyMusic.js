@@ -29,7 +29,24 @@ function TaoDangNhap()
 										};
 }
 
-function XoaUser(url,idContent)
+function Xoa(url,idContent)
+{
+	var choice = confirm("Bạn có đồng ý không ?");
+	if(choice == true)
+	{
+		var xmlHttp = GetXmlHttpObject();
+		xmlHttp.open("GET",url,true);
+		xmlHttp.send(null);
+		xmlHttp.onreadystatechange=function(){
+												if(xmlHttp.readyState == 4 || xmlHttp.readyState == "complete")
+												{
+													$("#"+idContent).html(xmlHttp.responseText);
+												}
+											 };
+	}
+}
+
+function ThemMoi(url,idContent)
 {
 	var choice = confirm("Bạn có đồng ý không ?");
 	if(choice == true)

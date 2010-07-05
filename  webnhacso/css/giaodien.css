@@ -6,7 +6,7 @@
 /*Phần này tham khảo từ trang nhaccuatui.com*/
 body
 {
-	background:url("../images/main-body-bg.jpg") no-repeat scroll center 120px #DCDCDC;
+	background:url("../images/main-body-bg.jpg") no-repeat scroll center 120px #cfe7cf;
 	font-family:Verdana,Arial,Helvetica,Sans-Serif;
 	font-size:12px;
 	line-height:18px;
@@ -47,7 +47,7 @@ a
 	background:url("../images/head-page-bg.jpg");
 	height:auto;
 	margin:0 auto;
-	width:100%;
+	width:1000;
 	position:relative;
 }
 

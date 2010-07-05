@@ -40,13 +40,13 @@
 								if($IsDelete == true)
 								{
 							?>
-                            		<label for='btnBoXoaUser'><input name='btnBoXoaUser' type='button' value='Bỏ xóa User' onclick="XoaUser('xulyXoaVaBannedUser.php?undeleteID=<?php echo($userID);?>','idTemp')"></label>
+                            		<label for='btnBoXoaUser'><input name='btnBoXoaUser' type='button' value='Bỏ xóa User' onclick="Xoa('xulyXoaVaBannedUser.php?undeleteID=<?php echo($userID);?>','idTemp')"></label>
                             <?php
 								}
 								else
 								{
 							?>
-                            		<label for='btnXoaUser'><input name='btnXoaUser' type='button' value='Xóa User' onclick="XoaUser('xulyXoaVaBannedUser.php?deleteID=<?php echo($userID);?>','idTemp')"></label>
+                            		<label for='btnXoaUser'><input name='btnXoaUser' type='button' value='Xóa User' onclick="Xoa('xulyXoaVaBannedUser.php?deleteID=<?php echo($userID);?>','idTemp')"></label>
                             <?php
 								}
                             ?>

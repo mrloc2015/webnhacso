@@ -2,6 +2,7 @@
 <?php session_start();?>
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/TrangChu.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
+<link rel="icon" href="images/icon.jpg" type="image/x-icon" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fantasy Music</title>
 <link href="css/giaodien.css" rel="stylesheet" type="text/css">
@@ -81,7 +82,7 @@
 <body>
 
   <div class="banner" id="idBanner" align="center">
-    	<img src="images/digital music-banner.jpg" width="1000" height="120">
+  		<img src="images/digital music-banner.jpg" height="150" width="990">
     </div>
   	<div class="main" id="idmain">
          <div class="left-col">
