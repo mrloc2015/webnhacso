@@ -218,7 +218,6 @@
     <div class="worms_field">
     	<div class="worms_left"><label>Thể loại:</label></div> 
         <select id="Th_Style" name="Th_Style" style="width:145px">
-			<option value="15">Không Biết</option>
 			<?php
                 $bang_Style = DataProvider::ExecuteQuery("Select * From song_style");            
                 if($bang_Style != false)
@@ -226,7 +225,10 @@
                     while($row = mysql_fetch_array($bang_Style))
                     {
                         $style_name = $row["StyleName"]; 
-                        echo("<option value=".$row["ID"].">$style_name</option>");
+						if($row["ID"] == 14)
+	                        echo("<option value=".$row["ID"]." selected='selected'>$style_name</option>");
+						else
+							echo("<option value=".$row["ID"].">$style_name</option>");
                     }                
                 }
             ?>
@@ -275,6 +277,8 @@
 		<input type="text" id="a" value="" />
         <input style="margin-top:10px" type="button" value="Chọn đường dẫn" onclick="Show()" id="upload" name="Th_Source"/>           
     </div>
+	<br />
+	<div align="left">File đăng/upload lên không quá 10Mb, có dạng WMA, WMV, MP3, FLV, MPEG, MPG, AVI</div>
 
 	<div style="margin-top:30px; margin-right:100px"><input type="button" onclick="Them()" value="Thêm" /></div>
 </div>    

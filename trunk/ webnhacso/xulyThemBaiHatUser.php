@@ -25,8 +25,10 @@
 			$song_id = $row["MAX(ID)"];			
 			
 		mkdir("Du_Lieu/BAI_HAT/Waiting_Song/$song_id",1);
-		move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/BAI_HAT/Waiting_Song/$song_id/". $_FILES["Th_Source"]["name"]);		
-		
+		if(($_FILES["Th_Source"]["size"]/1024/1024) <= 10) //đơn vị là bytes
+		{
+			move_uploaded_file($_FILES["Th_Source"]["tmp_name"], "Du_Lieu/BAI_HAT/Waiting_Song/$song_id/". $_FILES["Th_Source"]["name"]);		
+		}
 		echo("Upload thành công, bài hát của bạn sẽ sớm được duyệt");
 		return;
 	}
@@ -44,7 +46,7 @@
 		return;
 	}
 	
-	$song_name = "\"" . $_REQUEST["Th_SongName"]."\"";
+	$song_name = ", \"" . $_REQUEST["Th_SongName"]."\"";
 	$style_id = ", " . $_REQUEST["Th_Style"];		
 	$owner_id = ", " . $_SESSION["UserID"];
 	$singer_id = "-1";
@@ -79,7 +81,7 @@
 			
 		$source = ", \"Du_Lieu/BAI_HAT/$song_id/".$_REQUEST['Source']."\"";
 
-		$sql = "Insert into waiting_song (SongName, StyleID, OwnerID, SingerID, Writter, DateUp, BitRateID, Source) values ($song_name $style_id $owner_id $singer_id $writter $date_up $bit_rate_id $source)";				
+		$sql = "Insert into waiting_song (SongID, SongName, StyleID, OwnerID, SingerID, Writter, DateUp, BitRateID, Source) values ($song_id $song_name $style_id $owner_id $singer_id $writter $date_up $bit_rate_id $source)";				
 		//echo($sql);			
 		DataProvider::ExecuteQuery($sql);		
 		

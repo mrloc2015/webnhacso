@@ -437,6 +437,24 @@ a
 	float:left;
 	width:150px;
 }
+
+/*Quản lý bài hát - sau_con_89*/
+.worms_trai
+{
+	 height:25px;
+	 float:left;
+	 width:100px;
+}
+.worms_giua
+{
+	 height:25px;
+	 float:left;
+	 width:130px;
+}
+.worms_phai
+{
+	 height:25px;	
+}
 /*-------------------------*/
 .left_div {
 	text-align: left;
