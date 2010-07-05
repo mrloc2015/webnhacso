@@ -206,41 +206,241 @@
                         <div id="idMainContent" class="main-content" align="center">                   
                             <!-- InstanceBeginEditable name="mainConten" -->
                             <div class="cp-title">
-								Quản lý bài hát
+								Quản lý đăng bài hát
                                 <div class="remove-cp" onclick="MoRongDieuKhien(this,'cpUser')"></div>
                             </div>
-                            <div id="cpUser" class="main-content">
+<form>                            
+                            <div id="cpUser" class="main-content">                           
+                             
 <?php
 	include_once("DataProvider.php");
-	
+	/*
 	$ten_bai_hat = "";
 	$the_loai = "";
 	$ca_si = "";
 	$tac_gia = "";
 	$ngay_up = "";
 	$chat_luong = "";	
-	
+	*/
 	$sql = "Select *";
 	$sql .= " From waiting_song ws, song_style ss, user u, singer s, bit_rate br";
 	$sql .= " Where ws.StyleID = ss.ID and ws.OwnerID = u.ID and ws.SingerID = s.ID and ws.BitRateID = br.ID";
 	
 	$temp = DataProvider::ExecuteQuery($sql);
 	if($temp != false)
-	{
+	{				
+		$song_id = array("","","");
+		$ten_bai_hat = array("","","");
+		$dinh_dang = array("","","");
+		$the_loai = array("","","");
+		$ca_si = array("","","");
+		$tac_gia = array("","","");
+		$ngay_dang = array("","","");
+		$chat_luong = array("","","");
+		
+		$mang_dinh_dang = array("wma", "wmv", "mp3", "flv", "mpeg", "mpg", "avi");
+			
+		$i = 0;
+		$k = 0;
 		while($row = mysql_fetch_array($temp))
+		{					
+			$song_id[$i] = $row["SongID"];
+			$ten_bai_hat[$i] = $row["SongName"];
+
+			$temp1 = explode(".",$row["Source"]);
+			$flag = 1; //khác
+			for($j=0;$j<7;$j++)
+			{
+				$temp1[1] = strtolower($temp1[1]);
+				if(strcmp($mang_dinh_dang[$j], $temp1[1]) == 0)
+					$flag = 0; //có hỗ trợ
+			}
+			if($flag == 1)
+				$dinh_dang[$i] = "<font size='+1' color='#F00'><strong>$temp1[1]</strong></font>";
+			else
+				$dinh_dang[$i] = $temp1[1];
+				
+			$the_loai[$i] = $row["StyleName"];
+			$ca_si[$i] = $row["SingerName"];
+			$tac_gia[$i] = $row["Writter"];
+			$ngay_dang[$i] = $row["DateUp"];
+			$chat_luong[$i] = $row["BitRate"];			
+			
+			if($i%2 == 0 && $i != 0)
+			{
+			?>
+            <hr width="400px" />
+			<div align="left" style="margin-left:10px; margin-top:20px">        
+                <div class="worms_trai"><strong>Tên bài hát</strong></div>
+                <div class="worms_giua"><input style="width:120px" type="text" value="<?php echo($ten_bai_hat[0]); ?>" /></div>
+                <div class="worms_giua"><input style="width:120px" type="text" value="<?php echo($ten_bai_hat[1]); ?>" /></div>
+                <div class="worms_phai"><input style="width:120px" type="text" value="<?php echo($ten_bai_hat[2]); ?>" /></div>
+                
+                <div class="worms_trai"><strong>Định dạng</strong></div>
+                <div class="worms_giua"><?php echo($dinh_dang[0]); ?></div>
+                <div class="worms_giua"><?php echo($dinh_dang[1]); ?></div>
+                <div class="worms_phai"><?php echo($dinh_dang[2]); ?></div>  
+                
+                <div class="worms_trai"><strong>Thể lọai</strong></div>
+                <div class="worms_giua"><?php echo($the_loai[0]); ?></div>
+                <div class="worms_giua"><?php echo($the_loai[1]); ?></div>
+                <div class="worms_phai"><?php echo($the_loai[2]); ?></div>  
+                 
+                <div class="worms_trai"><strong>Ca sĩ</strong></div>
+                <div class="worms_giua"><?php echo($ca_si[0]); ?></div>
+                <div class="worms_giua"><?php echo($ca_si[1]); ?></div>
+                <div class="worms_phai"><?php echo($ca_si[2]); ?></div>
+                
+                <div class="worms_trai"><strong>Tác giả</strong></div>                        
+                <div class="worms_giua"><?php echo($tac_gia[0]); ?></div>
+                <div class="worms_giua"><?php echo($tac_gia[1]); ?></div>
+                <div class="worms_phai"><?php echo($tac_gia[2]); ?></div>
+                
+                <div class="worms_trai"><strong>Ngày đăng</strong></div>            
+                <div class="worms_giua"><?php echo($ngay_dang[0]); ?></div>
+                <div class="worms_giua"><?php echo($ngay_dang[1]); ?></div>
+                <div class="worms_phai"><?php echo($ngay_dang[2]); ?></div>
+                
+                <div class="worms_trai"><strong>Chất lượng</strong></div>            
+                <div class="worms_giua"><?php echo($chat_luong[0]); ?></div>
+                <div class="worms_giua"><?php echo($chat_luong[1]); ?></div>
+                <div class="worms_phai"><?php echo($chat_luong[2]); ?></div>
+                
+                <div class="worms_trai"><strong>Cho phép<br />đăng</strong></div> 
+                <div class="worms_giua" align="center" style="margin-top:10px"><input id="<?php echo($k); $k++; ?>" name="<?php echo($song_id[0]); ?>" value="<?php echo($song_id[0]); ?>" type="radio" /></div>
+                <div class="worms_giua" align="center" style="margin-top:10px"><input id="<?php echo($k); $k++; ?>" name="<?php echo($song_id[1]); ?>" value="<?php echo($song_id[1]); ?>" type="radio" /></div>
+                <div class="worms_phai" align="center" style="margin-top:10px"><input id="<?php echo($k); $k++; ?>" name="<?php echo($song_id[2]); ?>" value="<?php echo($song_id[2]); ?>" type="radio" /></div>
+                
+                <div class="worms_trai" style="margin-top:5px"><strong>Không cho<br />phép đăng</strong></div> 
+                <div class="worms_giua" align="center" style="margin-top:15px"><input id="<?php echo($song_id[0]); ?>" name="<?php echo($song_id[0]); ?>" value="0" type="radio" /></div>
+                <div class="worms_giua" align="center" style="margin-top:15px"><input id="<?php echo($song_id[1]); ?>" name="<?php echo($song_id[1]); ?>" value="0" type="radio" /></div>
+                <div class="worms_phai" align="center" style="margin-top:15px"><input id="<?php echo($song_id[2]); ?>" name="<?php echo($song_id[2]); ?>" value="0" type="radio" /></div>
+            </div>
+            <?php
+				$song_id = array("","","");
+				$ten_bai_hat = array("","","");
+				$dinh_dang = array("","","");
+				$the_loai = array("","","");
+				$ca_si = array("","","");
+				$tac_gia = array("","","");
+				$ngay_dang = array("","","");
+				$chat_luong = array("","","");
+				
+				$i = -1;
+			}
+			$i++;
+		}		
+		if($ten_bai_hat[0] != "" || $ten_bai_hat[1] != "" || $ten_bai_hat[2] != "")
 		{
-			$ten_bai_hat = $row["SongName"];
-			$the_loai = $row["StyleName"];
-			$ca_si = $row["SingerName"];
-			$tac_gia = $row["Writter"];
-			$ngay_up = $row["DateUp"];
-			$chat_luong = $row["BitRate"];
-			
-			
+		?>
+        <br />
+        <hr width="400px" />
+        <div align="left" style="margin-left:10px; margin-top:20px">        
+            <div class="worms_trai"><strong>Tên bài hát</strong></div>
+            <div class="worms_giua"><?php if($ten_bai_hat[0] != "") echo("<input style='width:120px' type='text' value='$ten_bai_hat[0]' />"); ?></div>
+            <div class="worms_giua"><?php if($ten_bai_hat[1] != "") echo("<input style='width:120px' type='text' value='$ten_bai_hat[1]' />"); ?></div>
+            <div class="worms_phai"><?php if($ten_bai_hat[2] != "") echo("<input style='width:120px' type='text' value='$ten_bai_hat[2]' />"); ?></div>
+                            
+            <div class="worms_trai"><strong>Định dạng</strong></div>
+            <div class="worms_giua"><?php echo($dinh_dang[0]); ?></div>
+            <div class="worms_giua"><?php echo($dinh_dang[1]); ?></div>
+            <div class="worms_phai"><?php echo($dinh_dang[2]); ?></div>  
+                
+            <div class="worms_trai"><strong>Thể lọai</strong></div>
+            <div class="worms_giua"><?php if($the_loai[0] != "") echo($the_loai[0]); ?></div>
+            <div class="worms_giua"><?php if($the_loai[1] != "") echo($the_loai[1]); ?></div>
+            <div class="worms_phai"><?php if($the_loai[2] != "") echo($the_loai[2]); ?></div>  
+             
+            <div class="worms_trai"><strong>Ca sĩ</strong></div>
+            <div class="worms_giua"><?php if($ca_si[0] != "") echo($ca_si[0]); ?></div>
+            <div class="worms_giua"><?php if($ca_si[1] != "") echo($ca_si[1]); ?></div>
+            <div class="worms_phai"><?php if($ca_si[2] != "") echo($ca_si[2]); ?></div>
+            
+            <div class="worms_trai"><strong>Tác giả</strong></div>                        
+            <div class="worms_giua"><?php if($tac_gia[0] != "") echo($tac_gia[0]); ?></div>
+            <div class="worms_giua"><?php if($tac_gia[1] != "") echo($tac_gia[1]); ?></div>
+            <div class="worms_phai"><?php if($tac_gia[2] != "") echo($tac_gia[2]); ?></div>
+            
+            <div class="worms_trai"><strong>Ngày đăng</strong></div>            
+            <div class="worms_giua"><?php if($ngay_dang[0] != "") echo($ngay_dang[0]); ?></div>
+            <div class="worms_giua"><?php if($ngay_dang[1] != "") echo($ngay_dang[1]); ?></div>
+            <div class="worms_phai"><?php if($ngay_dang[2] != "") echo($ngay_dang[2]); ?></div>
+            
+            <div class="worms_trai"><strong>Chất lượng</strong></div>            
+            <div class="worms_giua"><?php if($chat_luong[0] != "") echo($chat_luong[0]); ?></div>
+            <div class="worms_giua"><?php if($chat_luong[1] != "") echo($chat_luong[1]); ?></div>
+            <div class="worms_phai"><?php if($chat_luong[2] != "") echo($chat_luong[2]); ?></div>
+            
+            <div class="worms_trai"><strong>Cho phép<br />đăng</strong></div>
+            <?php if($ten_bai_hat[0] != "" && $ten_bai_hat[1] != "") {
+            		echo("<div class='worms_giua' align='center' style='margin-top:10px'><input id='$k' name='$song_id[0]' value='$song_id[0]' type='radio' /></div>"); $k++;}
+				  else{
+				    echo("<div align='center' style='height:25px; width:130px; margin-top:10px'><input  id='$k' name='$song_id[0]' value='$song_id[0]' type='radio' /></div>"); $k++;}
+				  ?>
+            <?php if($ten_bai_hat[1] != "")
+				  	if($ten_bai_hat[2] != ""){
+            			echo("<div class='worms_giua' align='center' style='margin-top:10px'><input id='$k' name='$song_id[1]' value='$song_id[1]' type='radio' /></div>"); $k++;}
+				  	else{
+				  		echo("<div align='center' style='height:25px; margin-right:138px; margin-top:10px'><input  id='$k' name='$song_id[1]' value='$song_id[1]' type='radio' /></div>"); $k++; }
+					?>
+            <?php if($ten_bai_hat[2] != "")
+           			echo("<div class='worms_phai' align='center' style='margin-top:10px'><input  id='$k' name='$song_id[2]' value='$song_id[2]' type='radio' /></div>"); ?>
+                                         
+            <div class="worms_trai" style="margin-top:5px"><strong>Không cho<br />phép đăng</strong></div> 
+            <?php if($ten_bai_hat[0] != "" && $ten_bai_hat[1] != "") 
+            		echo("<div class='worms_giua' align='center' style='margin-top:15px'><input id='$song_id[0]' name='$song_id[0]' value='0' type='radio' /></div>"); 
+				  else
+				    echo("<div align='center' style='height:25px; width:130px; margin-top:15px'><input  id='$song_id[0]' name='$song_id[0]' value='0' type='radio' /></div>"); 
+				  ?>
+            <?php if($ten_bai_hat[1] != "")
+					if($ten_bai_hat[2] != "")
+            			echo("<div class='worms_giua' align='center' style='margin-top:15px'><input id='$song_id[1]' name='$song_id[1]' value='0' type='radio' /></div>"); 
+					else
+				  		echo("<div align='center' style='height:25px; margin-right:138px; margin-top:15px'><input  id='$song_id[1]' name='$song_id[1]' value='0' type='radio' /></div>"); 
+					?>
+            <?php if($ten_bai_hat[2] != "")
+           			echo("<div class='worms_phai' align='center' style='margin-top:15px'><input  id='$song_id[2]' name='$song_id[2]' value='0' type='radio' /></div>"); ?>
+        </div>
+        <?php	
 		}
 	}
 ?>
-                            </div>
+							</div>
+<script language="javascript" type="text/javascript">
+	function Dang()
+	{
+		//alert(<?php echo($k); ?>);		
+		
+		var n = <?php echo($k); ?>;
+		var id = "";
+		for(i=0;i<n;i++)
+		{
+			if(document.getElementById(i).checked)
+				id += "_" + document.getElementById(i).value;
+		}
+				
+		var para = "ID=" + id;		
+		alert(para);
+		var t = $.ajax({url:"xulyThemBaiHatAdmin.php",
+						data:""+para,
+						success:function(kq)
+								{
+									//alert("Thêm vào Playlist thành Công");
+									//vt1 = kq.search("<body>") + 6;
+									//vt2 = kq.search("</body>");
+									//kq = kq.substring(vt1, vt2);
+									//alert(kq);
+									//if(kq != "")
+										alert(kq);
+									//else
+										//alert("Thêm vào Playlist thành Công");
+								}
+						});
+	}
+</script>                            
+
+<div><input type="button" onclick="Dang()" value="Cập nhật" style="width:80px" /> <input type="reset" value="Hủy" style="width:80px"/></div>                            
+</form>
 							<!-- InstanceEndEditable --></div>
                   </div> 
             <div class="right-col">
