@@ -15,7 +15,7 @@
 <script type="text/javascript" src="js/jquery.timers.js"></script>
 <script type="text/javascript" src="script/ThemBaiHat.js"></script>
 <script type="text/javascript" src="script/Ajax_FantasyMusic.js"></script>
-<script language="javascript" type="text/javascript" src="script/vuongtoan.js"></script> 
+<script type="text/javascript" src="script/vuongtoan.js"></script> 
 <script type="text/javascript" src="js/ajaxupload.js"></script>
 <script type="text/javascript" language="javascript">
 		//$("document").ready(TaoDangNhap());
