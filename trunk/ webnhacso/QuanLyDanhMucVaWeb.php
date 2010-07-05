@@ -316,8 +316,8 @@
 										$row = mysql_fetch_array($myweb);
 										$intro = $row["Intro"];
                                    	?>
-									<form name="frmIntro">
-                                    	<label for="txtIntro"> Nội dung giới thiệu :<input type="text" value="<?php echo($intro)?>" style="width:100%"></label>
+									<form name="frmIntro" method="post" action="xulyCapNhatWeb.php" onsubmit="Post(this,'idTemp'); return false">
+                                    	<label for="txtIntro"> Nội dung giới thiệu :<input name="txtIntro" type="text" value="<?php echo($intro)?>" style="width:100%"></label>
                                         <input type="submit" name="btnGioiThieu" value="Đồng Ý">
                                     </form>
                            	 	 </div>
@@ -400,7 +400,11 @@
         </div>
         <div class="footer" align="center">
         	<div>
-            	Bản quyền thuộc về Camellia Team
+            	<p>Bản quyền thuộc về Fantasy Team (KHTN)</p>
+                <p>Liên hệ:</p>
+                	<p>Nguyễn Hải Bình (sau_con_89@yahoo.com)</p>
+                	<p>Lê Ngọc Tín (taki.lnt@gmail.com)</p>
+                    <p>Vương Quốc Toàn (vuongtoan_theking@gmail.com)</p>
             </div>
         </div>
    </div>
