@@ -500,8 +500,7 @@
                     <input name="SongID1" id="SongID1" type="hidden" value="<?php echo($id); ?>" />
                     Xin vui lòng viết bình luận cho bài hát	<br /><br />
                     <textarea name="NoiDung1" id="NoiDung1" style="display:block" cols="30" rows="3"></textarea> 
-                    <input type="button" onclick="BinhLuan1()" value="IQ Cao" title="Bạn có chỉ số IQ cao không?" /><br /><br />
-                    p/s: chỉ có người có chỉ số IQ cao mới để lại bình luận
+                    <input type="button" onclick="BinhLuan1()" value="Gửi Bình Luận" title="Bạn có chỉ số IQ cao không?" /><br /><br />
                 </form>
             </div>
             <?php
@@ -701,9 +700,7 @@
                     <input name="PlayListID" id="PlayListID2" type="hidden" value="<?php echo($_REQUEST["PlayList"]); ?>" />
                     Xin vui lòng viết bình luận cho bài hát	<br /><br />
                     <textarea name="NoiDung" id="NoiDung2" style="display:block" cols="30" rows="3"></textarea> 
-                    <input type="button" onclick="BinhLuan2()" value="IQ Cao" title="Bạn có chỉ số IQ cao không?" /><br /><br />
-                    p/s: chỉ có người có chỉ số IQ cao mới để lại bình luận
-
+                    <input type="button" onclick="BinhLuan2()" value="Gửi Bình Luận" title="Bạn có chỉ số IQ cao không?" /><br /><br />
             </div>
             <?php
 			}

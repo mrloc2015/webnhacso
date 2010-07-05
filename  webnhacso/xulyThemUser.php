@@ -47,7 +47,8 @@ if(isset($_REQUEST["DangKi"]))
 			}
 		}				
 //Tiến hành tạo tài khoản
-$sql="INSERT INTO user (UserName,Pass,UserStyleID,IsDelete,IsBaned) values ('$tendangnhap','$matkhau','2',0,0)";
+$sql="INSERT INTO user (UserName,Pass,UserStyleID,IsDelete,IsBanned) values ('$tendangnhap','$matkhau','2',0,0)";
+
 DataProvider::ExecuteQuery($sql);
 
 $temp_user = DataProvider::ExecuteQuery("select * from user where UserName='$tendangnhap'");

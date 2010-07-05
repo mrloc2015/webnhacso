@@ -317,7 +317,11 @@
 										$intro = $row["Intro"];
                                    	?>
 									<form name="frmIntro" method="post" action="xulyCapNhatWeb.php" onsubmit="Post(this,'idTemp'); return false">
-                                    	<label for="txtIntro"> Nội dung giới thiệu :<input name="txtIntro" type="text" value="<?php echo($intro)?>" style="width:100%"></label>
+                                    	<label for="txtIntro"> Nội dung giới thiệu :
+                                            <textarea name="txtIntro" id="txtIntro" style="display:block" cols="30" rows="3">
+                                                <?php echo($intro)?>
+                                            </textarea>
+                                        </label>
                                         <input type="submit" name="btnGioiThieu" value="Đồng Ý">
                                     </form>
                            	 	 </div>
