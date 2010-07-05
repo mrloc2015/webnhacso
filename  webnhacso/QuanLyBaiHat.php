@@ -209,19 +209,16 @@
 								Quản lý đăng bài hát
                                 <div class="remove-cp" onclick="MoRongDieuKhien(this,'cpUser')"></div>
                             </div>
-<form>                            
-                            <div id="cpUser" class="main-content">                           
-                             
+                            
+                            <div id="cpUser" class="main-content">
+<form>
 <?php
 	include_once("DataProvider.php");
-	/*
-	$ten_bai_hat = "";
-	$the_loai = "";
-	$ca_si = "";
-	$tac_gia = "";
-	$ngay_up = "";
-	$chat_luong = "";	
-	*/
+	
+	$i = 0;
+	$k = 0;
+	$l = 30;
+		
 	$sql = "Select *";
 	$sql .= " From waiting_song ws, song_style ss, user u, singer s, bit_rate br";
 	$sql .= " Where ws.StyleID = ss.ID and ws.OwnerID = u.ID and ws.SingerID = s.ID and ws.BitRateID = br.ID";
@@ -239,9 +236,7 @@
 		$chat_luong = array("","","");
 		
 		$mang_dinh_dang = array("wma", "wmv", "mp3", "flv", "mpeg", "mpg", "avi");
-			
-		$i = 0;
-		$k = 0;
+					
 		while($row = mysql_fetch_array($temp))
 		{					
 			$song_id[$i] = $row["SongID"];
@@ -312,9 +307,9 @@
                 <div class="worms_phai" align="center" style="margin-top:10px"><input id="<?php echo($k); $k++; ?>" name="<?php echo($song_id[2]); ?>" value="<?php echo($song_id[2]); ?>" type="radio" /></div>
                 
                 <div class="worms_trai" style="margin-top:5px"><strong>Không cho<br />phép đăng</strong></div> 
-                <div class="worms_giua" align="center" style="margin-top:15px"><input id="<?php echo($song_id[0]); ?>" name="<?php echo($song_id[0]); ?>" value="0" type="radio" /></div>
-                <div class="worms_giua" align="center" style="margin-top:15px"><input id="<?php echo($song_id[1]); ?>" name="<?php echo($song_id[1]); ?>" value="0" type="radio" /></div>
-                <div class="worms_phai" align="center" style="margin-top:15px"><input id="<?php echo($song_id[2]); ?>" name="<?php echo($song_id[2]); ?>" value="0" type="radio" /></div>
+                <div class="worms_giua" align="center" style="margin-top:15px"><input id="<?php echo($l); $l++; ?>" name="<?php echo($song_id[0]); ?>" value="<?php echo($song_id[0]); ?>" type="radio" /></div>
+                <div class="worms_giua" align="center" style="margin-top:15px"><input id="<?php echo($l); $l++; ?>" name="<?php echo($song_id[1]); ?>" value="<?php echo($song_id[1]); ?>" type="radio" /></div>
+                <div class="worms_phai" align="center" style="margin-top:15px"><input id="<?php echo($l); $l++; ?>" name="<?php echo($song_id[2]); ?>" value="<?php echo($song_id[2]); ?>" type="radio" /></div>
             </div>
             <?php
 				$song_id = array("","","");
@@ -383,64 +378,72 @@
 				  	else{
 				  		echo("<div align='center' style='height:25px; margin-right:138px; margin-top:10px'><input  id='$k' name='$song_id[1]' value='$song_id[1]' type='radio' /></div>"); $k++; }
 					?>
-            <?php if($ten_bai_hat[2] != "")
-           			echo("<div class='worms_phai' align='center' style='margin-top:10px'><input  id='$k' name='$song_id[2]' value='$song_id[2]' type='radio' /></div>"); ?>
-                                         
+            <?php if($ten_bai_hat[2] != ""){
+           			echo("<div class='worms_phai' align='center' style='margin-top:10px'><input  id='$k' name='$song_id[2]' value='$song_id[2]' type='radio' /></div>"); $k++;} ?>             
+                <!------------------------------------>                         
             <div class="worms_trai" style="margin-top:5px"><strong>Không cho<br />phép đăng</strong></div> 
-            <?php if($ten_bai_hat[0] != "" && $ten_bai_hat[1] != "") 
-            		echo("<div class='worms_giua' align='center' style='margin-top:15px'><input id='$song_id[0]' name='$song_id[0]' value='0' type='radio' /></div>"); 
-				  else
-				    echo("<div align='center' style='height:25px; width:130px; margin-top:15px'><input  id='$song_id[0]' name='$song_id[0]' value='0' type='radio' /></div>"); 
+            <?php if($ten_bai_hat[0] != "" && $ten_bai_hat[1] != "") {
+            		echo("<div class='worms_giua' align='center' style='margin-top:15px'><input id='$l' name='$song_id[0]' value='$song_id[0]' type='radio' /></div>"); $l++;}
+				  else{
+				    echo("<div align='center' style='height:25px; width:130px; margin-top:15px'><input  id='$l' name='$song_id[0]' value='$song_id[0]' type='radio' /></div>"); $l++;}
 				  ?>
             <?php if($ten_bai_hat[1] != "")
-					if($ten_bai_hat[2] != "")
-            			echo("<div class='worms_giua' align='center' style='margin-top:15px'><input id='$song_id[1]' name='$song_id[1]' value='0' type='radio' /></div>"); 
-					else
-				  		echo("<div align='center' style='height:25px; margin-right:138px; margin-top:15px'><input  id='$song_id[1]' name='$song_id[1]' value='0' type='radio' /></div>"); 
+					if($ten_bai_hat[2] != ""){
+            			echo("<div class='worms_giua' align='center' style='margin-top:15px'><input id='$l' name='$song_id[1]' value='$song_id[1]' type='radio' /></div>"); $l++;}
+					else{
+				  		echo("<div align='center' style='height:25px; margin-right:138px; margin-top:15px'><input  id='$l' name='$song_id[1]' value='$song_id[1]' type='radio' /></div>"); $l++;}
 					?>
-            <?php if($ten_bai_hat[2] != "")
-           			echo("<div class='worms_phai' align='center' style='margin-top:15px'><input  id='$song_id[2]' name='$song_id[2]' value='0' type='radio' /></div>"); ?>
+            <?php if($ten_bai_hat[2] != ""){
+           			echo("<div class='worms_phai' align='center' style='margin-top:15px'><input  id='$l' name='$song_id[2]' value='$song_id[2]' type='radio' /></div>"); $l++;}?>
         </div>
         <?php	
 		}
 	}
 ?>
-							</div>
+							
 <script language="javascript" type="text/javascript">
 	function Dang()
 	{
-		//alert(<?php echo($k); ?>);		
-		
+		//alert("SDFDSF");
+			
 		var n = <?php echo($k); ?>;
-		var id = "";
+		//alert(n);
+		var cho_phep = "";
 		for(i=0;i<n;i++)
 		{
 			if(document.getElementById(i).checked)
-				id += "_" + document.getElementById(i).value;
+				cho_phep += "_" + document.getElementById(i).value;
 		}
-				
-		var para = "ID=" + id;		
-		alert(para);
+		//alert(cho_phep);
+		n = <?php echo($l); ?>;
+		//alert(n);		
+		var ko_cho_phep = "";
+		for(i=30;i<n;i++)
+		{
+			if(document.getElementById(i).checked)
+				ko_cho_phep += "_" + document.getElementById(i).value;
+		}
+		//alert(ko_cho_phep);
+		var para = "cho_phep=" + cho_phep;		
+		para += "&ko_cho_phep=" + ko_cho_phep;		
+		//alert(para);
 		var t = $.ajax({url:"xulyThemBaiHatAdmin.php",
 						data:""+para,
 						success:function(kq)
-								{
-									//alert("Thêm vào Playlist thành Công");
-									//vt1 = kq.search("<body>") + 6;
-									//vt2 = kq.search("</body>");
-									//kq = kq.substring(vt1, vt2);
-									//alert(kq);
-									//if(kq != "")
-										alert(kq);
-									//else
-										//alert("Thêm vào Playlist thành Công");
+								{								
+									alert(kq);
+									window.location = "QuanLyBaiHat.php";
 								}
 						});
 	}
 </script>                            
 
-<div><input type="button" onclick="Dang()" value="Cập nhật" style="width:80px" /> <input type="reset" value="Hủy" style="width:80px"/></div>                            
-</form>
+							<div>
+                                <input type="button" onclick="Dang()" value="Cập nhật" style="width:80px" />
+                                <input type="reset" value="Hủy" style="width:80px"/>
+                            </div>                         	
+</form>					
+							</div>								
 							<!-- InstanceEndEditable --></div>
                   </div> 
             <div class="right-col">
@@ -516,4 +519,5 @@
         </div>
    </div>
 </body>
-<!-- InstanceEnd --></html>
+<!-- InstanceEnd -->
+</html>

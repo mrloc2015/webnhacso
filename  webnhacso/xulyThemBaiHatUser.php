@@ -81,7 +81,7 @@
 			
 		$source = ", \"Du_Lieu/BAI_HAT/$song_id/".$_REQUEST['Source']."\"";
 
-		$sql = "Insert into waiting_song (SongID, SongName, StyleID, OwnerID, SingerID, Writter, DateUp, BitRateID, Source) values ($song_id $song_name $style_id $owner_id $singer_id $writter $date_up $bit_rate_id $source)";				
+		$sql = "Insert into waiting_song (SongID, SongName, StyleID, OwnerID, SingerID, Writter, DateUp, BitRateID, Rate, Source) values ($song_id $song_name $style_id $owner_id $singer_id $writter $date_up $bit_rate_id $rate $source)";				
 		//echo($sql);			
 		DataProvider::ExecuteQuery($sql);		
 		
