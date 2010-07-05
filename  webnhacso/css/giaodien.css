@@ -90,7 +90,7 @@ a
 .footer
 {
 	background-color:#FFFFFF;
-	/*background:url("../images/footer-bg.jpg") repeat-x scroll left bottom #FFFFFF;*/
+	background:url("../images/footer-bg.jpg") repeat-x scroll left bottom #FFFFFF;
 	height:auto;
 	margin:0 auto;
 	overflow:hidden;

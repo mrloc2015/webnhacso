@@ -514,7 +514,11 @@
         </div>
         <div class="footer" align="center">
         	<div>
-            	Bản quyền thuộc về Camellia Team
+            	<p>Bản quyền thuộc về Fantasy Team (KHTN)</p>
+                <p>Liên hệ:</p>
+                	<p>Nguyễn Hải Bình (sau_con_89@yahoo.com)</p>
+                	<p>Lê Ngọc Tín (taki.lnt@gmail.com)</p>
+                    <p>Vương Quốc Toàn (vuongtoan_theking@gmail.com)</p>
             </div>
         </div>
    </div>
