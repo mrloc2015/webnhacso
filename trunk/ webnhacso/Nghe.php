@@ -54,10 +54,10 @@
 			$.ajax({url: 'xulyThemBaiHatUser.php',
 				   data:""+para,
 				   success:function(kq){
-					   					vt1 = kq.search("<body>") + 6;
-										vt2 = kq.search("</body>");
-										kq = kq.substring(vt1, vt2);
-										kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
+					   					//vt1 = kq.search("<body>") + 6;
+										//vt2 = kq.search("</body>");
+										//kq = kq.substring(vt1, vt2);
+										//kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
 										kq1 = kq + (-1);
 										if(isNaN(kq1) == false) // => là số
 										{
@@ -73,7 +73,7 @@
 										else
 											alert(kq);
 										}
-				   });			
+				   });
 		}
 </script>
 
@@ -236,9 +236,9 @@
 			$rate = $row["Rate"];
 			$rate = floor($rate); // làm tròn xuống, lên dùng ceil()			
 			//echo ($listenCount);
-			$duongDanCaSi = "TimKiem.php?Th_CaSi=" . $row["SingerID"];
-			$duongDanTheLoai = "TimKiem.php?Th_TheLoai=" . $row["StyleID"];
-			$duongDanNguoiDang = "TimKiem.php?Th_NguoiDang=" . $row["OwnerID"];
+			$duongDanCaSi = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
+			$duongDanTheLoai = "TimKiem.php?TimKiem=true&Th_TheLoai=" . $row["StyleID"];
+			$duongDanNguoiDang = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
 		}
 		//$source = "Du_Lieu/BAI_HAT/$id/$source";
 		//echo($source);
@@ -292,19 +292,19 @@
 					//alert(k);
 					$("#TaiVe").attr("value",k);
 					$("#ngang").attr("width",w+"px");
-					if(k < 87)
+					if(k < 1)
 					{
 						//$("#TaiVe").attr("value",k);
 						//k = <?php echo($time); ?>;
-
-						$("#ThongBao").attr("innerHTML","Chỉ có người có IQ cao mới down bài này - Bạn là 1 trong số đó");
+						
 						window.location = url;
+						$("#ThongBao").attr("innerHTML","<a href='" + url + "'>link download</a> &nbsp;");
 						temp = clearInterval(temp);																					
-								
+						
 						var para = "TangDown=true&ID=<?php echo($id); ?>";
 						var t = $.ajax({url:"xulyDanhGia.php",
 							data:""+para,
-							success:function(kq){alert(kq);}
+							//success:function(kq){alert(kq);}
 							});
 												
 						return;
@@ -355,15 +355,7 @@
 				}
 				function BaoCao(kq)
 				{
-					//alert("Thêm vào Playlist thành Công");
-					vt1 = kq.search("<body>") + 6;
-					vt2 = kq.search("</body>");
-					kq = kq.substring(vt1, vt2);
-					//alert(kq);
-					//if(kq != "")
-						alert(kq);
-					//else
-						//alert("Thêm vào Playlist thành Công");
+					alert(kq);
 				}
 			</script>
             
@@ -411,9 +403,9 @@
 						$idSinger = $row["SingerID"];
 						$playList = $row["PlayListID"];
 						$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
-						$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
+						$duongDanTheLoai = "TimKiem.php?TimKiem=true&Th_TheLoai=$idStyle";
 						$duongDanNguoiDung = "Nghe.php?PlayList=$playList";
-						$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
+						$duongDanCaSi = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
 						
 						echo("<div class='song-info' align='left'>");
 						echo("<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>");
@@ -489,7 +481,8 @@
 					//if(kq != "")
 						alert(kq);
 					//else
-						//alert("Đã bình luận cho bài này");						
+						//alert("Đã bình luận cho bài này");		
+					window.location = window.location;
 				}
 			</script>
             
@@ -581,11 +574,32 @@
 					{						
 						$("#playerEm").attr("URL",source);
 					} 
+					
+					function XoaKhoiPlayList(user_name, playlist_id, idsong)
+					{
+						//alert("SDFSDF");
+						
+						var para = "XoaKhoiPlayList=" + playlist_id;	
+						para += "&user_name=" + user_name;
+						para += "&id_song=" + idsong;
+						//alert(para);
+						
+						var t = $.ajax({url:"xulyXoaKhoiPlayList.php",
+										data:""+para,
+										success:function(kq)
+												{
+													alert(kq);
+													window.location = window.location;
+												}
+										});
+						
+						//document.getElementById(id).innerHTML = "<h3>Đã Xóa</h3>";
+					}
 	            </script>
                 <div class="main-content">
 				<?php				
 				//Danh sách bài hát trong playlist
-				$temp = DataProvider::ExecuteQuery("Select * From playlist_detail pd, song s, singer si, song_style ss, user u, bit_rate br Where pd.SongID = s.ID and s.SingerID = si.ID and s.StyleID = ss.ID and s.OwnerID = u.ID and s.BitRateID = br.ID and pd.PlayListID = $playlist_id");
+				$temp = DataProvider::ExecuteQuery("Select *, s.ID as IDSONG From playlist_detail pd, song s, singer si, song_style ss, user u, bit_rate br Where pd.SongID = s.ID and s.SingerID = si.ID and s.StyleID = ss.ID and s.OwnerID = u.ID and s.BitRateID = br.ID and pd.PlayListID = $playlist_id");
 				if($temp != false)
 				{
 					//echo($playlist_id);
@@ -597,19 +611,21 @@
 						$songName = $row["SongName"];
 						$singerName = $row["SingerName"];
 						$writter = $row["Writter"];
-						$userName = $row["UserName"];
+						$userName = $row["UserName"];						
 						$dayUp = $row["DateUp"];
 						$nameStyle = $row["StyleName"];
 						$listenCount = $row["ListenCount"];
 						$bitRate = $row["BitRate"];
 						$idSong = $row["ID"];
+						$IDSONG = $row["IDSONG"];
+						//echo($IDSONG);
 						$idStyle = $row["StyleID"];
 						$idUser = $row["OwnerID"];
 						$idSinger = $row["SingerID"];
 						$duongDanBaiHat = "Nghe.php?BaiHat=$idSong";
-						$duongDanTheLoai = "TimKiem.php?Th_TheLoai=$idStyle";
-						$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=$idUser";
-						$duongDanCaSi = "TimKiem.php?Th_CaSi=$idSinger";
+						$duongDanTheLoai = "TimKiem.php?TimKiem=true&Th_TheLoai=$idStyle";
+						$duongDanNguoiDung = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
+						$duongDanCaSi = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
 						
 						echo("<div class='song-info' align='left'>");
 						echo("<div class='song-icon'>
@@ -633,7 +649,8 @@
 						echo( "|"); 
 						echo("</span>");
 						echo("<span><a title='Tìm các bài hát có thể loại: $nameStyle' href='$duongDanTheLoai'>$nameStyle</a></span></p>");
-						echo("</div>");					
+						echo("<div id='$idSong' style='float:right'><img onclick=\"XoaKhoiPlayList('$user_name', $playlist_id, $IDSONG)\" src='images/unsafe.gif' width='25' height='25' /></div>");
+						echo("</div>");						
 					}
 				}	
 				?>
@@ -678,6 +695,7 @@
 							});//.responseText;
 					
 					//alert(t);
+					window.location = window.location;
 				}
 				function BaoCao2(kq)
 				{

@@ -144,7 +144,7 @@
 										<a href='QuanLyUser.php' title='Quản lý thành viên'>Quản lý thành viên</a>
 									</li>
 									<li>
-										<a href='QuanLyBaiHat.php' title='Quản lý bài hát'>Quản lý bài hát</a>
+										<a href='QuanLyBaiHat.php' title='Quản lý đăng bài hát'>Quản lý đăng bài hát</a>
 									</li>
 									<li>
 										<a href='QuanLyPlaylist.php' title='Quản lý Playlist'>Quản lý Playlist</a>

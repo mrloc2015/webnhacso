@@ -56,10 +56,10 @@
 			$.ajax({url: 'xulyThemBaiHatUser.php',
 				   data:""+para,
 				   success:function(kq){
-					   					vt1 = kq.search("<body>") + 6;
-										vt2 = kq.search("</body>");
-										kq = kq.substring(vt1, vt2);
-										kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
+					   					//vt1 = kq.search("<body>") + 6;
+										//vt2 = kq.search("</body>");
+										//kq = kq.substring(vt1, vt2);
+										//kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
 										kq1 = kq + (-1);
 										if(isNaN(kq1) == false) // => là số
 										{
@@ -75,7 +75,7 @@
 										else
 											alert(kq);
 										}
-				   });			
+				   });
 		}
 </script>
 
@@ -280,11 +280,6 @@
 		{			
 			while($row = mysql_fetch_array($temp))
 			{
-				$duongDanBaiHat = "Nghe.php?BaiHat=".$row["ID"];
-				$duongDanTheLoai = "TimKiem.php?Th_TheLoai=".$row["StyleID"];
-				$duongDanNguoiDung = "TimKiem.php?Th_NguoiDang=".$row["OwnerID"];
-				$duongDanCaSi = "TimKiem.php?Th_CaSi=".$row["SingerID"];
-								
 				$songName = $row["SongName"];
 				$singerName = $row["SingerName"];
 				$userName = $row["UserName"];
@@ -293,6 +288,11 @@
 				$bitRate = $row["BitRate"];
 				$dayUp = $row["DateUp"];
 
+				$duongDanBaiHat = "Nghe.php?BaiHat=".$row["ID"];
+				$duongDanTheLoai = "TimKiem.php?TimKiem=true&Th_TheLoai=".$row["StyleID"];
+				$duongDanNguoiDung = "TimKiem.php?TimKiem=true&Th_NguoiDang=$userName";
+				$duongDanCaSi = "TimKiem.php?TimKiem=true&Th_CaSi=$singerName";
+																
 				$noi_dung .= "<div class='song-info' align='left'>";
 				$noi_dung .= "<div class='song-icon'><img alt='Music Icon' src='images/MP3.gif'></div>";
 				$noi_dung .= "<h2><a href='$duongDanBaiHat'>$songName</a></h2>";

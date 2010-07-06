@@ -20,6 +20,10 @@ function rate_click(val)
 		return;
 	}
 	
+	$("#Th_Rate").attr("value",val);
+	for(i=5;i>val;i--)
+		$("#" + i).attr("src","images/sao1.png");
+		
 	if($("#user_id").attr("value") > 0)
 	{
 		//alert($("#Th_Rate").attr("value"));
@@ -29,22 +33,10 @@ function rate_click(val)
 		para += "&rate=" + $("#Th_Rate").attr("value");
 		var t = $.ajax({url:"xulyDanhGia.php",
 						data:""+para,
-						/*success:function(kq)
+						success:function(kq)
 								{
-									//alert("Thêm vào Playlist thành Công");
-									vt1 = kq.search("<body>") + 6;
-									vt2 = kq.search("</body>");
-									kq = kq.substring(vt1, vt2);
-									//alert(kq);
-									//if(kq != "")
-										alert(kq);
-									//else
-										//alert("Thêm vào Playlist thành Công");
-								}*/
+									alert(kq);									
+								}
 						});
-	}
-	
-	$("#Th_Rate").attr("value",val);
-	for(i=5;i>val;i--)
-		$("#" + i).attr("src","images/sao1.png");
+	}	
 }

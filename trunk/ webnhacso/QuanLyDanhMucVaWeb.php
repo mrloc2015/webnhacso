@@ -56,10 +56,10 @@
 			$.ajax({url: 'xulyThemBaiHatUser.php',
 				   data:""+para,
 				   success:function(kq){
-					   					vt1 = kq.search("<body>") + 6;
-										vt2 = kq.search("</body>");
-										kq = kq.substring(vt1, vt2);
-										kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
+					   					//vt1 = kq.search("<body>") + 6;
+										//vt2 = kq.search("</body>");
+										//kq = kq.substring(vt1, vt2);
+										//kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
 										kq1 = kq + (-1);
 										if(isNaN(kq1) == false) // => là số
 										{
@@ -75,7 +75,7 @@
 										else
 											alert(kq);
 										}
-				   });			
+				   });
 		}
 </script>
 
