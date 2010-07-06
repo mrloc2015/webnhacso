@@ -3,9 +3,10 @@
 <?php
 	session_start();
 	
-	if(isset($_REQUEST["txtKeyWord"]) && isset($_SESSION["IsAdmin"]))
+	if(isset($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"] == true)
 	{
-		if($_SESSION["IsAdmin"] == true)
+		//Tìm user
+		if(isset($_REQUEST["txtKeyWord"]))
 		{
 			$KeyWord = $_REQUEST["txtKeyWord"];
 			include_once("DataProvider.php");
@@ -185,10 +186,7 @@
 			}
 			
 		}
-		else
-		{
-			echo("Bạn không phải là Admin!!");
-		}
+		
 	}
 	else
 	{
