@@ -98,8 +98,7 @@ function TimeCount()
 </html>");
 
 //*****sau_con_89******
-$sql="Update user Set PlayListID = $userID Where ID = $userID";
-DataProvider::ExecuteQuery($sql);
+
 //tạo folder + playlist cho mỗi người dùng => tiện việc xử lý nghe nhạc
 mkdir("Du_Lieu/USER/$tendangnhap",1);
 
@@ -125,6 +124,14 @@ if($temp != false)
 {
 	$row = mysql_fetch_array($temp);
 	$playlist_id = $row["MAX(ID)"];
+}
+//cập nhật lại cho khớp playlist ID
+$temp = DataProvider::ExecuteQuery("Select max(ID) From playlist");
+if($temp != false)
+{
+	$row = mysql_fetch_array($temp);
+	$sql="Update user Set PlayListID = ".$row["max(ID)"]." Where ID = $userID";
+	DataProvider::ExecuteQuery($sql);
 }
 
 $fp = fopen("DU_LIEU/USER/$tendangnhap/$playlist_id.wpl","w");

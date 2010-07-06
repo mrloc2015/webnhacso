@@ -56,10 +56,10 @@
 			$.ajax({url: 'xulyThemBaiHatUser.php',
 				   data:""+para,
 				   success:function(kq){
-					   					vt1 = kq.search("<body>") + 6;
-										vt2 = kq.search("</body>");
-										kq = kq.substring(vt1, vt2);
-										kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
+					   					//vt1 = kq.search("<body>") + 6;
+										//vt2 = kq.search("</body>");
+										//kq = kq.substring(vt1, vt2);
+										//kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
 										kq1 = kq + (-1);
 										if(isNaN(kq1) == false) // => là số
 										{
@@ -75,7 +75,7 @@
 										else
 											alert(kq);
 										}
-				   });			
+				   });
 		}
 </script>
 
@@ -279,7 +279,7 @@
     </div>
 	<br />
 	<div align="left">File đăng/upload lên không quá 10Mb, có dạng WMA, WMV, MP3, FLV, MPEG, MPG, AVI</div>
-
+    
 	<div style="margin-top:30px; margin-right:100px"><input type="button" onclick="Them()" value="Thêm" /></div>
 </div>    
 </form>

@@ -28,7 +28,7 @@
 		//echo($user_id . $song_id . $date . $noi_dung);
 	
 		$sql = "Insert into comment(UserID, SongID, PlayListID, CreateDate) values($user_id, $song_id, $playlist_id, '$date')";
-		echo($sql);
+		//echo($sql);
 		DataProvider::ExecuteQuery($sql);
 		
 		$sql = "Select max(ID) From comment";
@@ -40,7 +40,7 @@
 		}
 		
 		$sql = "Insert into comment_detail(CommentID, Content) values($comment_id, $noi_dung)";
-		echo($sql);
+		//echo($sql);
 		DataProvider::ExecuteQuery($sql);
 		
 		echo("Cám ơn bạn đã bình luận");

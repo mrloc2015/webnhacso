@@ -1,11 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-</head>
-
-<body>
 <?php
 	include_once("DataProvider.php");
 	
@@ -45,9 +37,9 @@
 		$sql = "Update song Set Rate = $rate Where ID = $song_id";
 		//echo($sql);
 		DataProvider::ExecuteQuery($sql);
+		
+		echo("Cám ơn bạn đã cho điểm");
 	}
 	else
 		echo("Chỉ có user mới đánh giá được");
 ?>
-</body>
-</html>

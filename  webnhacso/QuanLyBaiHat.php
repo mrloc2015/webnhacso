@@ -56,10 +56,10 @@
 			$.ajax({url: 'xulyThemBaiHatUser.php',
 				   data:""+para,
 				   success:function(kq){
-					   					vt1 = kq.search("<body>") + 6;
-										vt2 = kq.search("</body>");
-										kq = kq.substring(vt1, vt2);
-										kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
+					   					//vt1 = kq.search("<body>") + 6;
+										//vt2 = kq.search("</body>");
+										//kq = kq.substring(vt1, vt2);
+										//kq = kq.replace(/^s+|s+$/g,""); //giống trim() php
 										kq1 = kq + (-1);
 										if(isNaN(kq1) == false) // => là số
 										{
@@ -75,7 +75,7 @@
 										else
 											alert(kq);
 										}
-				   });			
+				   });
 		}
 </script>
 
@@ -246,7 +246,7 @@
 			$flag = 1; //khác
 			for($j=0;$j<7;$j++)
 			{
-				$temp1[1] = strtolower($temp1[1]);
+				$temp1[1] = strtolower($temp1[count($temp1)-1]);
 				if(strcmp($mang_dinh_dang[$j], $temp1[1]) == 0)
 					$flag = 0; //có hỗ trợ
 			}
@@ -277,7 +277,9 @@
                 <div class="worms_phai"><?php echo($dinh_dang[2]); ?></div>  
                 
                 <div class="worms_trai"><strong>Thể lọai</strong></div>
-                <div class="worms_giua"><?php echo($the_loai[0]); ?></div>
+                <div class="worms_giua">					
+					<?php echo($the_loai[0]); ?>
+                </div>
                 <div class="worms_giua"><?php echo($the_loai[1]); ?></div>
                 <div class="worms_phai"><?php echo($the_loai[2]); ?></div>  
                  
@@ -332,9 +334,9 @@
         <hr width="400px" />
         <div align="left" style="margin-left:10px; margin-top:20px">        
             <div class="worms_trai"><strong>Tên bài hát</strong></div>
-            <div class="worms_giua"><?php if($ten_bai_hat[0] != "") echo("<input style='width:120px' type='text' value='$ten_bai_hat[0]' />"); ?></div>
-            <div class="worms_giua"><?php if($ten_bai_hat[1] != "") echo("<input style='width:120px' type='text' value='$ten_bai_hat[1]' />"); ?></div>
-            <div class="worms_phai"><?php if($ten_bai_hat[2] != "") echo("<input style='width:120px' type='text' value='$ten_bai_hat[2]' />"); ?></div>
+            <div class="worms_giua"><?php if($ten_bai_hat[0] != "") echo("<input id='$k' style='width:120px' type='text' value='$ten_bai_hat[0]' />"); ?></div>
+            <div class="worms_giua"><?php if($ten_bai_hat[1] != ""){$a1=$k+1; echo("<input id='$a1' style='width:120px' type='text' value='$ten_bai_hat[1]' />"); } ?></div>
+            <div class="worms_phai"><?php if($ten_bai_hat[2] != ""){$a2=$k+2; echo("<input id='$a2' style='width:120px' type='text' value='$ten_bai_hat[2]' />"); } ?></div>
                             
             <div class="worms_trai"><strong>Định dạng</strong></div>
             <div class="worms_giua"><?php echo($dinh_dang[0]); ?></div>
@@ -343,9 +345,9 @@
                 
             <div class="worms_trai"><strong>Thể lọai</strong></div>
             <div class="worms_giua"><?php if($the_loai[0] != "") echo($the_loai[0]); ?></div>
-            <div class="worms_giua"><?php if($the_loai[1] != "") echo($the_loai[1]); ?></div>
+            <div class="worms_giua"><?php if($the_loai[1] != "") echo($the_loai[1]); ?></div>           
             <div class="worms_phai"><?php if($the_loai[2] != "") echo($the_loai[2]); ?></div>  
-             
+			 
             <div class="worms_trai"><strong>Ca sĩ</strong></div>
             <div class="worms_giua"><?php if($ca_si[0] != "") echo($ca_si[0]); ?></div>
             <div class="worms_giua"><?php if($ca_si[1] != "") echo($ca_si[1]); ?></div>
@@ -402,6 +404,8 @@
 ?>
 							
 <script language="javascript" type="text/javascript">
+//	var arr = {item1: “xin chào”, item2: 100, item3: “bạn là ai thế?”, item4: 0.911};
+	
 	function Dang()
 	{
 		//alert("SDFDSF");
@@ -523,5 +527,4 @@
         </div>
    </div>
 </body>
-<!-- InstanceEnd -->
-</html>
+<!-- InstanceEnd --></html>
