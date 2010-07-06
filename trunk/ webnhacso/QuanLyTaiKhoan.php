@@ -208,7 +208,15 @@
 <script src="script/vuongtoan.js"></script>
 </script>
 <?php
-	$username=$_SESSION["UserName"];
+	if(isset($_SESSION["UserName"]))
+	{
+		$username=$_SESSION["UserName"];	
+	}
+	else
+	{
+		$username="";
+	}
+	
 	include_once("DataProvider.php");
 	$result = DataProvider::ExecuteQuery("select user_info.FullName as FullName,user_info.Birthday as Birthday,user_info.Joinday as JoinDay ,user_info.LocationID as LocationID,location.local as Local,user_info.Email,user_info.ID as ID from user,user_info,location where user.ID=user_info.UserID and user.UserName= '$username' and location.ID=user_info.LocationID");
 	if($result !=false)
