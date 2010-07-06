@@ -3,12 +3,15 @@
 	session_start();
 	if(isset($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"]==true)
 	{
+		//echo($_SESSION["IsAdmin"]);
 		include_once("DataProvider.php");
 		//xử lý xóa user
 		if(isset($_GET["deleteID"]))
 		{
 			$userID = $_GET["deleteID"];
+			//echo($userID);
 			$sql = "UPDATE user SET IsDelete=1 WHERE ID = '$userID'";
+			//echo($sql);
 			DataProvider::ExecuteQuery($sql);
 			echo("<script>alert('Đã xóa user !');</script>");
 		}
