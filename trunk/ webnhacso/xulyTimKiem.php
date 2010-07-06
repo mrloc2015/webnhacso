@@ -10,12 +10,12 @@
 		{
 			$KeyWord = $_REQUEST["txtKeyWord"];
 			include_once("DataProvider.php");
-			$sql="select * from user u, user_info ui where u.UserName like '%$KeyWord%' and ui.UserID = u.ID";
+			$sql="select u.ID as ABC, u.UserName as UserName, ui.FullName as FullName, ui.JoinDay as JoinDay, u.IsDelete as IsDelete, u.IsBanned as IsBanned, ui.Email as Email, ui.Birthday as Birthday, ui.LocationID as LocationID from user u, user_info ui where u.UserName like '%$KeyWord%' and ui.UserID = u.ID";
 			$index = 1;
 			$result = DataProvider::ExecuteQuery($sql);
 			while($row = mysql_fetch_array($result))
 			{
-				$userID = $row["ID"];
+				$userID = $row["ABC"];
 				$userName = $row["UserName"];
 				$fullName = $row["FullName"];
 				$joinDay = $row["JoinDay"];
